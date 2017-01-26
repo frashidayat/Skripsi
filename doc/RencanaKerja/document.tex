@@ -26,84 +26,87 @@
 \author{\nama \textendash \@npm} 
 
 %tulis nama dan NPM anda di sini:
-\newcommand{\nama}{Lionov}
-\newcommand{\@npm}{1997730020}
-\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
+\newcommand{\nama}{Frasetiawan Hidayat}
+\newcommand{\@npm}{2010730121}
+\newcommand{\@judultopik}{Analisis Waktu Tempuh Kota Bandung} % Judul/topik anda
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-\newcommand{\tanggal}{01/01/1900}
+\newcommand{\tanggal}{16/01/2017}
 \maketitle
 
 \pagenumbering{arabic}
 
 \section{Deskripsi}
-Tuliskan deskripsi dari topik skripsi yang akan anda ajukan. Di sini dapat dituliskan latar belakang, seperti apa penelitian yang sudah ada sebelumnya dan apa yang akan anda kerjakan. Sertakan gambar agar penjelasan anda menjadi lebih baik.
+Waktu adalah salah satu elemen yang paling penting dalam kehidupan manusia. Sebagai manusia, pasti ingin mengefektifkan waktu agar semua rencana yang sudah dibuat berjalan dengan lancar dan tepat. Salah satu permasalahan yang kini terjadi adalah kemacetan yang menyita waktu dan membuat kita sering terlambat untuk melakukan rutinitas. Kemacetan sendiri terkadang tidak dapat diprediksi.
 
-Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan visualisasi dan simulasi kerumunan orang yang berkunjung ke sebuah museum. Dengan menggunakan perangkat lunak tersebut, pengelola museum dapat mengatur tempat peletakan objek sehingga tidak terjadi kerumunan yang terlalu padat.
+Kemacetan adalah suatu masalah yang sudah lama terjadi di kota-kota besar. Kemacetan juga menghambat aktifitas manusia untuk bermobilitas tinggi dan merusak rencana yang dibuat sedemikian rupa agar dapat terlaksanakan dengan baik dan tepat waktu. Bandung adalah salah satu kota besar yang memiliki permasalahan kemacetan. 
 
-Dari berbagai macam teknik yang dapat digunakan untuk melakukan simulasi kerumunan, dipilih dua buah teknik yaitu teknik {\it flow tiles} dan {\it social force model (steering behaviour)}.
+Kita sebagai manusia melakukan rutinitas berpindah dari suatu tempat ke tempat lain sebagai contoh : kuliah, bekerja di kantor. Untuk menjalani rutinitas itu, kita melakukan perjalanan melalui jalur yang sering kita lewati. Dari jalur yang sering kita lewati itu biasanya terdapat jam-jam tertentu terjadi kemacetan. Dengan demikian kita menginginkan untuk melakukan perjalanan di waktu yang tepat agar waktu tempuh untuk berpindah dari suatu tempat menjadi optimal.
 
-Dst, dst, dst, \ldots\ldots\ldots 
-
-Perangkat lunak akan dibuat dengan bantuan {\it framework} OpenSteer. Sebagai studi kasus, museum yang digunakan untuk melakukan simulasi adalah Museum Geologi Bandung.
-
-Dst, dst, dst, \ldots\ldots\ldots 
+Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan analisis berbentuk bagan untuk membantu mengambil keputusan pada jam berapakah harus melakukan perjalanan dengan waktu tempuh yang optimal. Perangkat lunak ini memanfaatkan salah satu teknologi Google yaitu Google Direction. Google Direction adalah sebuah layanan yang disediakan oleh Google menggunakan protokol HTTP untuk menghitung arah alamat statis untuk penempatan konten aplikasi pada peta. Input yang diterima oleh Google Direction adalah lokasi awal dan lokasi akhir.
 
 \section{Rumusan Masalah}
-Tuliskan rumusan dari masalah yang akan anda bahas pada skripsi ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+
+\begin{itemize}
+	\item Bagaimana protokol HTTP?
+	\item Bagaimana komunikasi layanan Google Direction?
+	\item Bagaimana mengimplementasikan komunikasi Google Direction di Java?
+	\item Bagaimana mengimplementasikan komunikasi Google Direction dengan permintaan beberapa waktu?
+	\item Bagaimana menganalisis hasil dari permintaan komunikasi Google Direction pada suatu jalur?
+\end{itemize}
 
 \section{Tujuan}
-Tuliskan tujuan dari topik skripsi yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+
+\begin{itemize}
+	\item memahami protokol HTTP.
+	\item memahami layanan web dari Google Direction.
+	\item mengimplementasikan komunikasi layanan web Google Direction pada Java.
+	\item menganalisis waktu tempuh terbaik pada suatu jalur.
+\end{itemize}
 
 \section{Deskripsi Perangkat Lunak}
-Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
 
 Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
 \begin{itemize}
-	\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
-	\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
-	\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
-	\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
-	\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
-	\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
-	\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
-	\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
-		
+	\item Pengguna dapat menentukan titik awal dan titik tujuan untuk dihitung waktu tempuh optimalnya.
+	\item Pengguna dapat melihat hasil analisis waktu tempuh optimal berupa bagan.
+	\item Pengguna dapat mengatur hasil analisis perhari atau perminggu.
 \end{itemize}
 
 \section{Detail Pengerjaan Skripsi}
-Tuliskan bagian-bagian pengerjaan skripsi secara detail. Bagian pekerjaan tersebut mencakup awal hingga akhir skripsi, termasuk di dalamnya pengerjaan dokumentasi skripsi, pengujian, survei, dll.
 
 Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
 	\begin{enumerate}
-		\item Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll)
-		\item Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.
-		\item Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}
-		\item Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer
-		\item Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung
-		\item Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)
-		\item Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer 
-		\item Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif
-		\item Menulis dokumen skripsi
+		\item Melakukan studi literatur tentang protokol HTTP.
+		\item Melakukan studi literatur tentang \textit{Web Service}.
+		\item Melakukan studi literatur tentang \textit{Google Places API} dan \textit{Google Direction API}.
+		\item Menganalisis protokol HTTP.
+		\item Menganalisis \textit{Web Service}.
+		\item Mempelajari dan menganalisis fitur dari layanan \textit{Google Places API} dan \textit{Google Direction API}.
+		\item Merancang perangkat lunak hasil analisis waktu tempuh.
+		\item Mengimplementasikan komunikasi layanan \textit{Google Direction}.
+		\item Melakukan pengujian dan eksperimen sesuai dengan sample.
+		\item Menulis dokumen skripsi.
 	\end{enumerate}
 
 \section{Rencana Kerja}
-Tuliskan rencana anda untuk menyelesaikan skripsi. Rencana kerja dibagi menjadi dua bagian yaitu yang akan dilakukan pada saat mengambil kuliah AIF401 Skripsi 1 dan pada saat mengambil kuliah AIF402 Skripsi 2. Perhatikan contoh berikut ini :
 
+Berikut adalah rencana kerja yang akan dilakukan pada saat menagmbil kuliah AIF402 Skripsi 2 untuk menyelesaikan skripsi ini :
 
 \begin{center}
   \begin{tabular}{ | c | c | c | c | l |}
     \hline
     1*  & 2*(\%) & 3*(\%) & 4*(\%) &5*\\ \hline \hline
-    1   & 5  & 5  &  &  \\ \hline
-    2   & 5 & 5  &   & \\ \hline
-    3   & 10  & 7  & 3 & {\footnotesize sebagian kecil teknik {\it flow tiles} di S2}  \\ \hline
-    4   & 15  & 10  &  5 & {\footnotesize teknik lanjut OOP di C++ di S2} \\ \hline
-    5   & 20  & 5  & 15 & {\footnotesize perancangan awal SFM, pathway dan waypoint di S1} \\ \hline
-    6   & 5 &   & 5  & \\ \hline
-    7   & 20  & 5  & 15 &  {\footnotesize implementasi denah dan rancangan awal SFM di S1}\\ \hline
-    8   & 5  &   &  5  & \\ \hline
-    9   & 15  & 3  & 12  & {\footnotesize sebagian bab 1 dan 2, serta bagian awal analisis di S1}\\ \hline
-    Total  & 100  & 40  & 60 &  \\ \hline
+    1   & 5  &    & 5  & \\ \hline
+    2   & 5  &    & 5  & \\ \hline
+    3   & 5  &    & 5  & \\ \hline
+    4   & 7  &    & 7  & \\ \hline
+    5   & 7  &    & 7  & \\ \hline
+    6   & 7  &    & 7  & \\ \hline
+    7   & 18 &    & 18 & \\ \hline
+    8   & 18 &    & 18 & \\ \hline
+    9   & 18 &    & 18 & \\ \hline
+    10  & 10 &    & 10 & \\ \hline
+    Total  & 100  &    & 100 &  \\ \hline
                           \end{tabular}
 \end{center}
 
@@ -113,7 +116,7 @@ Keterangan (*)\\
 3 : Persentase yang akan diselesaikan di Skripsi 1 \\
 4 : Persentase yang akan diselesaikan di Skripsi 2 \\
 5 : Penjelasan singkat apa yang dilakukan di S1 (Skripsi 1) atau S2 (skripsi 2)
-
+\newpage
 \vspace{1cm}
 \centering Bandung, \tanggal\\
 \vspace{2cm} \nama \\ 
