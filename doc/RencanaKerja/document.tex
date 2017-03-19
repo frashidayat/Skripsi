@@ -30,63 +30,53 @@
 \newcommand{\@npm}{2010730121}
 \newcommand{\@judultopik}{Analisis Waktu Tempuh Kota Bandung} % Judul/topik anda
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-\newcommand{\tanggal}{16/01/2017}
+\newcommand{\tanggal}{16/02/2017}
 \maketitle
 
 \pagenumbering{arabic}
 
 \section{Deskripsi}
-Waktu adalah salah satu elemen yang paling penting dalam kehidupan manusia. Sebagai manusia, pasti ingin mengefektifkan waktu agar semua rencana yang sudah dibuat berjalan dengan lancar. Salah satu permasalahan yang kini terjadi adalah kemacetan yang menyita waktu dan membuat kita sering terlambat untuk melakukan rutinitas.
+Manusia melakukan rutinitas berpindah dari suatu tempat ke tempat lain sebagai contoh: kuliah dan bekerja. Untuk menjalani rutinitas itu, kita melakukan perjalanan melalui jalur yang relatif konstan. Dari jalur yang sering kita lewati itu biasanya terdapat jam-jam tertentu terjadi kemacetan. Dengan demikian kita menginginkan untuk melakukan perjalanan di waktu yang tepat agar waktu tempuh untuk berpindah dari suatu tempat menjadi optimal.
 
-Kemacetan adalah suatu masalah yang sudah lama terjadi di kota-kota besar. Kemacetan juga menghambat aktifitas manusia untuk bermobilitas tinggi dan merusak rencana yang dibuat sedemikian rupa agar dapat terlaksanakan dengan baik dan tepat waktu. Bandung adalah salah satu kota besar yang memiliki permasalahan kemacetan. 
+Google Direcction API adalah suatu layanan web yang bisa dimanfaatkan untuk mendapatkan waktu tempuh. Google Direction API adalah sebuah layanan yang disediakan oleh Google untuk menghitung arah alamat statis untuk penempatan konten aplikasi pada peta. Input yang diterima oleh Google Direction API adalah lokasi awal, lokasi akhir dan parameter-parameter opsional lainnya. Untuk bisa saling berkomukasi Google Direction API menggunakan protokol HTTP dengan \textit{port number} 80 dengan output JSON atau XML.
 
-Kita sebagai manusia melakukan rutinitas berpindah dari suatu tempat ke tempat lain sebagai contoh : kuliah, bekerja. Untuk menjalani rutinitas itu, kita melakukan perjalanan melalui jalur yang sering kita lewati. Dari jalur yang sering kita lewati itu biasanya terdapat jam-jam tertentu terjadi kemacetan. Dengan demikian kita menginginkan untuk melakukan perjalanan di waktu yang tepat agar waktu tempuh untuk berpindah dari suatu tempat menjadi optimal.
-
-Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan analisis berbentuk bagan untuk membantu mengambil keputusan pada jam berapakah harus melakukan perjalanan dengan waktu tempuh yang tercepat. Perangkat lunak ini memanfaatkan salah satu teknologi Google yaitu Google Direction. Google Direction adalah sebuah layanan yang disediakan oleh Google menggunakan protokol HTTP untuk menghitung arah alamat statis untuk penempatan konten aplikasi pada peta. Input yang diterima oleh Google Direction adalah lokasi awal dan lokasi akhir.
+Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan hasil analisis dari data yang didapatkan dari Google Direction API untuk membantu mengambil keputusan pada jam berapakah harus melakukan perjalanan dengan waktu tempuh yang tercepat. Perangkat lunak ini memanfaatkan salah satu layanan dari Google yaitu Google Direction API. Skripsi ini menggunakan 2 sampel yaitu : menghitung waktu tempuh dari Universitas Katolik Parahyangan dengan alamat Jln. Ciumbuleuit No.94 dan Komplek Amaya Residence, menghitung waktu tempuh dari Universitas Katolik Parahyangan dengan alamat Jln. Ciumbuleuit No.94 dan Komplek Taman Puspa Indah.
 
 \section{Rumusan Masalah}
 
 \begin{itemize}
-	\item Bagaimana protokol HTTP?
-	\item Bagaimana komunikasi layanan Google Direction?
-	\item Bagaimana mengimplementasikan komunikasi Google Direction di Java?
-	\item Bagaimana mendapatkan data waktu tempuh hasil dari permintaan komunikasi Google Direction?
-	\item Bagaimana mengimplementasikan komunikasi Google Direction dengan permintaan beberapa waktu?
-	\item Bagaimana menganalisis hasil dari permintaan komunikasi Google Direction pada suatu jalur?
+	\item Bagaimana cara menggunakan Google Direction API dalam bahasa Java?
+	\item Bagaimana memanfaatkan layanan Google Direction API untuk memberikan kesimpulan waktu perjalanan terbaik?
+	\item Kapan waktu terbaik untuk berangkat/pulang untuk dua sampel tempat yang dimaksud?
 \end{itemize}
 
 \section{Tujuan}
 
 \begin{itemize}
-	\item memahami protokol HTTP.
-	\item memahami layanan web dari Google Direction.
-	\item memahami format JSON.
-	\item mengimplementasikan komunikasi layanan web Google Direction pada Java.
-	\item menganalisis waktu tempuh terbaik pada suatu jalur.
+	\item memahami menggunakan Google Direction API.
+	\item memahami Layanan Google Direction API untuk memberikan kesimpulan waktu perjalanan terbaik.
+	\item memutuskan kapan waktu terbaik untuk berangkat/pulang untuk dua sampel yang dimaksud.
 \end{itemize}
 
 \section{Deskripsi Perangkat Lunak}
 
 Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
 \begin{itemize}
-	\item Pengguna dapat menentukan titik awal dan titik tujuan untuk dihitung waktu tempuh optimalnya.
-	\item Pengguna dapat melihat hasil analisis waktu tempuh optimal berupa bagan.
-	\item Pengguna dapat mengatur hasil analisis perhari atau perminggu.
+	\item Perangkat Lunak dapat menarik data dari Google Direction API.
+	\item Perangkat Lunak dapat menghasilkan file output waktu tempuh yang dapat dibuka dengan microsoft excel untuk dibuat grafiknya.
 \end{itemize}
 
 \section{Detail Pengerjaan Skripsi}
 
 Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
 	\begin{enumerate}
-		\item Melakukan studi literatur tentang protokol HTTP.
-		\item Melakukan studi literatur tentang \textit{Web Service}.
-		\item Melakukan studi literatur tentang \textit{Google Places API}, \textit{Google Direction API} dan outputnya.
-		\item Menganalisis protokol HTTP.
-		\item Mempelajari dan menganalisis fitur dari layanan \textit{Google Places API} dan \textit{Google Direction API}.
-		\item Menganalisis keluaran dari permintaan layanan.
+		\item Melakukan studi literatur tentang \textit{Google Places API}.
+		\item Menganalisis fitur parameter yang dibutuhkan dari layanan \textit{Google Direction API}.
+		\item Menganalisis output dari permintaan layanan.
 		\item Merancang perangkat lunak hasil analisis waktu tempuh.
-		\item Mengimplementasikan komunikasi layanan \textit{Google Direction}.
+		\item Mengimplementasikan perangkat lunak.
 		\item Melakukan pengujian dan eksperimen sesuai dengan sample.
+		\item Menganalisa hasil keluaran program.
 		\item Menulis dokumen skripsi.
 	\end{enumerate}
 
@@ -98,16 +88,14 @@ Berikut adalah rencana kerja yang akan dilakukan pada saat menagmbil kuliah AIF4
   \begin{tabular}{ | c | c | c | c | l |}
     \hline
     1*  & 2*(\%) & 3*(\%) & 4*(\%) &5*\\ \hline \hline
-    1   & 5  &    & 5  & \\ \hline
-    2   & 5  &    & 5  & \\ \hline
-    3   & 5  &    & 5  & \\ \hline
-    4   & 7  &    & 7  & \\ \hline
-    5   & 7  &    & 7  & \\ \hline
-    6   & 7  &    & 7  & \\ \hline
-    7   & 18 &    & 18 & \\ \hline
-    8   & 18 &    & 18 & \\ \hline
-    9   & 18 &    & 18 & \\ \hline
-    10  & 10 &    & 10 & \\ \hline
+    1   & 15  &    & 15  & \\ \hline
+    2   & 15  &    & 15  & \\ \hline
+    3   & 10  &    & 10  & \\ \hline
+    4   & 15  &    &  15 & \\ \hline
+    5   & 15  &    &  15 & \\ \hline
+    6   & 10  &    &  10 & \\ \hline
+    7   & 10 &    & 10 & \\ \hline
+    8  & 10 &    & 10 & \\ \hline
     Total  & 100  &    & 100 &  \\ \hline
                           \end{tabular}
 \end{center}
@@ -118,8 +106,9 @@ Keterangan (*)\\
 3 : Persentase yang akan diselesaikan di Skripsi 1 \\
 4 : Persentase yang akan diselesaikan di Skripsi 2 \\
 5 : Penjelasan singkat apa yang dilakukan di S1 (Skripsi 1) atau S2 (skripsi 2)
-\newpage
-\vspace{1cm}
+
+\newpage 
+\vspace{1 cm}
 \centering Bandung, \tanggal\\
 \vspace{2cm} \nama \\ 
 \vspace{1cm}
@@ -139,7 +128,7 @@ Menyetujui, \\
 \vspace{0.5cm}
 }{
 % \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-\vspace{2cm} Nama: \makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
+\vspace{2cm} Nama: Pascal Alfadian Nugroho, S.Kom, M.Kom\\ Pembimbing Tunggal
 }
 
 \end{document}
