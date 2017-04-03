@@ -42,11 +42,11 @@ public class main {
         DataProcessor test5 =  new DataProcessor();
         
         WholeDayDurationTimeExtractor test3 = new WholeDayDurationTimeExtractor();
-        test3.initialize("Fri 20 03 2017 04:00");
+        test3.initialize("Mon 20 03 2017 12:00");
         test3.extractWholeDay();
-        System.out.println(test5.minDurationTimeDataProcess(test3.getSampeldestination1(),test3.getHours(), test3.getOneDayBestGuess1(), test3.getOneDayPessimist1()));
-        System.out.println(test5.minDurationTimeDataProcess(test3.getSampeldestination2(),test3.getHours(), test3.getOneDayBestGuess2(), test3.getOneDayPessimist2()));        
-        //test3.printHashMap();
+        //System.out.println(test5.minDurationTimeDataProcess(test3.getSampeldestination1(),test3.getHours(), test3.getOneDayBestGuess1(), test3.getOneDayPessimist1()));
+        //System.out.println(test5.minDurationTimeDataProcess(test3.getSampeldestination2(),test3.getHours(), test3.getOneDayBestGuess2(), test3.getOneDayPessimist2()));        
+        test3.printHashMap();
         
         //OneWeekDurationTimeExtractor test4 = new OneWeekDurationTimeExtractor();
         //test4.initialize("Sun 19 03 2017 13:00");

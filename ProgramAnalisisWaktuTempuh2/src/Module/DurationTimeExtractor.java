@@ -101,7 +101,7 @@ public class DurationTimeExtractor {
             JSONObject route = routes.getJSONObject(0);
             JSONArray legs = route.getJSONArray("legs");
             JSONObject leg = legs.getJSONObject(0);
-            JSONObject duration = leg.getJSONObject("duration");
+            JSONObject duration = leg.getJSONObject("duration_in_traffic");
             String[] durationArray = duration.optString("text").split(" ");
             this.setPESSIMISTTIME(durationArray[0]);
         } else {

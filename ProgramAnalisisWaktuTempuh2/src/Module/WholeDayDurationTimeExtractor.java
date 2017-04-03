@@ -74,36 +74,33 @@ public class WholeDayDurationTimeExtractor {
         }
     }
     
-    /*public void printHashMap(){
-        for (int i = 0; i < hours.length; i++) {
-            System.out.print(hours[i]+" ");
-        }
+    public void printHashMap(){
         System.out.println("");
         oneDayBestGuess1.keySet().stream().forEach((name) -> {
             String key =name;
-            String value = oneDayBestGuess1.get(name);
+            Double value = oneDayBestGuess1.get(name);
             System.out.println(key + " " + value);
         }); 
         System.out.println("");
         oneDayBestGuess2.keySet().stream().forEach((name) -> {
             String key = name;
-            String value = oneDayBestGuess2.get(name);
+            Double value = oneDayBestGuess2.get(name);
             System.out.println(key + " " + value);
         });
         System.out.println("");
         oneDayPessimist1.keySet().stream().forEach((name) -> {
             String key = name;
-            String value = oneDayPessimist1.get(name);
+            Double value = oneDayPessimist1.get(name);
             System.out.println(key + " " + value);
         });
         System.out.println("");
         oneDayPessimist2.keySet().stream().forEach((name) -> {
             String key = name;
-            String value = oneDayPessimist2.get(name);
+            Double value = oneDayPessimist2.get(name);
             System.out.println(key + " " + value);
         });
         System.out.println("");
-    }*/
+    }
 
     public Date getTheDate() {
         return theDate;

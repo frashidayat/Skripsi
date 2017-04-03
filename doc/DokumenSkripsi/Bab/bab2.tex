@@ -2,7 +2,7 @@
 \chapter{Landasan Teori}
 \label{chap:teori}
 
-Pada bab ini akan diuraikan teori-teori yang akan digunakan untuk pembangunan aplikasi ke analisis kota Bandung. Teori-teori tersebut adalah penjelasan tentang protokol HTTP, Penjelasan tentang \textit{JSOUP API}, Penjelasan tentang \textit{Google Direction API} dan teori JSON.
+Pada bab ini akan diuraikan teori-teori yang akan digunakan untuk pembangunan aplikasi ke analisis kota Bandung. Teori-teori tersebut adalah tentang protokol HTTP, \textit{library} Jsoup meliputi kelas jsoup dan Connection. Selain itu akan dibahas juga mengenai \textit{Google Direction API}, \textit{JavaScript Object Notation (JSON)} meliputi kelas pada \textit{library} JSON : JSONObject.
 
 \section{Protokol HTTP}
 \label{sec:protocolhttp} 
@@ -15,10 +15,10 @@ HTTP adalah protokol di balik World Wide Web. Dengan setiap transaksi web, HTTP 
 Berikut akan diilustrasikan transaksi web umum, menunjukkan HTTP yang dipertukarkan antara program \textit{client} dan \textit{program} server. \cite{wong2000http}:
 
 \begin{itemize}
-	\item berikut diberikan sebuah url : http:\/\/hypothetical.ora.com:80\/.
+	\item berikut diberikan sebuah url : http://hypothetical.ora.com:80/.
 	\item Browser akan mengintepretasikan URL tersebut sebagai berikut :
 			\begin{itemize}
-				\item \(http:\/\/\) : menggunakan protokol HTTP.
+				\item \(http://\) : menggunakan protokol HTTP.
 				\item \(hypothetical.ora.com\) : menghubungi komputer melalui jaringan dengan hostname hypothetical.ora.com.
 				\item \(:80\) : Terhubung ke komputer di port 80. Nomor port IP nomor dari 1 sampai 65535. Jika titik dua dan nomor port dihilangkan, nomor port diasumsikan nomor port \textit{default} HTTP, yang merupakan 80.
 				\item \(\/\) : Apapun setelah nama host dan nomor port opsional dianggap sebagai jalan dokumen. Dalam ilustrasi ini, jalan dokumen adalah \/.
@@ -31,57 +31,207 @@ Berikut akan diilustrasikan transaksi web umum, menunjukkan HTTP yang dipertukar
 				\label{fig:httprequest}	
 			\end{figure}
 \end{itemize}
+\begin{itemize}
+	\item Pada baris pertama pada request (Gambar \ref{fig:httprequest}) disebut dengan request line dan diawali dengan \textit{request method}(metode permintaan), dalam gambar tersebut adalah GET. \textit{Request method} diikuti dengan \textit{resource} yang diinginkan, dalam gambar tersebut adalah \/. \textit{Request line} diakhiri dengan versi protokol yang digunakan dalam gambar diatas adalah HTTP\/1.1.
+	\item baris kedua dan baris-baris berikutnya sampai ditemukan baris kosong, berisi request headers dalam format \textit{nama-header:nilai-header}. pada gambar \ref{fig:httprequest} terdapat header host yang menandakan bahwa browser ingin mengakses situs dari nilai yang ada di header host.
+	\item Dibawah header-header pada gambar \ref{fig:httprequest} terdapat baris kosong di akhir \textit{request}. pada \textit{request}, baris kosong memisahkan antara \textit{reqquest headers} dengan \textit{request body}(tubuh permintaan).
+\end{itemize}
 
-\section{JSOUP API}
-\label{sec:jsoupapi}
+Setelah \textit{client} memberikan \textit{request} server memberikan \textit{response}. Dari kasus diatas berikut adalah sebagai berikut :
+			\begin{figure}[H]
+				\centering		
+				\includegraphics[scale=0.6]{Gambar/respondserver.jpg}
+				\caption[HTTP Respond]{HTTP Respond\cite{wong2000http}}
+				\label{fig:httprespond}	
+			\end{figure}
+ \begin{itemize}
+	\item Pada baris pertama pada respon (Gambar \ref{fig:httprespond}) disebut \textit{status line}, dan diawali dengan versi protokol yang digunakan, dalam kasus ini HTTP\/1.1. \textit{Status line} diikuti dengan 3 dijit kode status, dalam kasus ini 200. \textit{Status line} diakhiri dengan representasi tekstual dari status tersebut dalam kasus ini \textit{OK}.
+	\item Baris kedua dan baris-baris berikutnya sampai ditemukan baris kosong, berisi request headers dalam format \textit{nama-header:nilai-header}. pada gambar \ref{fig:httprespond} terdapat header server yang menandakan bahwa server yang digunakan untuk melayani request.
+	\item Setelah baris kosong adaah \textit{body} dari \textit{response}, gambar \ref{fig:httprespond} berupa teks HTML.
+	\item Pada gambar \ref{fig:httprespond} ada kebutuhan akan \textit{file} oreilly\_mast.gif di HTML ini. \textit{File} tersebut akan diunduh secara terpisah, tetapi juga dengan protokol HTTP.
+\end{itemize}
 
-JSOUP adalah sebuah \textit{library} java untuk bekerja dengan HTML dunia nyata.  JSOUP menyediakan API yang sangat nyaman untuk mengekstrak dan memanipulasi data, menggunakan DOM(Document Object Model) terbaik, CSS, dan metode yang mirip deengan jquery. JSOUP mengimplementasikan spesifikasi standar \textit{WHATWG HTML5} dan mengurai HTML menjadi DOM(Document Object Model) yang sama dengan peramban modern lakukan. JSOUP sendiri dirancang untuk menangani semua jenis HTML yang biasa ditemukan; dari yang murni dan memvalidasi, untuk tidak valid tag-soup; JSOUP akan membuat \textit{parsing tree} yang dapat dimengerti.
+Setelah semua terjadi dan dibaca dengan baik, maka baris kosong dan teks dokumen muncul. dengan demikian transaksi yang terjadi adalah sebagai berikut : 
 
-\subsection{Fungsi JSOUP}
+			\begin{figure}[H]
+				\centering		
+				\includegraphics[scale=0.6]{Gambar/transaction.jpg}
+				\caption[Transaksi sederhana]{Transaksi Sederhana\cite{wong2000http}}
+				\label{fig:transaction}	
+			\end{figure}
+
+\subsection{Kode Status}
+\label{subsec:kodestatus}
+
+Kode status adalah bilangan bulat tiga dijit yang menyatakan status dari pemrosesan permintaan yang dikirimkan. Berikut adalah beberapa kode status yang umum ditemui : 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
+Kode Status & Status               & Deskripsi                                                                                                                                                                      \\
+200         & OK                   & Request berhasil diproses dengan baik.                                                                                                                                         \\
+301         & Moved Permanently    & Resource yang diminta sudah berpindah ke URI yang lain secara permanen.                                                                                                        \\
+302         & Found                & Resource yang diminta untuk sementara bepindah pada URL yang lain. Untuk alasan historis, client diperkenankan untuk mengubah metode permintaan dan POST menjadi GET.          \\
+307         & Temporary Redirect   & Resource yang diminta untuk sementara berpindah pada URL yang lain. Mirip dengan status 302 namun client tidak diperkenankan mengubah metode permintaan dari POST menjadi GET. \\
+400         & Bad Request          & Server tidak dapat memproses permintaan karena ada kesalahan adri client                                                                                                       \\
+401         & Unauthorized         & Server tidak dapat memproses permintaan karena kredensial diperlukan dan client tidak menyediakannya.                                                                          \\
+404         & Not Found            & Resource yang diminta tidak tersedia pada server.                                                                                                                              \\
+500         & Interna Server Error & Server mengalami masalah internal, sehingga tidak dapat memprises permintaan yang dikirimkan.                                                                                  \\
+501         & Not Implemented      & Server belum atau tidak mendukung fungsionalitas yang diminta oleh client.                                                                                                     \\
+503         & Service Unavailable  & Server tidak dapat menjawab permintaan client, karena terlalu sibuk atau perawatan. Status ini mengindikasikan client dapat mencoba lagi setelah jangka waktu tertentu.       
+\caption[Tabel Kode Status]{Tabel Kode Status}
+\label{table:kodestatus}
+
+\end{tabular}
+\end{table}
+
+kode status yang tersedia dikelompokan menjadi lima, diindikasikan oleh dijit pertama dari kode tersebut:
+\begin{itemize}
+	\item 1xx(informational): Request diterima, dan proses dilanjutkan.
+	\item 2xx(Successfull): Request diterima, dan dimengertian dengan baik.
+	\item 3xx(Redirection): Aksi tambahan diperlukan untuk menyelesaikan permintaan.
+	\item 4xx(Client Error): Terjadi kesalahan dan client harus memperbaikinya
+	\item 5xx(Server Error):  Terjadi kesalahan pada sisi server.
+\end{itemize}
+
+\subsection{\textit{Request method}}
+\label{subsec:requestmethod}
+
+\textit{Request method} menentukan karakteristik dari permintaan yang dikirimkan. Ada 2 \textit{method} yang sudah dikenal umum yaitu GET dan POST. Selain kedua method tersebut, ada beberapa \textit{method-method} lain yang dapat juga digunakan pada protokol HTTP seperti dijelaskan pada tabel berikut: 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3cm}|p{6cm}|}
+Metode & Deskripsi                                                                                                                                                                        \\
+GET    & Metode yang paling umum digunakan, dan digunakan untuk mendapatkan konten dari resource yang ditentukan pada request.                                                            \\
+POST   & Metode ini digunakan untuk meminta server memproses data yang dikirimkan. Pada umumnya, metode POST diikuti dengan request body, yang berisi parameter-parameter yang dikirimkan \\
+HEAD   & Metode HEAD mirip dengan metode GET, tetapi bedanya di sini server tidak mengembalikan konten body, melaikan hanya sampai response headers saja.                                 \\
+PUT    & Metode ini digunakan untuk membuat atau menggantikan resource yang ditentukan pada request.                                                                                      \\
+DELETE & Metode ini digunakan untuk menghapus resource dari server.                                                                                                                    \caption[Tabel Request Method]{Tabel Request Method}
+\label{table:requestmethod}
+  
+\end{tabular}
+\end{table}
+
+
+
+\subsection{\textit{Response Headers}}
+\label{subsec:responseheaders}
+
+\textit{Response Headers} digunakan untuk meberikan informasi-informasi tambahan pada sebuah jawaban. Sama seperti \textit{request header}, setiap header terdiri dari nama dan nilai, dan terpisah oleh titik dua dan spasi(: ). Tabel berikut menjelaskan beberapa header yang umum dipakai:
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3cm}|p{6cm}|}
+Header        & Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\
+Content-Type  & Header ini menunjukan tipe media dari konten yang akan diberikan. Pada bentuk sederhana, nilai dari header ini berisi dari kode tipe MIME(Multipurpose Internet Mail Extension). Beberapa kode tipe MIME yang umum antara lain: text/plain untuk teks, text/html untuk halaman HTML; image/gif, image/jpg, image/png untuk gambar berformat GIF, JPEG, PNG; dan application/json untuk data JSON.                                                           \\
+Cache-control & Header ini mengatur bagaimana konten yang dikirimkan dapat dikirimkan sementara di client. Pada konten-konten statis seperti gambar, secara default konten akan disimpan pada client dalam jangka waktu tertentu, sehingga jika dibutuhkan dalam waktu dekat di masa depan, tidak perlu mengirimkan permintaan lagi ke server. jika secara eksplisit diinginkan konten diminta lagi setiap kali diperlukan, dapat mengisi header ini dengan nilai no-cache. \\
+Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjukan lokasi sumberdaya dalam bentuk URI. Pada jawaban dengan kode 3xx, nilai dari header ini menunjukan lokasi baru yang harus dituju.                                                                                                                    
+\caption[Tabel Response Headers]{Tabel Response Headers}
+\label{table:responseheaders}
+                                                                                                                           
+\end{tabular}
+\end{table}
+
+\section{\textit{Library} jsoup}
+\label{sec:libraryjsoup}
+
+Jsoup adalah sebuah \textit{library} java untuk bekerja dengan HTML dunia nyata.  Jsoup menyediakan API yang sangat nyaman untuk mengekstrak dan memanipulasi data, menggunakan DOM(Document Object Model) terbaik, CSS, dan \textit{method} yang mirip dengan jquery. Jsoup mengimplementasikan spesifikasi standar \textit{WHATWG HTML5} dan mengurai HTML menjadi DOM(Document Object Model) yang sama dengan peramban modern lakukan. Jsoup sendiri dirancang untuk menangani semua jenis HTML yang biasa ditemukan dengan membuat \textit{parsing tree} yang dapat dimengerti.
+
+Dalam subbab berikut akan dijelaskan fungsi dan beberapa kelas dari jsoup\footnote{https://jsoup.org}.
+\subsection{Fungsi jsoup}
 \label{subsec:fungsijsoup}
-berikut adalah fungsi dari JSOUP :
+berikut adalah fungsi dari jsoup :
+
 \begin{itemize}
 	\item menghimpun dan mengurai HTML dari URL, file, atau \textsl{string}.
 	\item mencari dan mengambil data, menggunakan \textit{DOM traversal} atau \textit{CSS selectors}.
 	\item memanipulasi elemen HTML, atribut, dan teks.
 	\item membersihkan konten yang dikirimkan pengguna terhadap daftar putih yang aman, untuk mencegah serangan XSS.
 	\item memberi \textit{output} HTML yang rapi.
-\end{itemize} 
+\end{itemize}
+
+\subsection{Kelas- kelas jsoup}
+\label{subsec:jsoupclasses}
+
+\subsubsection{Jsoup}
+\label{subsubsec:jsoup}
+Kelas ini merupakan inti untuk mengakses fungsi jsoup. Seluruh method dalam kelas ini merupakan \textit{static method} sehingga kelas ini tidak perlu dikonstruksi. Salah satu method yang dimiliki kelas ini adalah sebagai berikut :
+\begin{itemize}
+	\item \textbf{public static Connection connect(String url)}
+	
+	Berfungsi untuk membuat koneksi baru dengan suatu situs web.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{url}: URL situs web dengan protokol HTTP.
+	\end{itemize}
+	\textbf{Kembalian}: koneksi dengan situs web.
+\end{itemize}
+
+\subsubsection{Connection}
+\label{subsubsec:connection}
+
+Kelas ini merupakan interface yang menyediakan pengambilan data dari situs web. Beberapa method yang dimiliki kelas ini adalah sebagai berikut:
+\begin{itemize}
+	\item \textbf{Connection data(String key, String value)}
+	
+	Berfungsi untuk menambahkan parameter data yang bisa dikirim melalui metode HTTP GET atau POST.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{key}: kunci data.
+		\item \textbf{value}: nilai data.
+	\end{itemize}
+	\textbf{Kembalian}: koneksi yang sama tetapi sudah diubah.
+	
+	\item \textbf{Connection ignoreContentType(boolean ignoreContentType)}
+	
+	Berfungsi untuk Mengabaikan tipe konten dokumen saat \textit{parsing} respon.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{ignoreContentType}: set true jika ingin jenis konten diabaikan pada \textit{parsing} respon dalam dokumen.
+	\end{itemize}
+	\textbf{Kembalian}: koneksi pada situs web.
+	
+	\item \textbf{Connection.Response execute() throws IOException}
+	
+	Berfungsi untuk mengeksekusi \textbf{request} dari \textbf{Connection}.
+	
+	\textbf{Kembalian}: objek respon.
+\end{itemize}
 
 \section{Google Direction API}
 \label{subsec:googledirapi}
 
-Google Maps Directions API adalah layanan yang menghitung arah antar lokasi menggunakan permintaan HTTP. Anda bisa mencari arah untuk beberapa moda transportasi, termasuk angkutan umum, mengemudi, berjalan atau bersepeda. Arah bisa menetapkan tempat asal, tujuan dan titik jalan baik sebagai string teks (misalnya "Chicago, IL" atau "Darwin, NT, Australia") atau sebagai koordinat garis lintang/garis bujur. Directions API bisa mengembalikan arah multi-bagian menggunakan serangkaian titik jalan. Layanan ini biasanya didesain untuk menghitung arah alamat statis (sudah diketahui sebelumnya) untuk penempatan konten aplikasi pada peta.
+Google Maps Directions API adalah layanan yang menghitung arah antar lokasi menggunakan permintaan HTTP. Anda bisa mencari arah untuk beberapa moda transportasi, termasuk angkutan umum, mengemudi, berjalan atau bersepeda. Arah bisa menetapkan tempat asal, tujuan dan titik jalan baik sebagai string teks atau sebagai koordinat garis lintang/garis bujur. Layanan ini didesain untuk menghitung arah alamat statis (sudah diketahui sebelumnya) untuk penempatan konten aplikasi pada peta.
 
 \subsection{Permintaan Arah}
 \label{subsec:permintaanarahgoogledir}
 
-Permintaan Google Maps Directions API mengambil bentuk berikut:
+Permintaan Google Maps Directions mengambil bentuk berikut:
 
 \url{https://maps.googleapis.com/maps/api/directions/output?parameters}
 
 dalam hal ini, output bisa berupa salah satu nilai berikut: 
 \begin{itemize}
-	\item json (disarankan) menunjukkan output dalam JavaScript Object Notation (JSON).
+	\item json menunjukkan output dalam \textit{JavaScript Object Notation} (JSON).
 	\item xml menunjukkan output berupa XML.
 \end{itemize} 
-Untuk mengakses Google Maps Directions API melalui HTTP, gunakan:
 
-\url{http://maps.googleapis.com/maps/api/directions/output?parameters}
-
-HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan.
-
-URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan, berhati-hatilah dengan batas ini saat membangun URL Anda.
+HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan. URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan.
 
 \subsection{Parameter Permintaan}
 \label{subsec:parameterpermintaangoogledir}
 
-Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional. Sebagaimana standar dalam URL, semua parameter dipisah menggunakan karakter ampersand (\&). Daftar parameter dan kemungkinan nilainya disebutkan di bawah ini.
+Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional. Sebagaimana standar dalam URL, semua parameter dipisah menggunakan karakter ampersand (\&). Daftar parameter dan kemungkinan nilainya disebutkan di bawah ini\footnote{https://developers.google.com/maps/documentation/directions/intro}.
 
 \subsubsection{Parameter yang diperlukan}
 \label{subsubsec:parameterwajib}
 \begin{itemize}
-	\item \textbf{origin} adalah alamat, nilai garis lintang/garis bujur tekstual, atau ID tempat asal yang ingin Anda hitung arahnya.
+	\item \textbf{origin} adalah alamat, nilai garis lintang/garis bujur tekstual, atau ID tempat asal yang ingin Anda hitung arahnya. ketentuan dari alamat dari origin adalah sebagai berikut :
 	\begin{itemize}
 		\item Jika Anda meneruskan sebuah alamat sebagai string, layanan Directions akan melakukan geocode atas string itu dan mengubahnya menjadi koordinat garis lintang/garis bujur untuk menghitung arah. Koordinat ini mungkin berbeda dengan yang dikembalikan oleh Google Maps Geocoding API, misalnya pintu masuk bangunan dan bukan pusatnya.
 		\item Jika Anda meneruskan koordinat, itu akan digunakan tanpa diubah untuk menghitung arah. Pastikan tidak ada spasi di antara nilai garis lintang dan garis bujur.
@@ -91,9 +241,8 @@ Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional.
 	\item \textbf{key} adalah kunci API aplikasi Anda. Kunci ini mengidentifikasi aplikasi Anda untuk keperluan manajemen kuota. 
 \end{itemize} 
 
-\subsubsection{Parameter yang diperlukan}
+\subsubsection{Parameter yang opsional}
 \label{subsubsec:parameteropsional}
-
 \begin{itemize}
 	\item \textbf{mode} (default-nya adalah driving) adalah menetapkan moda transportasi yang akan digunakan saat menghitung arah. 
 	\item \textbf{waypoint} adalah menetapkan larik titik jalan. Titik jalan mengubah rute dengan mengarahkannya melalui lokasi yang ditetapkan. Titik jalan ditetapkan berupa koordinat garis lintang/garis bujur, ID tempat, atau alamat yang akan di-geocode. ID Tempat harus diawali dengan \textbf{place\_id:}. ID tempat hanya bisa ditetapkan jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Titik jalan hanya didukung untuk arah mengemudi, berjalan dan bersepeda.
@@ -131,10 +280,9 @@ Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional.
 	\end{itemize}
 \end{itemize}
 
-\section{JSON}
+\section{\textit{JavaScript Object Notation (JSON)}}
 \label{sec:json}
-
-JSON (JavaScript Object Notation) adalah format pertukaran data yang ringan, mudah dibaca dan ditulis oleh manusia, serta mudah diterjemahkan dan dibuat (generate) oleh komputer. Format ini dibuat berdasarkan bagian dari Bahasa Pemprograman JavaScript, Standar ECMA-262 Edisi ke-3 - Desember 1999. JSON merupakan format teks yang tidak bergantung pada bahasa pemprograman apapun karena menggunakan gaya bahasa yang umum digunakan oleh programmer keluarga C termasuk C, C++, C\#, Java, JavaScript, Perl, Python dll. Oleh karena sifat-sifat tersebut, menjadikan JSON ideal sebagai bahasa pertukaran-data.
+JSON (JavaScript Object Notation) adalah format pertukaran data yang ringan, mudah dibaca dan ditulis oleh manusia, serta mudah diterjemahkan dan dibuat (generate) oleh komputer. Format ini dibuat berdasarkan bagian dari Bahasa Pemprograman JavaScript, Standar ECMA-262 Edisi ke-3 - Desember 1999. JSON merupakan format teks yang tidak bergantung pada bahasa pemprograman apapun karena menggunakan gaya bahasa yang umum digunakan oleh programmer keluarga C termasuk C, C++, C\#, Java, JavaScript, Perl, Python dll\footnote{http://www.json.org/json-id.html}.
 
 \subsection{Struktur JSON}
 \label{subsec:stukturjson}
@@ -145,11 +293,12 @@ JSON terbuat dari dua struktur :
 \end{itemize} 
 
 Struktur-struktur data ini disebut sebagai struktur data universal. Pada dasarnya, semua bahasa pemprograman moderen mendukung struktur data ini dalam bentuk yang sama maupun berlainan. Hal ini pantas disebut demikian karena format data mudah dipertukarkan dengan bahasa-bahasa pemprograman yang juga berdasarkan pada struktur data ini.
- 
+
 \subsection{Bentuk-Bentuk JSON}
 \label{subsec:bentukjson}
 \begin{itemize}
 	\item Objek
+	
 	Objek adalah sepasang nama/nilai yang tidak terurutkan. Objek dimulai dengan { (kurung kurawal buka) dan diakhiri dengan } (kurung kurawal tutup). Setiap nama diikuti dengan : (titik dua) dan setiap pasangan nama atau nilai dipisahkan oleh , (koma).
 	\begin{figure}[H]
 		\centering		
@@ -158,6 +307,7 @@ Struktur-struktur data ini disebut sebagai struktur data universal. Pada dasarny
 		\label{fig:jsonobject}	
 	\end{figure}
 	\item \textit{Array}
+	
 	\textit{Array} adalah kumpulan nilai yang terurutkan. Larik dimulai dengan [ (kurung kotak buka) dan diakhiri dengan ] (kurung kotak tutup). Setiap nilai dipisahkan oleh , (koma).
 	\begin{figure}[H]
 		\centering		
@@ -168,7 +318,8 @@ Struktur-struktur data ini disebut sebagai struktur data universal. Pada dasarny
 \end{itemize} 
 
 \subsection{Value JSON}
-\label{subsec:bentukjson}
+\label{subsec:valuejson}
+
 Nilai(\textit{value})dapat berupa sebuah string dalam tanda kutip ganda, atau angka, atau true atau false atau null, atau sebuah objek atau sebuah larik. Struktur-struktur tersebut dapat disusun bertingkat.
 \begin{figure}[H]
 	\centering		
@@ -177,8 +328,9 @@ Nilai(\textit{value})dapat berupa sebuah string dalam tanda kutip ganda, atau an
 	\label{fig:value}	
 \end{figure}
 
-\subsubsection{\textit{String}}
-\label{subsubsec:string}
+\begin{itemize}
+\item{\textit{String}}
+
 String adalah kumpulan dari nol atau lebih karakter Unicode, yang dibungkus dengan tanda kutip ganda. Di dalam string dapat digunakan backslash escapes "\" untuk membentuk karakter khusus. Sebuah karakter mewakili karakter tunggal pada string. String sangat mirip dengan string C atau Java.
 
 \begin{figure}[H]
@@ -188,8 +340,8 @@ String adalah kumpulan dari nol atau lebih karakter Unicode, yang dibungkus deng
 	\label{fig:string}	
 \end{figure}
 
-\subsubsection{Angka}
-\label{subsubsec:Angka}
+\item{Angka}
+
 Angka adalah sangat mirip dengan angka di C atau Java, kecuali format oktal dan heksadesimal tidak digunakan.
 \begin{figure}[H]
 	\centering		
@@ -197,3 +349,64 @@ Angka adalah sangat mirip dengan angka di C atau Java, kecuali format oktal dan 
 	\caption[Angka]{Angka}
 	\label{fig:number}	
 \end{figure}
+\end{itemize}
+
+\subsection{kelas-kelas pada \textit{Library} JSON}
+\label{subsec:jsonclasses}
+Subbab-subbab berikut menjelaskan beberapa kelas dari \textit{library} JSON\footnote{https://stleary.github.io/JSON-java/}.
+
+\subsubsection{JSONObject}
+\label{subsubsec:jsonobject}
+Kelas ini merepresentasikan sebuah objek JSON yang merupakan koleksi yang tak terurut dari pasangan nama dan nilai. Bentuk eksternal objek JSON adalah sebuah string dibungkus dalam kurung kurawal dengan titik dua antara nama dan nilai-nilai, dan koma antara nilai-nilai dan nama. Nilai-nilai dapat salah satu dari jenis: Boolean, JSONArray, JSONObject, Nomor, String, atau benda JSONObject.NULL. beberapa \textit{method} dan \textit{constructor} yang dimiliki kelas ini adalah sebagai berikut:
+
+\begin{itemize}
+	
+	\item \textbf{public JSONObject(String source) throws JSONException}
+	
+	Berfungsi untuk membangun JSONObject dari sumber JSON string teks.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{source}: Sebuah string dimulai dengan \{(kurung kurawal kiri) dan berakhir dengan\} (kurung kurawal kanan).
+	\end{itemize}
+	
+	\item \textbf{public String getString(String key)throws JSONException}
+	
+	Berfungsi untuk mendapatkan objek nilai yang terkait dengan kunci.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{key}: kunci data.
+	\end{itemize}
+	\textbf{Kembalian}: Sebuah string yang merupakan nilai.
+	
+	\item \textbf{public String optString(String key)}
+	
+	Berfungsi untuk mendapatkan string opsional terkait dengan kunci. Ia mengembalikan string kosong jika tidak ada kunci yang ditemukan. Jika nilai tidak string dan tidak null, maka dikonversi ke string.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{key}: kunci data.
+	\end{itemize}
+	\textbf{Kembalian}: Sebuah string yang merupakan nilai.
+	
+	\item \textbf{public JSONArray getJSONArray(String key) throws JSONException}
+	
+	Berfungsi untuk mendapatkan nilai JSONArray terkait dengan kunci.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{key}: kunci data.
+	\end{itemize}
+	\textbf{Kembalian}: Sebuah JSONArray yang merupakan nilai.
+	
+	\item \textbf{public JSONObject getJSONObject(String key) throws JSONException}
+	
+	Berfungsi untuk mendapatkan nilai JSONObject terkait dengan kunci.
+	
+	Parameter:
+	\begin{itemize}
+		\item \textbf{key}: kunci data.
+	\end{itemize}
+	\textbf{Kembalian}: Sebuah JSONObject yang merupakan nilai.
+\end{itemize}
