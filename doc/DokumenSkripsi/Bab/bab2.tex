@@ -32,7 +32,7 @@ Berikut akan diilustrasikan transaksi web umum, menunjukkan HTTP yang dipertukar
 			\end{figure}
 \end{itemize}
 \begin{itemize}
-	\item Pada baris pertama pada request (Gambar \ref{fig:httprequest}) disebut dengan request line dan diawali dengan \textit{request method}(metode permintaan), dalam gambar tersebut adalah GET. \textit{Request method} diikuti dengan \textit{resource} yang diinginkan, dalam gambar tersebut adalah \/. \textit{Request line} diakhiri dengan versi protokol yang digunakan dalam gambar diatas adalah HTTP\/1.1.
+	\item Pada baris pertama pada request (Gambar \ref{fig:httprequest}) disebut dengan request line dan diawali dengan \textit{request method}(metode permintaan), dalam gambar tersebut adalah GET. \textit{Request method} diikuti dengan \textit{resource} yang diinginkan, dalam gambar tersebut adalah /. \textit{Request line} diakhiri dengan versi protokol yang digunakan dalam gambar diatas adalah HTTP/1.1.
 	\item baris kedua dan baris-baris berikutnya sampai ditemukan baris kosong, berisi request headers dalam format \textit{nama-header:nilai-header}. pada gambar \ref{fig:httprequest} terdapat header host yang menandakan bahwa browser ingin mengakses situs dari nilai yang ada di header host.
 	\item Dibawah header-header pada gambar \ref{fig:httprequest} terdapat baris kosong di akhir \textit{request}. pada \textit{request}, baris kosong memisahkan antara \textit{reqquest headers} dengan \textit{request body}(tubuh permintaan).
 \end{itemize}
@@ -45,7 +45,7 @@ Setelah \textit{client} memberikan \textit{request} server memberikan \textit{re
 				\label{fig:httprespond}	
 			\end{figure}
  \begin{itemize}
-	\item Pada baris pertama pada respon (Gambar \ref{fig:httprespond}) disebut \textit{status line}, dan diawali dengan versi protokol yang digunakan, dalam kasus ini HTTP\/1.1. \textit{Status line} diikuti dengan 3 dijit kode status, dalam kasus ini 200. \textit{Status line} diakhiri dengan representasi tekstual dari status tersebut dalam kasus ini \textit{OK}.
+	\item Pada baris pertama pada respon (Gambar \ref{fig:httprespond}) disebut \textit{status line}, dan diawali dengan versi protokol yang digunakan, dalam kasus ini HTTP/1.1. \textit{Status line} diikuti dengan 3 dijit kode status, dalam kasus ini 200. \textit{Status line} diakhiri dengan representasi tekstual dari status tersebut dalam kasus ini \textit{OK}.
 	\item Baris kedua dan baris-baris berikutnya sampai ditemukan baris kosong, berisi request headers dalam format \textit{nama-header:nilai-header}. pada gambar \ref{fig:httprespond} terdapat header server yang menandakan bahwa server yang digunakan untuk melayani request.
 	\item Setelah baris kosong adaah \textit{body} dari \textit{response}, gambar \ref{fig:httprespond} berupa teks HTML.
 	\item Pada gambar \ref{fig:httprespond} ada kebutuhan akan \textit{file} oreilly\_mast.gif di HTML ini. \textit{File} tersebut akan diunduh secara terpisah, tetapi juga dengan protokol HTTP.
@@ -68,7 +68,7 @@ Kode status adalah bilangan bulat tiga dijit yang menyatakan status dari pemrose
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
-Kode Status & Status               & Deskripsi                                                                                                                                                                      \\
+\textbf{Kode Status} & \textbf{Status}               & \textbf{Deskripsi}                                                                                                                                                                      \\\specialrule{1pt}{0pt}{0pt}
 200         & OK                   & Request berhasil diproses dengan baik.                                                                                                                                         \\
 301         & Moved Permanently    & Resource yang diminta sudah berpindah ke URI yang lain secara permanen.                                                                                                        \\
 302         & Found                & Resource yang diminta untuk sementara bepindah pada URL yang lain. Untuk alasan historis, client diperkenankan untuk mengubah metode permintaan dan POST menjadi GET.          \\
@@ -78,11 +78,10 @@ Kode Status & Status               & Deskripsi                                  
 404         & Not Found            & Resource yang diminta tidak tersedia pada server.                                                                                                                              \\
 500         & Interna Server Error & Server mengalami masalah internal, sehingga tidak dapat memprises permintaan yang dikirimkan.                                                                                  \\
 501         & Not Implemented      & Server belum atau tidak mendukung fungsionalitas yang diminta oleh client.                                                                                                     \\
-503         & Service Unavailable  & Server tidak dapat menjawab permintaan client, karena terlalu sibuk atau perawatan. Status ini mengindikasikan client dapat mencoba lagi setelah jangka waktu tertentu.       
+503         & Service Unavailable  & Server tidak dapat menjawab permintaan client, karena terlalu sibuk atau perawatan. Status ini mengindikasikan client dapat mencoba lagi setelah jangka waktu tertentu.  \\     
+\end{tabular}
 \caption[Tabel Kode Status]{Tabel Kode Status}
 \label{table:kodestatus}
-
-\end{tabular}
 \end{table}
 
 kode status yang tersedia dikelompokan menjadi lima, diindikasikan oleh dijit pertama dari kode tersebut:
@@ -102,15 +101,15 @@ kode status yang tersedia dikelompokan menjadi lima, diindikasikan oleh dijit pe
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{3cm}|p{6cm}|}
-Metode & Deskripsi                                                                                                                                                                        \\
+\textbf{Metode} & \textbf{Deskripsi}                                                                                                                                                                        \\\specialrule{1pt}{0pt}{0pt}
 GET    & Metode yang paling umum digunakan, dan digunakan untuk mendapatkan konten dari resource yang ditentukan pada request.                                                            \\
 POST   & Metode ini digunakan untuk meminta server memproses data yang dikirimkan. Pada umumnya, metode POST diikuti dengan request body, yang berisi parameter-parameter yang dikirimkan \\
 HEAD   & Metode HEAD mirip dengan metode GET, tetapi bedanya di sini server tidak mengembalikan konten body, melaikan hanya sampai response headers saja.                                 \\
 PUT    & Metode ini digunakan untuk membuat atau menggantikan resource yang ditentukan pada request.                                                                                      \\
-DELETE & Metode ini digunakan untuk menghapus resource dari server.                                                                                                                    \caption[Tabel Request Method]{Tabel Request Method}
-\label{table:requestmethod}
-  
+DELETE & Metode ini digunakan untuk menghapus resource dari server.             \\                                                                                                       
 \end{tabular}
+\caption[Tabel Request Method]{Tabel Request Method}
+\label{table:requestmethod}
 \end{table}
 
 
@@ -124,14 +123,13 @@ DELETE & Metode ini digunakan untuk menghapus resource dari server.             
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{3cm}|p{6cm}|}
-Header        & Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\
+\textbf{Header}        & \textbf{Deskripsi}                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\\specialrule{1pt}{0pt}{0pt}
 Content-Type  & Header ini menunjukan tipe media dari konten yang akan diberikan. Pada bentuk sederhana, nilai dari header ini berisi dari kode tipe MIME(Multipurpose Internet Mail Extension). Beberapa kode tipe MIME yang umum antara lain: text/plain untuk teks, text/html untuk halaman HTML; image/gif, image/jpg, image/png untuk gambar berformat GIF, JPEG, PNG; dan application/json untuk data JSON.                                                           \\
 Cache-control & Header ini mengatur bagaimana konten yang dikirimkan dapat dikirimkan sementara di client. Pada konten-konten statis seperti gambar, secara default konten akan disimpan pada client dalam jangka waktu tertentu, sehingga jika dibutuhkan dalam waktu dekat di masa depan, tidak perlu mengirimkan permintaan lagi ke server. jika secara eksplisit diinginkan konten diminta lagi setiap kali diperlukan, dapat mengisi header ini dengan nilai no-cache. \\
-Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjukan lokasi sumberdaya dalam bentuk URI. Pada jawaban dengan kode 3xx, nilai dari header ini menunjukan lokasi baru yang harus dituju.                                                                                                                    
+Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjukan lokasi sumberdaya dalam bentuk URI. Pada jawaban dengan kode 3xx, nilai dari header ini menunjukan lokasi baru yang harus dituju.               \\                                                                                                                        
+\end{tabular}
 \caption[Tabel Response Headers]{Tabel Response Headers}
 \label{table:responseheaders}
-                                                                                                                           
-\end{tabular}
 \end{table}
 
 \section{\textit{Library} jsoup}
@@ -201,27 +199,27 @@ Kelas ini merupakan interface yang menyediakan pengambilan data dari situs web. 
 	Berfungsi untuk mengeksekusi \textbf{request} dari \textbf{Connection}.
 	
 	\textbf{Kembalian}: objek respon.
+	
+	\item \textbf{String body()}
+	
+	Berfungsi untuk mendapatkan \textit{body} respon sebagai string biasa.
+	
+	\textbf{Kembalian}: \textit{string} dari \textit{body}.
 \end{itemize}
 
-\section{Google Direction API}
-\label{subsec:googledirapi}
+\section{Google Direction}
+\label{sec:googledirapi}
 
-Google Maps Directions API adalah layanan yang menghitung arah antar lokasi menggunakan permintaan HTTP. Anda bisa mencari arah untuk beberapa moda transportasi, termasuk angkutan umum, mengemudi, berjalan atau bersepeda. Arah bisa menetapkan tempat asal, tujuan dan titik jalan baik sebagai string teks atau sebagai koordinat garis lintang/garis bujur. Layanan ini didesain untuk menghitung arah alamat statis (sudah diketahui sebelumnya) untuk penempatan konten aplikasi pada peta.
+Google Maps Directions adalah layanan yang menghitung arah antar lokasi menggunakan permintaan HTTP. Anda bisa mencari arah untuk beberapa moda transportasi, termasuk angkutan umum, mengemudi, berjalan atau bersepeda. Arah bisa menetapkan tempat asal, tujuan dan titik jalan baik sebagai string teks atau sebagai koordinat garis lintang/garis bujur. Layanan ini didesain untuk menghitung arah alamat statis (sudah diketahui sebelumnya) untuk penempatan konten aplikasi pada peta.
 
 \subsection{Permintaan Arah}
 \label{subsec:permintaanarahgoogledir}
 
 Permintaan Google Maps Directions mengambil bentuk berikut:
 
-\url{https://maps.googleapis.com/maps/api/directions/output?parameters}
+\url{https://maps.googleapis.com/maps/api/directions/json?parameters}
 
-dalam hal ini, output bisa berupa salah satu nilai berikut: 
-\begin{itemize}
-	\item json menunjukkan output dalam \textit{JavaScript Object Notation} (JSON).
-	\item xml menunjukkan output berupa XML.
-\end{itemize} 
-
-HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan. URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan.
+HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan. URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan. Pada subbab berikutnya akan dijelaskan parameter apa saja yang digunakan pada permintaan ke layanan ini.
 
 \subsection{Parameter Permintaan}
 \label{subsec:parameterpermintaangoogledir}
@@ -278,6 +276,105 @@ Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional.
 		\item \textbf{less\_walking} menunjukkan rute yang sudah dihitung akan mengutamakan jumlah berjalan kaki yang terbatas.
 		\item \textbf{fewer\_transfers} menunjukkan rute yang sudah dihitung akan mengutamakan jumlah ganti angkutan yang terbatas.
 	\end{itemize}
+\end{itemize}
+
+\subsection{\textit{Response} Arah}
+\label{subsec:responsegoogledir}
+
+Response Arah dikembalikan dalam format yang ditunjukkan oleh flag output dalam jalur permintaan URL. Hasil \textit{response} yang dikeluarkan adalah jalur yang dilalui menggunakan format JSON yang terdapat elemen-elemen yang menjelaskan jalur yang dilewati. Pada subbab berikutnya akan dijelaskan elemen-elemen yang ada pada \textit{output} yang dihasilkan dari permintaan arah.
+
+\subsection{Elemen \textit{Response} Arah}
+\label{subsec:elemenresponsegoogledir}
+
+Berikut adalah penjelasan dari setiap elemen \textit{output} yang dihasilkan dari permintaan arah :
+
+\begin{itemize}
+	\item \textbf{Status} adalah status \textit{response} dari permintaan yang dikirimkan, isinya dapat berupa salah satu dari berikut ini :
+	\begin{itemize}
+		\item \textbf{OK} jika permintaan berhasil, dan permintaan akan mengandung informasi tambahan terkait hasil pencarian.
+		\item \textbf{NOT\_FOUND} jika salah satu dari \textbf{origin} atau \textbf{destination} bukan berupa \textit{latitude, longitude} dan tidak dapat ditemukan.
+		\item \textbf{ZERO\_RESULTS} jika Google tidak berhasil menemukan rute yang diminta.
+		\item \textbf{INVALID\_REQUEST} jika ada parameter wajib yang tidak diberikan, atau ada parameter yang tidak valid.
+		\item \textbf{OVER\_QUERY\_LIMIT} yang berarti jumlah permintaan sudah melebihi kuota.
+		\item \textbf{REQUEST\_DENIED} jika permintaan ditolak.
+	\end{itemize}
+	\item \textbf{geocoded\_waypoints} adalah hasil \textit{geocoding} dari \textbf{origin, destination,} maupun \textit{waypoints} pada permintaan. \textit{Geocoding} pada API ini adalah proses konversi dari lokasi maupun nama tempat menjadi \textit{place\_id}.
+	\item \textbf{routes} adalah \textit{array} dari objek yang berisi informasi detail setiap alternatif rute yang ditemukan. elemenn dari \textbf{routes} akan dijelaskan pada subsubbab berikutnya.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{routes}}
+\label{subsubsec:elemenroutes}
+
+Setiap elemen dari \textbf{routes} adalah objek yang memiliki anggota sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{summary} adalah ringkasan dari alternatif rute ini, untuk membedakan dengan rute alternatif lainnya.
+	\item \textbf{legs} adalah \textit{array} yang berisi objek yang mempresentasikan \textit{leg}. \textit{Leg} adalah subrute untuk setiap \textit{waypoints} yang diberikan (jika parameter opsional \textit{waypoints} diberikan). Jika \textit{waypoints} tidak diberikan, \textit{array} ini akan berisi satu elemen saja. Penjelasan setiap elemen \textit{legs} akan dijelaskan pada subsubbab berikutnya.
+	\item \textbf{waypoint\_order} adalah \textit{array} yang berisi urutan \textit{waypoint} yang baru, jika parameter \textit{waypoints} diawali dengan \textit{optimized:true}.
+	\item \textbf{overview\_polyline} adalah berisi daftar titik-titik yang dilalui oleh rute yang didapatkan. Titik-titik rute ini sudah disederhanakan (tidak detail), dan diringkas dengan format \textit{encoded polyline}.
+	\item \textbf{bounds} adalah menyatakan kotak yang menyelubungi rute yang diberikan. Kotak ini direpresentasikan dalam sebuah objek yang mengandung dua anggota yaitu : \textit{northeast}(kanan-atas) dan \textit{southwest}(kiri-bawah). Setiap anggota berupa objek lain yang mengandung dua anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
+	\item \textbf{copyrights} adalah berisi teks \textit{copyright} yang harus ditampilkan kepada pengguna.
+	\item \textbf{warnings} adalah \textit{array string} yang berisi peringatan yang harus ditampilkan kepada pengguna, jika ada.
+	\item \textbf{fare} adalah informasi biaya transportasi publik yang harus dikeluarkan, jika parameter \textit{mode} berisi \textit{transit} dan Google memiliki informasi tarif untuk setiap moda yang digunakan. Informasi ini belum tersedia di Indonesia.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{legs}}
+\label{subsubsec:elemenlegs}
+
+Setiap elemen dari \textbf{legs} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{steps} adalah \textit{array} yang berisi objek yang menyatakan setiap langkah yang harus diambil. Penjelaasan setiap elemen \textit{steps} dijelaskan pada subsubbab berikutnya.
+	\item \textbf{distance} adalah menyatakan jarak yang harus ditempuh pada \textit{leg} ini, berupa objek yang berisi dua anggota yaitu \textit{value} yang merepresentasikan angka yang menyatakan jarak dalam meter dan \textit{text} yang merepresentasikan jarak dalam fotmat teks yang dapat dibaca manusia.
+	\item \textit{duration} adalah menyatakan waktu yang dibutuhkan untuk menempuh \textit{leg} ini, berupa objek yang berisi dua anggota yaitu : \textit{value} yang merepresentasikan angka yang menyatakan waktu dalam detik dan \textit{text} yang merepresentasikan waktu yang dibutuhkan dalam format teks yang dapat dibaca manusia.
+	\item \textbf{duration\_in\_traffic} adalah menyatakan waktu mirip dengan duration. perbedaannya pada elemen ini memperhitungkan faktor kepadatan lalu lintas.
+	\item \textbf{arrival\_time} dan \textbf{departure\_time} adalah waktu sampai di \textit{destination} dan waktu keberangkatan ke \textit{destination}, jika parameter \textit{mode} berisi \textit{transit}. berupa objek yang mengandung tiga anggota yaitu : \textit{value} yang merepresentasikan waktu sampai sesuai dengan objek \textit{date} pada \textit{javascript}, \textit{text} yang merepresentasi waktu sampai dalam format teks yang dapat dibaca manusia, dan \textit{time\_zone} yang merepresentasikan zona waktu pada lokasi akhir \textit{leg}.
+	\item \textbf{start\_location} dan \textbf{end\_location} adalah berisi lokasi awal dan akhir dari \textit{leg} ini, berupa objek yang memiliki doa anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
+	\item \textbf{start\_address} dan \textbf{end\_address} adalah berisi lokasi awal dan akhir dari \textit{leg} ini, dalam format teks yang dapat dibaca manusia.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{steps}}
+\label{subsubsec:elemensteps}
+
+Setiap elemen dari \textbf{steps} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{html\_instructions} adalah berisi instruksi \textit{step} ini, dalam format HTML.
+	\item \textbf{distance} adalah jarak dari \textit{step} ini, dengan format yang sama seperti anggota \textit{duration} pada elemen \textit{legs} di atas.
+	\item \textbf{start\_location} dan \textbf{end\_location} adalah lokasi awal dan akhir dari \textit{step} ini, dengan format yang sama seperti anggota \textbf{start\_location} dan \textbf{end\_location} pada elemen \textit{legs} di atas.
+	\item \textbf{polyline} adalah berisi daftar titik-titik yang dilalui pada \textit{step} ini. titik- titik rute ini diringkas dengan format \textit{encoded polyline}.
+	\item \textbf{steps} adalah \textit{array} yang berisi \textit{sub-step} dari \textit{step} ini, jika parameter \textit{mode} berisi \textit{transit}. Formatnya sama dengan elemen step ini.
+	\item \textbf{transit\_details} adalah berisi detail transit, jika parameter \textit{mode} berisi \textit{transit}. Penjelasan objek \textbf{transit\_details} akan dijelaskan pada subsubbab berikutnya.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{transit\_details}}
+\label{subsubsec:elementransitdetail}
+
+Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{arrival\_stop} dan \textbf{departure\_stop} adalah berisi informasi halte atau stasiun dari \textit{leg} ini, pada tujuan maupun keberangkatan. Berupa objek yang mengandung dua anggota yaitu : \textit{name} yang merepresentasikan nama halte atau stasiun dan \textit{location} yang merepresentasikan objek yang mengandung dua anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
+	\item \textbf{arrival\_time} dan \textbf{departure\_time} adalah waktu sampai dan waktu keberangkatan pada \textit{leg} ini. Berupa objek yang memiliki 3 anggota yaitu : \textit{text} yang merepresentasi kan waktu dalam format yang dapat dibaca manusia, \textit{value} yang merepresentasikan waktu dalam format UNIX, yaitu jumlah detik sejak 1 Januari 1970 GMT, dan \textit{time\_zone} yang merepresentasikan kode zona waktu yang digunakan di halte atau statiun ini.
+	\item \textbf{headsign} adalah arah yang harus diambil saat naik dari halte atau stasiun ini. Biasanya berisi nama terminal akhir.
+	\item \textbf{headway} adalah interval keberangkatan di halte/stasiun ini, dalam detik.
+	\textbf{num\_stops} adalah jumlah halte yang harus dilewati sebelum turun. halte atau stasiun untuk turun dihitung, tetapi halte atau stasiun keberangkatan tidak dihitung.
+	\item \textbf{line} berisi infirmasi mengenai jalur yang harus diambil pada \textbf{leg} ini, dalam bentuk objek. Penjelasan objek\textit{line} dijelaskan pada subsubbab berikutnya.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{transit\_details}}
+\label{subsubsec:elementransitdetail}
+
+Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{name} adalah berisi nama jalur ini.
+	\item \textbf{short\_name} adalah berisi nama jalur yang lebih singkat, biasanya kode jalur.
+	\item \textbf{color} adalah berisi warna yang umum digunakan untuk merepresentasikan jalur ini, dalam format string heksadesimal.
+	\item \textbf{agencies} adalah \textit{array} yang tiap elemennya berupa objek yang merepresentasikan penyedia layanan, dan mengandung tiga anggota yaitu : \textit{name} yang merepresentasikan nama penyedia layanan, \textit{url} yang merepresentasikan alamat situs web, dan \textit{phone} yang mere[resentasikan nomor telepon. Informasi ini wajib ditampilkan ke pengguna.
+	\item \textbf{url} adalah alamat situs web dari jalur ini.
+	\item \textbf{icon} adalah URL untuk mendapatkan gambar yang merepresentasikan jalur ini.
+	\item \textbf{text\_color} adalah berisi warna yang umum digunakan untuk teksyang merepresentasikan jalur ini dalam format string heksadesimal.
+	\item \textbf{vehicle} adalah berisi informasi kendaraan yang digunakan pada jalur inim dalam bentuk objek yang mengandung empat anggota yaitu : \textit{name} yang merepresentasikan nama kendaraan, \textit{type} yang merepresentasikan tipe kendaraan, \textit{icon} yang merepresentasikan URL gambar kendaraan, \textit{local\_icon} yang merepresenasikan gambar kendaraan secara lokal.
 \end{itemize}
 
 \section{\textit{JavaScript Object Notation (JSON)}}
