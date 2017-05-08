@@ -6,12 +6,12 @@ Berdasarkan hasil studi pustaka yang telah dilakukan, pada bab ini akan dijelask
 \section{Flow Chart Alur Layanan Google Direction}
 \label{sec:flowchartgoogledir}
 
-Dalam mengakses layanan Google Direction sesuai dengan \ref{sec:googledirapi} yang berjalan pada protokol HTTP, terjadi transaksi data yang bergerak antara \textit{user} dan \textit{server} Google. 
+Dalam mengakses layanan Google Direction sesuai dengan subbab \ref{sec:googledirapi} yang berjalan pada protokol HTTP, terjadi transaksi data yang bergerak antara \textit{user} dan \textit{server} Google. 
 Dengan menggunakan diagram \textit{flow chart} akan memudahkan dalam pembangunan perangkat lunak dan mengetahui alur transaksi dari layanan Google Direction. Diagram \textit{flow chart} yang menunjukan alur transaksi layanan Google Direction dapat dilihat pada Gambar \ref{fig:flowchartgoogledir}
 
 			\begin{figure}[H]
 				\centering		
-				\includegraphics[scale=0.7]{Gambar/flowchartgoogledir.jpg}
+				\includegraphics[scale=0.5]{Gambar/flowchartgoogledir.jpg}
 				\caption[Flow Chart Alur Layanan Google Direction]{Flow Chart Alur Layanan Google Direction}
 				\label{fig:flowchartgoogledir}	
 			\end{figure}
@@ -19,46 +19,53 @@ Dengan menggunakan diagram \textit{flow chart} akan memudahkan dalam pembangunan
 \section{Analisis permintaan ke layanan Google Direction}
 \label{sec:analisisrequestgoogledir}
 
-Sesuai dengan \ref{subsec:permintaanarahgoogledir} permintaan dari google direction ini menggunakan protokol HTTP. Permintaan tersebut menghubungi hostname www.google.com dengan port default untuk port HTTP yaitu 80. Permintaan tersebut disertai dengan parameter-parameter opsional lainnya untuk mendapatkan data yang diinginkan.
+Sesuai dengan subbab \ref{subsec:permintaanarahgoogledir} permintaan dari google direction ini menggunakan protokol HTTP. Permintaan tersebut menghubungi hostname www.google.com dengan port default untuk port HTTP yaitu 80. Permintaan tersebut disertai dengan parameter-parameter opsional lainnya untuk mendapatkan data yang diinginkan.
 
 \subsection{Parameter yang digunakan}
 \label{subsec:parameterrequestaplikasi}			
 
-Untuk mendapatkan data waktu tempuh yang beragam untuk menganalisis waktu tempuh dari 2 titik sesuai dengan \ref{subsec:parameterpermintaangoogledir}, parameter opsional yang digunakan adalah :  \textbf{departure\_time} dan \textbf{traffic\_model}. Dari memanipulasi kedua parameter tersebut akan menghasilkan data waktu tempuh yang beragam. Selain itu memanipulasi nilai parameter pada \textbf{destination} dan  \textbf{origin} juga akan mempengaruhi data waktu tempuh yang dihasilkan karena pada perhitungan dari masing-masing \textbf{destination} ke \textbf{origin} akan menghasilkan waktu tempuh yang berbeda. Dari masing-masing \textbf{destination} ke \textbf{origin}juga memiliki jam kepadatan tertentu dimana nilai waktu tempuh akan berbeda dengan jam-jam lainnya sesuai dengan \textbf{departure\_time}. Parameter \textbf{traffic\_model} ini juga mempengaruhi nilai yang watu tempuh dikeluarkan tergantung model apakah yang digunakan yang telah dibahas pada \ref{subsubsec:parameteropsional}.
+Untuk mendapatkan data waktu tempuh yang beragam untuk menganalisis waktu tempuh dari 2 titik sesuai dengan \ref{subsec:parameterpermintaangoogledir}, parameter opsional yang digunakan adalah :  \textbf{departure\_time} dan \textbf{traffic\_model}. Dari memanipulasi kedua parameter tersebut akan menghasilkan data waktu tempuh yang beragam. Selain itu memanipulasi nilai parameter pada \textbf{destination} dan  \textbf{origin} juga akan mempengaruhi data waktu tempuh yang dihasilkan karena pada perhitungan dari masing-masing \textbf{destination} ke \textbf{origin} akan menghasilkan waktu tempuh yang berbeda. Dari masing-masing \textbf{destination} ke \textbf{origin}juga memiliki jam kepadatan tertentu dimana nilai waktu tempuh akan berbeda dengan jam-jam lainnya sesuai dengan \textbf{departure\_time}. Parameter \textbf{traffic\_model} ini juga mempengaruhi nilai yang watu tempuh dikeluarkan tergantung model apakah yang digunakan yang telah dibahas pada subbab \ref{subsubsec:parameteropsional}.
 
-\begin{figure}[H]
-				\centering		
-				\includegraphics[scale=0.6]{Gambar/best_guess.png}
-				\caption[Traffic\_model : best_guess]{Traffic\_model : best\_guess}
-				\label{fig:best_guess}
-					\includegraphics[scale=0.6]{Gambar/optimistic.png}
-				\caption[Traffic\_model : optimistic]{Traffic\_model : optimistic}
-				\label{fig:optimistic}
-				\includegraphics[scale=0.6]{Gambar/pessimistic.png}
-				\caption[Traffic\_model : pessimistic]{Traffic\_model : pessimistic}
-				\label{fig:pessimistic}
-			\end{figure}
+\begin{lstlisting}[caption= Traffic\_model : best\_guess, captionpos=b]
+	https://maps.googleapis.com/maps/api/directions/json?...traffic_model=best_guess
+\end{lstlisting}
+\begin{lstlisting}[caption= Traffic\_model : optimistic, captionpos=b]
+	https://maps.googleapis.com/maps/api/directions/json?...traffic_model=optimistic
+\end{lstlisting}
+\begin{lstlisting}[caption= Traffic\_model : pessimistic, captionpos=b]
+	https://maps.googleapis.com/maps/api/directions/json?...traffic_model=pessimistic
+\end{lstlisting}
 
-\section{Analisis response dari layanan Google Direction}
+\section{Analisis response dari layanan Google Directions}
 \label{sec:analisisresponsegoogledir}
 
 Pada saat melakukan permintaan, Server akan memberikan \textit{response} dengan format JSON. Response yang diterima adalah hasil perhitungan dari \textit{origin} ke \textit{destination}. Dari response ini terdapat banyak data didalamnya.
 
-Data waktu tempuh pada hasil response permintaan ada pada \textit{duration\_in\_traffic} dimana \textit{duration\_in\_traffic} ini adalah salah satu elemen dari \textit{legs} (\ref{subsubsec:elemenlegs}) yang merupakan sebuah \textit{json array} dan \textit{legs} ini sendiri adalah salah satu elemen dari \textit{routes} yang merupakan elemen dari \textit{response} yang diterima.
+Data waktu tempuh pada hasil response permintaan ada pada \textit{duration\_in\_traffic} dimana \textit{duration\_in\_traffic} ini adalah salah satu elemen dari \textit{legs} (subsubbab \ref{subsubsec:elemenlegs}) yang merupakan sebuah \textit{json array} dan \textit{legs} ini sendiri adalah salah satu elemen dari \textit{routes} yang merupakan elemen dari \textit{response} yang diterima.
 
-\begin{figure}[H]
-				\centering		
-				\includegraphics[scale=0.6]{Gambar/duration_in_traffic.png}
-				\caption[Data waktu tempuh]{Data waktu tempuh \footnote{http://www.jsoneditoronline.org/}}
-				\label{fig:durationintraffic}	
-			\end{figure}
+\begin{lstlisting}[caption= Hasil \textit{response} Google Directions, captionpos=b]
+{
+   "geocoded_waypoints" :[
+		...
+	 "routes" : [
+	 ...
+		 "legs" : [
+		 ...
+			"duration_in_traffic" : {
+          "text" : "57 menit",
+          "value" : 3439
+	    },
+		  ...
+	 "status" : "OK"
+}
+\end{lstlisting}
+
 
 \section{Gambaran Umum Perangkat Lunak}
 \label{sec:gambaranumum}
 
-Perangkat lunak yang akan dibangun adalah perangkat lunak untuk menghitung waktu tempuh dari 2 titik yang ditentukan. Perangkat lunak yang akan dibangun ini bertujuan untuk membantu menganalisis pada jam berapakah waktu tempuh paling cepat dalam waktu 1 minggu terhitung dari hari senin. Selain itu, perangkat lunak ini bertujuan untuk membantu pengambilan keputusan pengguna untuk menentukan pada jam berapakah pengguna melakukan perjalanan agar tidak terjebak dalam kemacetan. Perangkat lunak ini berjalan pada protokol HTTP. Perangkat lunak ini dibangun pada perangkat komputer(desktop) yang berfungsi sebagai penghitung waktu tempuh dengan memanfaatkan Google Direction API. Perangkat lunak mengeluarkan \textit{output} berupa file yang berekstensi .csv untuk mencatat seluruh data yang diterima oleh perangkat lunak dari layanan Google Direction.
-Perangkat lunak ini akan diuji coba sesuai dengan sample sebagai berikut :
-menghitung  waktu tempuh antar lokasi yang beralamat Jln. Ciumbuleuit No.94 dan Komplek Amaya Residence; menghitung  waktu tempuh antar lokasi yang beralamat Jln. Ciumbuleuit No.94 dan Komplek Taman Puspa Indah. Penetapan sample untuk memudahkan mendapatkan waktu tempuh dengan alamat yang konstant dan memudahkan untuk output yang dikeluarkan.
+Perangkat lunak yang akan dibangun adalah perangkat lunak untuk menghitung waktu tempuh dari 2 titik yang ditentukan. Perangkat lunak yang akan dibangun ini bertujuan untuk membantu menganalisis pada jam berapakah waktu tempuh paling cepat dalam waktu 1 minggu terhitung dari hari senin. Selain itu, perangkat lunak ini bertujuan untuk membantu pengambilan keputusan pengguna untuk menentukan pada jam berapakah pengguna melakukan perjalanan agar tidak terjebak dalam kemacetan. Perangkat lunak ini berjalan pada protokol HTTP. Perangkat lunak ini dibangun pada perangkat komputer(desktop) yang berfungsi sebagai penghitung waktu tempuh dengan memanfaatkan Google Direction API. Perangkat lunak mengeluarkan \textit{output} berupa file yang berekstensi .csv untuk mencatat seluruh data yang diterima oleh perangkat lunak dari layanan Google Direction dan menggunakan aplikasi \textit{Microsoft Excel} untuk membantu menganalisis data dengan cara me-\textit{generate} grafik secara manual oleh pengguna.
+Perangkat lunak ini akan diuji coba sesuai dengan sampel sebagai berikut : menghitung  waktu tempuh antar lokasi yang beralamat Jln. Ciumbuleuit No.94 dan Komplek Amaya Residence; menghitung  waktu tempuh antar lokasi yang beralamat Jln. Ciumbuleuit No.94 dan Komplek Taman Puspa Indah. Penetapan sampel untuk memudahkan mendapatkan waktu tempuh dengan alamat yang konstant dan memudahkan untuk output yang dikeluarkan.
 						
 \section{Analisis Perangkat Lunak}
 \label{sec:analisispl}
@@ -80,16 +87,14 @@ Diagram use case pada perangkat lunak yang akan dibangun hanya mengandung satu a
 
 \begin{figure}[H]
 				\centering		
-				\includegraphics[scale=0.6]{Gambar/UseCaseDiagram.png}
+				\includegraphics[scale=0.45]{Gambar/UseCaseDiagram.png}
 				\caption[Diagram \textit{Use Case} Perangkat Lunak]{Diagram \textit{Use Case} Perangkat Lunak}
 				\label{fig:diagramusecase}	
 			\end{figure}
 			
-Berdasarkan subbab \ref{sec:analisispl}. dari dua fitur yang akan dibuat, dibentuk tiga \textit{use case} antara lain:
+Berdasarkan subbab \ref{sec:analisispl}. dari dua fitur yang akan dibuat, dibentuk satu \textit{use case} antara lain:
 \begin{itemize}
-\item \textbf{Menghitung Waktu Tempuh}, User dapat menghitung waktu tempuh antar 2 titik.
-\item \textbf{Menampilkan Data}, User dapat melihat data hasil penghitungan.
-\item \textbf{Menyimpan Data}, User dapat menyimpan data hasil dari penghitungan.
+\item \textbf{Menyimpan Data dalam file .csv}, User dapat menyimpan data dari penghitungan antar 2 titik : sampel dan Unpar.
 \end{itemize}
 
 \subsection{Skenario \textit{Use Case}}
@@ -99,64 +104,36 @@ Berdasarkan subbab \ref{sec:analisispl}. dari dua fitur yang akan dibuat, dibent
 	\item Menghitung Waktu Tempuh
 	
 	\begin{itemize}
-		\item Nama : Menghitung Waktu Tempuh.
+		\item Nama : Menyimpan Data dalam file .csv.
 		\item Aktor : User.
-		\item Deskripsi : Menghitung waktu tempuh dari tempat asal ke tempat tujuan.
-		\item Kondisi awal : User belum mengisi tempat asal, tempat tujuan, tanggal dan mode. 
-		\item Kondisi akhir : User telah mengisi tempat asal, tempat tujuan, tanggal dan mode. 
+		\item Deskripsi : Menyimpan data dari hasil penghitungan dari tempat asal tempat asal ke tempat tujuan.
+		\item Kondisi awal : User memulai program. 
+		\item Kondisi akhir : User berhasil menyimpan data dan membuka file tersebut dengan bantuan excel. 
 		\item Skenario Utama : \\
-		\begin{table}[H]
+\begin{table}[H]
 \centering
 \begin{tabular}{|p{1cm}|p{4cm}|p{4cm}|}
 \hline
-No & Aksi Aktor                     & Reaksi Sistem                                                                               \\ \hline
-1  & User mengklik tombol kalkulasi & Sistem melakukan kalkulasi dan menampilkan hari dan jam yang memiliki waktu tempuh tercepat \\ \hline
+\multicolumn{1}{|c|}{\textbf{No}} & \multicolumn{1}{c|}{\textbf{Aksi Aktor}}    & \multicolumn{1}{c|}{\textbf{Reaksi Sistem}}                             \\ \hline
+1                                 & User memulai program                        & Sistem menampilkan GUI dari perangkat lunak                             \\ \hline
+2                                 & User melakukan input                        &                                                                         \\ \hline
+3                                 & User menekan tombol save                    & Sistem mengolah data seusai dengan input dari user                      \\ \hline
+4                                 &                                             & Sistem menampilkan layar untuk penyimpanan file                         \\ \hline
+5                                 & User melakukan input untuk penyimpanan file & Sistem melakukan penyimpanan file seusai input dari user                \\ \hline
+6                                 &                                             & Sistem mebuka file tersebut dengan menggunakan aplikasi Microsoft Excel \\ \hline
 \end{tabular}
 \end{table}
-		\item Eksepsi : ketiga mode yang dipilih.
-	\end{itemize}
-	
-	\item Menampilkan Data
-	
-	\begin{itemize}
-		\item Nama : Menampilkan Data.
-		\item Aktor : User.
-		\item Deskripsi : Menampilkan data dari kalkulasi tempat asal dan tempat tujuan. 
-		\item Kondisi awal : User telah melakukan kalkulasi waktu tempuh. 
-		\item Kondisi akhir : User telah mendapatkan hasil dari kalkulasi waktu tempuh. 
-		\item Skenario Utama : \\
-		\begin{table}[H]
-\centering
-\begin{tabular}{|p{1cm}|p{4cm}|p{4cm}|}
-\hline
-No & Aksi Aktor                     & Reaksi Sistem                                                                               \\ \hline
-1  & User mengklik tombol melihat data & Sistem menampilkan semua data dari kalkulasi. \\ \hline
-\end{tabular}
-\end{table}
-		\item Eksepsi : data kosong.
-	\end{itemize}
-	\item Menyimpan data
-	\begin{itemize}
-		\item Nama : Menyimpan data.
-		\item Aktor : User.
-		\item Deskripsi : Menyimpan data hasil dari kalkulasi ke sebuah file berkestensi csv.
-		\item Kondisi awal : User telah melakukan kalkulasi waktu tempuh. 
-		\item Kondisi akhir : User berhasi menyimpan hasil dari kalkulasi ke sebuah file. 
-		\item Skenario Utama : \\
-		\begin{table}[H]
-\centering
-\begin{tabular}{|p{1cm}|p{4cm}|p{4cm}|}
-\hline
-No & Aksi Aktor                     & Reaksi Sistem                                                                               \\ \hline
-1  & User mengklik tombol simpan & Sistem menampilkan \textit{path} direktori dimana file akan disimpan \\ \hline
-2  & User memberi nama file dan mengklik ok & Sistem menyimpan data dengan nama yang sesuai dimasukan oleh User pada direktori tersebut dan penyimpanan berhasil \\ \hline
-\end{tabular}
-\end{table}
-		\item Eksepsi : data kosong.
-	\end{itemize}
+		\item Eksepsi : 
+		\begin{itemize}
+			\item tidak ada model traffic yang dipilih.
+			\item user belum memilih sampel mana yang akan dihitung.
+			\item user belum memilih tanggal.
+			\item user memilih tanggal pada masa lampau dan hari ini.
+		\end{itemize}
+	\end{itemize}	
 \end{enumerate}
 
-\section{Analisis Diagram Kelas}
+\section{Analisis Kelas}
 \label{sec:analisisclassdiagram}
 
 Diagram kelas analisis untuk perangkat lunak ditunjukkan pada Gambar \ref{fig:classdiagramawal}

@@ -34,7 +34,7 @@ Berikut akan diilustrasikan transaksi web umum, menunjukkan HTTP yang dipertukar
 \begin{itemize}
 	\item Pada baris pertama pada request (Gambar \ref{fig:httprequest}) disebut dengan request line dan diawali dengan \textit{request method}(metode permintaan), dalam gambar tersebut adalah GET. \textit{Request method} diikuti dengan \textit{resource} yang diinginkan, dalam gambar tersebut adalah /. \textit{Request line} diakhiri dengan versi protokol yang digunakan dalam gambar diatas adalah HTTP/1.1.
 	\item baris kedua dan baris-baris berikutnya sampai ditemukan baris kosong, berisi request headers dalam format \textit{nama-header:nilai-header}. pada gambar \ref{fig:httprequest} terdapat header host yang menandakan bahwa browser ingin mengakses situs dari nilai yang ada di header host.
-	\item Dibawah header-header pada gambar \ref{fig:httprequest} terdapat baris kosong di akhir \textit{request}. pada \textit{request}, baris kosong memisahkan antara \textit{reqquest headers} dengan \textit{request body}(tubuh permintaan).
+	\item Dibawah header-header pada gambar \ref{fig:httprequest} terdapat baris kosong di akhir \textit{request}. pada \textit{request}, baris kosong memisahkan antara \textit{request headers} dengan \textit{request body}(tubuh permintaan).
 \end{itemize}
 
 Setelah \textit{client} memberikan \textit{request} server memberikan \textit{response}. Dari kasus diatas berikut adalah sebagai berikut :
@@ -137,7 +137,7 @@ Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjuk
 
 Jsoup adalah sebuah \textit{library} java untuk bekerja dengan HTML dunia nyata.  Jsoup menyediakan API yang sangat nyaman untuk mengekstrak dan memanipulasi data, menggunakan DOM(Document Object Model) terbaik, CSS, dan \textit{method} yang mirip dengan jquery. Jsoup mengimplementasikan spesifikasi standar \textit{WHATWG HTML5} dan mengurai HTML menjadi DOM(Document Object Model) yang sama dengan peramban modern lakukan. Jsoup sendiri dirancang untuk menangani semua jenis HTML yang biasa ditemukan dengan membuat \textit{parsing tree} yang dapat dimengerti.
 
-Dalam subbab berikut akan dijelaskan fungsi dan beberapa kelas dari jsoup\footnote{https://jsoup.org}.
+Dalam subbab berikut akan dijelaskan fungsi dan beberapa kelas dari jsoup\cite{jonathanhedley2016}.
 \subsection{Fungsi jsoup}
 \label{subsec:fungsijsoup}
 berikut adalah fungsi dari jsoup :
@@ -217,14 +217,16 @@ Google Maps Directions adalah layanan yang menghitung arah antar lokasi mengguna
 
 Permintaan Google Maps Directions mengambil bentuk berikut:
 
-\url{https://maps.googleapis.com/maps/api/directions/json?parameters}
+\begin{lstlisting}[caption= \textit{Request} Google Directions, captionpos=b]
+https://maps.googleapis.com/maps/api/directions/json?parameters
+\end{lstlisting}
 
 HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan. URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan. Pada subbab berikutnya akan dijelaskan parameter apa saja yang digunakan pada permintaan ke layanan ini.
 
 \subsection{Parameter Permintaan}
 \label{subsec:parameterpermintaangoogledir}
 
-Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional. Sebagaimana standar dalam URL, semua parameter dipisah menggunakan karakter ampersand (\&). Daftar parameter dan kemungkinan nilainya disebutkan di bawah ini\footnote{https://developers.google.com/maps/documentation/directions/intro}.
+Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional. Sebagaimana standar dalam URL, semua parameter dipisah menggunakan karakter ampersand (\&). Daftar parameter dan kemungkinan nilainya disebutkan di bawah ini\cite{ankurkotwal2017}.
 
 \subsubsection{Parameter yang diperlukan}
 \label{subsubsec:parameterwajib}
@@ -353,20 +355,6 @@ Setiap elemen dari \textbf{steps} adalah sebagai berikut :
 Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
 
 \begin{itemize}
-	\item \textbf{arrival\_stop} dan \textbf{departure\_stop} adalah berisi informasi halte atau stasiun dari \textit{leg} ini, pada tujuan maupun keberangkatan. Berupa objek yang mengandung dua anggota yaitu : \textit{name} yang merepresentasikan nama halte atau stasiun dan \textit{location} yang merepresentasikan objek yang mengandung dua anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
-	\item \textbf{arrival\_time} dan \textbf{departure\_time} adalah waktu sampai dan waktu keberangkatan pada \textit{leg} ini. Berupa objek yang memiliki 3 anggota yaitu : \textit{text} yang merepresentasi kan waktu dalam format yang dapat dibaca manusia, \textit{value} yang merepresentasikan waktu dalam format UNIX, yaitu jumlah detik sejak 1 Januari 1970 GMT, dan \textit{time\_zone} yang merepresentasikan kode zona waktu yang digunakan di halte atau statiun ini.
-	\item \textbf{headsign} adalah arah yang harus diambil saat naik dari halte atau stasiun ini. Biasanya berisi nama terminal akhir.
-	\item \textbf{headway} adalah interval keberangkatan di halte/stasiun ini, dalam detik.
-	\textbf{num\_stops} adalah jumlah halte yang harus dilewati sebelum turun. halte atau stasiun untuk turun dihitung, tetapi halte atau stasiun keberangkatan tidak dihitung.
-	\item \textbf{line} berisi infirmasi mengenai jalur yang harus diambil pada \textbf{leg} ini, dalam bentuk objek. Penjelasan objek\textit{line} dijelaskan pada subsubbab berikutnya.
-\end{itemize}
-
-\subsubsection{Elemen dari \textit{transit\_details}}
-\label{subsubsec:elementransitdetail}
-
-Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
-
-\begin{itemize}
 	\item \textbf{name} adalah berisi nama jalur ini.
 	\item \textbf{short\_name} adalah berisi nama jalur yang lebih singkat, biasanya kode jalur.
 	\item \textbf{color} adalah berisi warna yang umum digunakan untuk merepresentasikan jalur ini, dalam format string heksadesimal.
@@ -379,7 +367,7 @@ Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
 
 \section{\textit{JavaScript Object Notation (JSON)}}
 \label{sec:json}
-JSON (JavaScript Object Notation) adalah format pertukaran data yang ringan, mudah dibaca dan ditulis oleh manusia, serta mudah diterjemahkan dan dibuat (generate) oleh komputer. Format ini dibuat berdasarkan bagian dari Bahasa Pemprograman JavaScript, Standar ECMA-262 Edisi ke-3 - Desember 1999. JSON merupakan format teks yang tidak bergantung pada bahasa pemprograman apapun karena menggunakan gaya bahasa yang umum digunakan oleh programmer keluarga C termasuk C, C++, C\#, Java, JavaScript, Perl, Python dll\footnote{http://www.json.org/json-id.html}.
+JSON (JavaScript Object Notation) adalah format pertukaran data yang ringan, mudah dibaca dan ditulis oleh manusia, serta mudah diterjemahkan dan dibuat (generate) oleh komputer. Format ini dibuat berdasarkan bagian dari Bahasa Pemprograman JavaScript, Standar ECMA-262 Edisi ke-3 - Desember 1999. JSON merupakan format teks yang tidak bergantung pada bahasa pemprograman apapun karena menggunakan gaya bahasa yang umum digunakan oleh programmer keluarga C termasuk C, C++, C\#, Java, JavaScript, Perl, Python dll\cite{ecmainternational2013}.
 
 \subsection{Struktur JSON}
 \label{subsec:stukturjson}

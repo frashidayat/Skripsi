@@ -1,7 +1,8 @@
-\chapter{Kode Program pada \textit{package Controller}}
-\label{chap:kodeprogramB}
-
-\begin{lstlisting}[caption= DurationTimeController.java]
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
 import Module.DataProcessor;
@@ -10,6 +11,10 @@ import java.text.ParseException;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 
+/**
+ *
+ * @author LENOVO
+ */
 public class DurationTimeController {
     
     private final DataProcessor processor;
@@ -30,8 +35,12 @@ public class DurationTimeController {
         }
     }
     
+    /*public boolean checkData(){
+        return processor.dataIsEmpty();
+    }
+    */
     public void saveData(String dir, String filename) throws IOException{
         processor.saveFile(dir, filename);
-    }            
+    }
+            
 }
-\end{lstlisting}

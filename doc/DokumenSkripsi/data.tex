@@ -60,10 +60,10 @@
 % Jika tidak ingin mencetak daftar tabel/gambar (misalkan karena tidak ada 
 % isinya), edit manual di baris 439 dan 440 pada file main.tex
 %=============================================================================
- \mode{kosong}
+% \mode{kosong}
 % \mode{cover}
 % \mode{sidang}
-% \mode{sidang_akhir}
+\mode{sidang_akhir}
 %\mode{final} 
 %=============================================================================
 
@@ -92,8 +92,8 @@
 % - double 	: jarak yang lebih lebar lagi, jika pembimbing berniat memberi 
 %             catatan yg banyak di antara baris (dianjurkan untuk bimbingan)
 %=============================================================================
-\linespacing{single}
-%\linespacing{onehalf}
+%\linespacing{single}
+\linespacing{onehalf}
 %\linespacing{double}
 %=============================================================================
 
@@ -124,7 +124,7 @@
 % Catatan: Jika ingin menambahkan bab ke-10 dan seterusnya, harus dilakukan 
 % secara manual
 %=============================================================================
-\bab{1,2,3}
+\bab{}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -164,8 +164,8 @@
 %				(e.g. \penguji{\JHD}{\JCD} ) , \JND dan \JCD adalah kode dosen
 % !!Lihat singkatan pembimbing dan penguji anda di file dosen.tex
 %=============================================================================
-\namanpm{<<Nama Lengkap>>}{<<10 digit NPM UNPAR>>}	%hilangkan tanda << & >>
-\tanggal{<<tanggal>>}{<<bulan>>}{<<tahun>>}			%hilangkan tanda << & >>
+\namanpm{Frasetiawan Hidayat}{2010730121}	%hilangkan tanda << & >>
+\tanggal{}{}{}			%hilangkan tanda << & >>
 \pembimbing{<<pembimbing utama/1>>}{<<pembimbing pendamping/2>>} %hilangkan tanda << & >>    
 \penguji{<<penguji 1>>}{<<penguji 2>>} 				%hilangkan tanda << & >>
 %=============================================================================
@@ -183,8 +183,8 @@
 %			 - Judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
 %			 - Gunakan perintah \texorpdfstring{\\}{} untuk baris baru
 %=============================================================================
-\judulINA{<<Judul Bahasa Indonesia>>}
-\judulENG{<<Judul Bahasa Inggris>>}
+\judulINA{Analisi Waktu Tempuh Kota Bandung}
+\judulENG{Analysis of Travel Time Bandung city}
 %_____________________________________________________________________________
 %=============================================================================
 % 								BAGIAN X
@@ -195,8 +195,27 @@
 % PERHATIAN: langsung mulai setelah '{' awal, jangan mulai menulis di baris 
 %			 bawahnya
 %=============================================================================
-\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>> \\\kant[1]}
-\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>> \\\kant[2]} 
+\abstrakINA{Dalam melakukan suatu perjalanan , manusia melalui suatu jalur yang relatif konstan dimana jalur tersebut akan menjadi rutinitas yang akan dilalui. Dari jalur tersebut sering kali terjadi kemacetan dan biasanya kemacetan itu terjadi pada jam-jam tertentu.
+
+Pada kota-kota besar sering terjadi kemacetan. Efeknya adalah keterlambatan yang akan mempengaruhi seluruh rangkaian kegiatan yang telah direncanakan. Bandung adalah salah satunya dari kota besar yang sering mengalami kemacetan ini dan terkadang kemacetan sendiri tidak dapat diprediksi.Kemacetan ini sendiri bisa dianalisis dengan menentukan pada pukul berapa sajakah terjadi kemacetan pada jalur yang ditempuh.
+
+Dengan memanfaatkan Google Direction yang dimana Google Direction itu sendiri adalah suatu layanan web untuk menghitung arah antar lokasi. Dengan layanan web ini bisa mendapatkan data waktu tempuh dari lokasi awal sampai lokasi tujuan dengan input berupa URL beserta dengan parameter wajib dan beberapa parameter opsional yang akan menghasilkan output JSON atau XML.
+
+Aplikasi sederhana yang akan dibangun berbasis Java memanfaatkan jsoup bisa melakukan \textit{request} ke layanan Google Direction.Pengujian dari aplikasi sederhana ini dilakukan dengan menggunakan \textit{test case}. Berdasarkan hasil pengujian, aplikasi dapat berjalan dengan baik dan memberikan keluaran file .csv yang akan dianalisis untuk memberikan waktu terbaik dalam melakukan perjalanan dengan bantuan aplikasi Microsoft Excel. Hasil pengujian aplikasi sederhana ini membuktikan bahwa Google Direction API dapat dimanfaatkan untuk menganalisis waktu tempuh antar titik agar mendapatkan waktu tempuh yang optimal.
+}
+\abstrakENG{In doing a travel, man through a relatively constant path where the path will be a routine to be traversed. From this path there is often a traffic jam and usually the jam occurs at certain hours.
+
+In big cities there are frequent congestion. The effect is the delay that will affect the entire set of planned activities. Bandung is one of the big cities that often experience this bottleneck and sometimes the congestion itself can not be predicted. The congestion itself can be analyzed by determining at what time there are congestion on the path taken.
+
+By using Google Direction which Google Direction itself is a web service to calculate the direction between locations. With this web service can get data travel time from the initial location to the destination location with input in the form of URL along with mandatory parameters and some optional parameters that will produce JSON or XML output.
+
+Simple applications that will be built based on Java jsoup can make request to service Google Direction.Testing of this simple application is done by using a test case. Based on the test results, the application can run well and provide output .csv files to be analyzed to provide the best time to travel with the help of Microsoft Excel applications. The results of testing this simple application proves that Google Direction API can be utilized to analyze the travel time between points in order to get the travel time that optimalukan a journey, humans through a relatively constant path where the path will be a routine to be traversed. From this path there is often a traffic jam and usually the jam occurs at certain hours.
+
+In big cities there are frequent congestion. The effect is the delay that will affect the entire set of planned activities. Bandung is one of the big cities that often experience this bottleneck and sometimes the congestion itself can not be predicted. The congestion itself can be analyzed by determining at what time there are congestion on the path taken.
+
+By using Google Direction which Google Direction itself is a web service to calculate the direction between locations. With this web service can get data travel time from the initial location to the destination location with input in the form of URL along with mandatory parameters and some optional parameters that will produce JSON or XML output.
+
+Simple applications that will be built based on Java jsoup can make request to service Google Direction.Testing of this simple application is done by using a test case. Based on the test results, the application can run well and provide output .csv files to be analyzed to provide the best time to travel with the help of Microsoft Excel applications. The results of testing this simple application proves that Google Direction API can be used to analyze the travel time between points in order to get optimal travel time} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -207,8 +226,8 @@
 % - kunciINA: kata-kata kunci dalam bahasa indonesia
 % - kunciENG: keywords in english
 %=============================================================================
-\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
-\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+\kunciINA{Kemacetan, Kota Bandung, Google Direction, JSON, Java, jsoup, Microsoft Excel.}
+\kunciENG{Congestion, Bandung City, Google Direction, JSON, Java, jsoup, Microsoft Excel.}
 %=============================================================================
 
 %_____________________________________________________________________________
