@@ -38,7 +38,7 @@ Pada Gambar \ref{fig:implementasiantarmukautama} merupakan tampilan utama dari p
 				\label{fig:implementasiantarmukautama}	
 			\end{figure}
 			
-Pada Gambar \ref{fig:implementasianfilechooser} merupakan tampilan \textit{file chooser} dari perangkat lunak yang memiliki satu buah \textit{window} untuk memilih \textit{directory} penyimpanan file. Terdapat satu buah input untuk memberi nama file. Selain itu tampilan juga terdapat filter file untuk menyimpan data dengan suatu ekstensi tertentu. Terdapat dua buah tombol untuk fitur penyimpanan yaitu : \textit{save} dimana tombol ini berfungsi untuk mengeksekusi penyimpanan file kemudian membuka file tersebut dengan aplikasi Microsoft Excel dan \textit{cancel} untuk membatalkan penyimpanan file.
+Pada Gambar \ref{fig:implementasifilechooser} merupakan tampilan \textit{file chooser} dari perangkat lunak yang memiliki satu buah \textit{window} untuk memilih \textit{directory} penyimpanan file. Terdapat satu buah input untuk memberi nama file. Selain itu tampilan juga terdapat filter file untuk menyimpan data dengan suatu ekstensi tertentu. Terdapat dua buah tombol untuk fitur penyimpanan yaitu : \textit{save} dimana tombol ini berfungsi untuk mengeksekusi penyimpanan file kemudian membuka file tersebut dengan aplikasi Microsoft Excel dan \textit{cancel} untuk membatalkan penyimpanan file.
 
 \begin{figure}[H]
 				\centering		
@@ -47,95 +47,40 @@ Pada Gambar \ref{fig:implementasianfilechooser} merupakan tampilan \textit{file 
 				\label{fig:implementasifilechooser}	
 			\end{figure}
 			
-\section{Perancangan Pengujian}
-\label{sec:perancanganpengujian}
+\section{Pengujian}
+\label{sec:pengujian}
 
-Pengujian perangkat lunak sederhana analisis waktu tempuh kota Bandung dengan memanfaatkan Google Direction API akan berfokus pada hasil ekstraksi data yang dimana data tersebut akan dianalisis dan kesesuaian reaksi perangkat lunak sehingga dapat menjawab dari rumusan masalah yang dipaparkan pada subbab \ref{sec:rumusan}. Pengujian perangkat lunak sederhana ini akan diuji dengan menggunakan \textit{test case} beserta dengan skenarionya. Pengujian ini dilakukan pada lingkungan implementasi sesuai pada subbab \ref{subsec:lingkunganimplementasi}. Terdapat dua tes kasus yang diujikan. Tes tersebut adalah sebagai berikut :
+\subsection{Pengujian Fungsional}
+\label{subsec:pengujianfungsional}
+
+Pengujian fungsional perangkat lunak sederhana analisis waktu tempuh kota Bandung dengan memanfaatkan Google Direction API dilakukan untuk mengetahui kesesuaian reaksi perangkat lunak dengan reaksi yang diharapkan berdasarkan aksi pengguna terhadap perangkat lunak. Pengujian ini dilakukan pada lingkungan implementasi sesuai pada subbab \ref{subsec:lingkunganimplementasi}. Terdapat 4 tes kasus yang diujikan, detail serta hasilnya dapat dilihat pada Tabel \ref{tab:pengujian1}. Beberapa data hasil ekstraksi pada pengujian ini bisa dilihat pada Lampiran \ref{chap:datahasilpengujian}. Spesifikasi pengujian fungsional adalah sebagai berikut :
 \begin{enumerate}
-	\item Pengguna menjalankan program.
-	\item Pengguna memasukan input dan menekan tombol save.
+	\item Pengujian dilakukan 14 kali untuk masing-masing sampel sesuai dengan tes kasus.
+	\item Masukan tanggal yang digunakan adalah 8 Mei 2017 dan 15 Mei 2017.
+	\item Tes kasus nomor 2 dilakukan sebanyak 2 kali untuk masing-masing sampel : 1 kali dengan masukan 8 Mei 2017 dan 1 kali dengan masukan 15 Mei 2017
+	\item Tes kasus nomor 3 dilakukan sebanyak 6 kali untuk masing-masing sampel : 1 kali dengan masukan 8 Mei 2017 dengan kombinasi model \textit{traffic} \textit{best\_guess} dan \textit{optimistic}, 1 kali dengan masukan 15 Mei 2017 dengan kombinasi model \textit{traffic} \textit{best\_guess} dan \textit{optimistic}, 1 kali dengan masukan 8 Mei 2017 dengan kombinasi model \textit{traffic} \textit{best\_guess} dan \textit{pessimistic}, 1 kali dengan masukan 15 Mei 2017 dengan kombinasi model \textit{traffic} \textit{best\_guess} dan \textit{pessimistic}, 1 kali dengan masukan 8 Mei 2017 dengan kombinasi model \textit{traffic} \textit{optimistic} dan \textit{pessimistic}, dan 1 kali dengan masukan 15 Mei 2017 dengan kombinasi model \textit{traffic} \textit{optimistic} dan \textit{pessimistic}
+	\item Tes kasus nomor 4 dilakukan sebanyak 6 kali untuk masing-masing sampel : 3 kali dengan masukan 8 Mei 2017 dengan masing-masing model \textit{traffic} dan 3 kali dengan masukan 15 Mei 2017 dengan masing-masing model \textit{traffic}.
 \end{enumerate}
 
-\section{Test Case}
-\label{sec:testcase}
-
-\textit{Test case} ini dihasilkan dari diagram \textit{use case} yang ada pada subbab \ref{subsec:diagramusecase}. Berikut adalah \textit{test case} beserta skenarionya.
-
-\subsection{Menyimpan data dalam file .csv}
-\label{subsec:menyimpandata}
-
-\begin{itemize}
-	\item \textit{Basic path} 
-	
-	User menjalankan perangkat lunak. User memilih salah satu sampel yang akan dihitung. User memilih tanggal untuk dihitung. User memilih semua model \textit{traffic}. User menekan tombol \textit{save}. Perangkat lunak melakukan \textit{request} ke layanan Google Direction sesuai dari masukan yang dipilih oleh user. User memilih \textit{directory} dan memberi nama pada file. User menekan tombol save, kemudian perangkat lunak menampilkan file dengan menggunakan aplikasi Microsoft Excel.
-	
-	\item \textit{Alternate Path}
-	\begin{itemize}
-		\item \textit{Alternate Path 1}
-		
-		User memilih salah satu dari tiga model \textit{traffic}.
-		
-		\item \textit{Alternate Path 2}
-		
-		User memilih dua diantara tiga model \textit{traffic}.
-		
-	\end{itemize}
-\end{itemize}
-
-\section{Hasil Pengujian}
-\label{sec:hasilpengujian}
-
-\subsection{Hasil Pengujian \textit{Test Case}}
-\label{sec:hasilpengujiantestcase}
-
-Pengujian dilakukan pada masing-masing sampel sebanyak 14 kali. Masukan tanggal yang digunakan adalah 8 Mei 2017 dan 15 Mei 2017. Hasil data yang didapat secara detail bisa dilihat pada lampiran \ref{chap:hasilpengujian}. Berikut adalah hasil pengujian dari \textit{test case} yang telah dipaparkan pada subbab \ref{sec:testcase} dan kesesuaian reaksi perangkat lunak :
-
+\begin{center}
 \begin{longtable}{|p{0.5cm}|p{4cm}|p{4cm}|p{4cm}|}
-\centering
-No & Aksi Pengguna & Reaksi yang diharapkan & Reaksi Perangkat Lunak \\ \hline
+\hline \multicolumn{1}{|c|}\textbf{{No}} & \multicolumn{1}{c|}{\textbf{Aksi Pengguna}}& \multicolumn{1}{c|}{\textbf{Reaksi yang diharapkan}} &\multicolumn{1}{c|}{\textbf{Reaksi perangkat lunak}} \\ \hline
 1 & Pengguna menjalankan program & Antarmuka utama ditampilkan & sesuai \\ \hline
-2 & Pengguna memasukan input dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\ \hline
- &  & Jika pengguna belum meilih salah satu dari sampel menampilkan pesan "Silahkan pilih sampel yang akan dihitung antara sampel 1 atau sampel 2" & sesuai \\ \hline
- &  & Jika pengguna belum memilih salah satu dari traffic\_model menampilkan pesan "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan" & sesuai \\ \hline
+2 & Pengguna memilih salah satu sampel, memilih tanggal, memilih ketiga model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
+3 & Pengguna memilih salah satu sampel, memilih tanggal, memilih dua diantara tiga model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
+4 & Pengguna memilih salah satu sampel, memilih tanggal, memilih salah satu model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
+ &  & Jika pengguna belum memilih salah satu dari sampel menampilkan pesan "Silahkan pilih sampel yang akan dihitung antara sampel 1 atau sampel 2" & sesuai \\ \hline
+ &  & Jika pengguna belum memilih salah satu dari traffic\_model menampilkan pesan "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan" & sesuai \\\hline 
  &  & Jika pengguna belum memilih tanggal menampilkan pesan "Anda belum memilih tanggal, silahkan pilih tanggal" & sesuai \\ \hline
  &  & Jika pengguna memilih tanggal yang sudah lampau atau hari ini menampilkan pesan "Tanggal yang anda masukan adalah masa lampau atau hari ini, silahkan pilihlah tanggal yang akan datang" & sesuai \\ \hline
  &  & Jika pengguna memilih tanggal yang bukan hari senin menampilkan pesan "Tanggal yang anda pilih bukan hari senin, silahkan pilih tanggal yang merupakan hari senin" & sesuai \\ \hline
-\caption{Tabel Hasil Pengujian kesesuaian reaksi perangkat lunak}
+\caption{Tabel Hasil Pengujian Fungsional}
 \label{tab:pengujian1}
 \end{longtable}
+\end{center}
 
-Pada \ref{tab:pengujian1} dilakukan pengujian sesuai dengan \textit{test case}. Hasil dari pengujian secara detail dijelaskan pada tabel berikut :
+\subsection{Pengujian Eksperimental}
+\label{subsec:pengujianeksperimental}
+Pengujian eksperimental dilakukan dengan melakukan eksperimen dari hasil ekstraksi data yang ada pada Lampiran \ref{chap:datahasilpengujian} dengan cara membuat analisis dari bagan yang datanya berasal dari hasil ekstraksi data tersebut. Bagan itu sendiri dapat dibuat dengan memanfaatkan aplikasi Microsoft Excel secara manual. Hasil pengujian eksperimental dapat dilihat pada Lampiran \ref{chap:hasilpengujianeksperimental} yang menunjukkan perbedaan waktu tempuh pada setiap jamnya dari masing-masing sampel. Hasil pengujian eksperimental dirangkum sebagai berikut.
 
-\begin{longtable}{|p{0.5cm}|p{2cm}|p{1.3cm}|p{1.3cm}|p{1.5cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{2cm}|}
-   no & Nama Skenario & Sampel 1 & Sampel2 & Tanggal & best\_guess & optimistic & pessimistic & hasil \\ \hline
-    1 & Menyimpan data dalam file .csv dengan tiga model traffic dipilih & dipilih & ~ & 8 Mei 2017 & dipilih & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    2 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & dipilih & ~ & 8 Mei 2017 & dipilih & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    3 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & dipilih & ~ & 8 Mei 2017 & dipilih & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    4 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & dipilih & ~ & 8 Mei 2017 & ~ & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    5 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & dipilih & ~ & 8 Mei 2017 & dipilih & ~ & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    6 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & dipilih & ~ & 8 Mei 2017 & ~ & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    7 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & dipilih & ~ & 8 Mei 2017 & ~ & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    8 & Menyimpan data dalam file .csv dengan tiga model traffic dipilih & ~ & dipilih & 8 Mei 2017 & dipilih & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    9 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & ~ & dipilih & 8 Mei 2017 & dipilih & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    10 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & ~ & dipilih & 8 Mei 2017 & dipilih & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    11 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & ~ & dipilih & 8 Mei 2017 & ~ & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    12 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & ~ & dipilih & 8 Mei 2017 & dipilih & ~ & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    13 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & ~ & dipilih & 8 Mei 2017 & ~ & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-    14 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & ~ & dipilih & 8 Mei 2017 & ~ & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        15 & Menyimpan data dalam file .csv dengan tiga model traffic dipilih & dipilih & ~ & 15 Mei 2017 & dipilih & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        16 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & dipilih & ~ & 15 Mei 2017 & dipilih & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        17 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & dipilih & ~ & 15 Mei 2017 & dipilih & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        18 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & dipilih & ~ & 15 Mei 2017 & ~ & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        19 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & dipilih & ~ & 15 Mei 2017 & dipilih & ~ & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        20 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & dipilih & ~ & 15 Mei 2017 & ~ & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        21 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & dipilih & ~ & 15 Mei 2017 & ~ & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        22 & Menyimpan data dalam file .csv dengan tiga model traffic dipilih & ~ & dipilih & 15 Mei 2017 & dipilih & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        23 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & ~ & dipilih & 15 Mei 2017 & dipilih & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        24 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & ~ & dipilih & 15 Mei 2017 & dipilih & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        25 & Menyimpan data dalam file .csv dengan dua model traffic dipilih & ~ & dipilih & 15 Mei 2017 & ~ & dipilih & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        26 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & ~ & dipilih & 15 Mei 2017 & dipilih & ~ & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        27 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & ~ & dipilih & 15 Mei 2017 & ~ & dipilih & ~ & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-        28 & Menyimpan data dalam file .csv dengan satu model traffic dipilih & ~ & dipilih & 15 Mei 2017 & ~ & ~ & dipilih & file berhasil disimpan dan membuka file dengan menggunakan aplikasi Microsoft Excel \\ \hline
-	\caption {Tabel Hasil Pengujian \textit{test case} perangkat lunak}
-		\label{tab:pengujian2}
-		\end{longtable}%
+Pada grafik waktu masing-masing model dalam seminggu yang dapat dilihat pada Lampiran \ref{chap:hasilpengujianeksperimental}, bahwa waktu tempuh untuk setiap hari relatif memiliki waktu tempuh yang sama setiap jamnya terkecuali pada hari jumat. Pada hari jumat, waktu tempuh cenderung menurun pada pukul 12, dan lalu menaik kembali setelah itu. Hal tersebut diperkirakan oleh karena mayoritas warga indonesia beragama muslim dan melaksanakan ibadah shalat jumat pada pukul 12. Selain itu, waktu tempuh mulai menaik sejak dari pukul 6 hingga mencapai pukul 18, dan setelah itu akan selalu menurun. Waktu tempuh maksimum pada setiap harinya berada pada sekitar pukul 18. Hal tersebut diperkirakan terjadi karena pada jam tersebut merupakan saat sebagian besar orang selesai beraktifitas dan pulang ke rumah masing-masing. Sedangkan waktu tempuh yang paling minimun ada pada setiap harinya berada pada sekitar pukul 3. Hal tersebut diperkirakan terjadi karena pada jam tersebut sebagian orang masih beristirahat dirumah masing-masing.

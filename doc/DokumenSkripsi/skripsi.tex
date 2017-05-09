@@ -57,8 +57,6 @@
 \usepackage{xstring} %manipulasi string
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref} %\autoref, \phantomsection & link 
 \usepackage{emptypage} %halaman kosong antar bab
-\usepackage{listings}
-\usepackage{longtable}
 \graphicspath{{./Gambar/}} 
 
 \usepackage{lcg}
@@ -459,7 +457,7 @@ Atas pernyataan ini, saya siap menanggung segala risiko dan sanksi yang dijatuhk
 \renewcommand{\cftlottitlefont}{\hfill\Large\bfseries\MakeUppercase}
 \renewcommand{\cftafterlottitle}{\hfill}
 
-\newcommand{}{%\apptoc}{
+\newcommand{\apptoc}{
 	% Hapus kata "Lampiran" dari daftar isi
 	%\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{\bf \scshape Lampiran\  }}%
 	%\addtocontents{toc}{\protect\renewcommand{\protect\cftchapnumwidth}{2.75cm}}
@@ -500,7 +498,7 @@ Atas pernyataan ini, saya siap menanggung segala risiko dan sanksi yang dijatuhk
 \bibliography{referensi}
 
 \appendix
-%\apptoc 
+\apptoc 
  
 \tampillmp{\vlmp}
 \ifdefstring{\vlmpa}{1}{\include{Lampiran/lampA}}{}

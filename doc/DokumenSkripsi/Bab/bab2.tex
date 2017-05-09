@@ -68,17 +68,18 @@ Kode status adalah bilangan bulat tiga dijit yang menyatakan status dari pemrose
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
-\textbf{Kode Status} & \textbf{Status}               & \textbf{Deskripsi}                                                                                                                                                                      \\\specialrule{1pt}{0pt}{0pt}
-200         & OK                   & Request berhasil diproses dengan baik.                                                                                                                                         \\
-301         & Moved Permanently    & Resource yang diminta sudah berpindah ke URI yang lain secara permanen.                                                                                                        \\
+\hline
+\textbf{Kode Status} & \textbf{Status}               & \textbf{Deskripsi}\\\hline
+200         & OK                   & Request berhasil diproses dengan baik.                                                                                                                                         \\\hline
+301         & Moved Permanently    & Resource yang diminta sudah berpindah ke URI yang lain secara permanen.                                                                                                        \\\hline
 302         & Found                & Resource yang diminta untuk sementara bepindah pada URL yang lain. Untuk alasan historis, client diperkenankan untuk mengubah metode permintaan dan POST menjadi GET.          \\
-307         & Temporary Redirect   & Resource yang diminta untuk sementara berpindah pada URL yang lain. Mirip dengan status 302 namun client tidak diperkenankan mengubah metode permintaan dari POST menjadi GET. \\
+307         & Temporary Redirect   & Resource yang diminta untuk sementara berpindah pada URL yang lain. Mirip dengan status 302 namun client tidak diperkenankan mengubah metode permintaan dari POST menjadi GET. \\\hline
 400         & Bad Request          & Server tidak dapat memproses permintaan karena ada kesalahan adri client                                                                                                       \\
-401         & Unauthorized         & Server tidak dapat memproses permintaan karena kredensial diperlukan dan client tidak menyediakannya.                                                                          \\
-404         & Not Found            & Resource yang diminta tidak tersedia pada server.                                                                                                                              \\
-500         & Interna Server Error & Server mengalami masalah internal, sehingga tidak dapat memprises permintaan yang dikirimkan.                                                                                  \\
-501         & Not Implemented      & Server belum atau tidak mendukung fungsionalitas yang diminta oleh client.                                                                                                     \\
-503         & Service Unavailable  & Server tidak dapat menjawab permintaan client, karena terlalu sibuk atau perawatan. Status ini mengindikasikan client dapat mencoba lagi setelah jangka waktu tertentu.  \\     
+401         & Unauthorized         & Server tidak dapat memproses permintaan karena kredensial diperlukan dan client tidak menyediakannya.                                                                          \\\hline
+404         & Not Found            & Resource yang diminta tidak tersedia pada server.                                                                                                                              \\\hline
+500         & Interna Server Error & Server mengalami masalah internal, sehingga tidak dapat memprises permintaan yang dikirimkan.                                                                                  \\\hline
+501         & Not Implemented      & Server belum atau tidak mendukung fungsionalitas yang diminta oleh client.                                                                                                     \\\hline
+503         & Service Unavailable  & Server tidak dapat menjawab permintaan client, karena terlalu sibuk atau perawatan. Status ini mengindikasikan client dapat mencoba lagi setelah jangka waktu tertentu.  \\\hline     
 \end{tabular}
 \caption[Tabel Kode Status]{Tabel Kode Status}
 \label{table:kodestatus}
@@ -101,12 +102,13 @@ kode status yang tersedia dikelompokan menjadi lima, diindikasikan oleh dijit pe
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{3cm}|p{6cm}|}
-\textbf{Metode} & \textbf{Deskripsi}                                                                                                                                                                        \\\specialrule{1pt}{0pt}{0pt}
-GET    & Metode yang paling umum digunakan, dan digunakan untuk mendapatkan konten dari resource yang ditentukan pada request.                                                            \\
-POST   & Metode ini digunakan untuk meminta server memproses data yang dikirimkan. Pada umumnya, metode POST diikuti dengan request body, yang berisi parameter-parameter yang dikirimkan \\
-HEAD   & Metode HEAD mirip dengan metode GET, tetapi bedanya di sini server tidak mengembalikan konten body, melaikan hanya sampai response headers saja.                                 \\
-PUT    & Metode ini digunakan untuk membuat atau menggantikan resource yang ditentukan pada request.                                                                                      \\
-DELETE & Metode ini digunakan untuk menghapus resource dari server.             \\                                                                                                       
+\hline
+\textbf{Metode} & \textbf{Deskripsi}                                                                                                                                                                        \\\hline
+GET    & Metode yang paling umum digunakan, dan digunakan untuk mendapatkan konten dari resource yang ditentukan pada request.                                                            \\\hline
+POST   & Metode ini digunakan untuk meminta server memproses data yang dikirimkan. Pada umumnya, metode POST diikuti dengan request body, yang berisi parameter-parameter yang dikirimkan \\\hline
+HEAD   & Metode HEAD mirip dengan metode GET, tetapi bedanya di sini server tidak mengembalikan konten body, melaikan hanya sampai response headers saja.                                 \\\hline
+PUT    & Metode ini digunakan untuk membuat atau menggantikan resource yang ditentukan pada request.                                                                                      \\\hline
+DELETE & Metode ini digunakan untuk menghapus resource dari server.             \\\hline                                                                                                       
 \end{tabular}
 \caption[Tabel Request Method]{Tabel Request Method}
 \label{table:requestmethod}
@@ -123,10 +125,11 @@ DELETE & Metode ini digunakan untuk menghapus resource dari server.             
 \begin{table}[H]
 \centering
 \begin{tabular}{|p{3cm}|p{6cm}|}
-\textbf{Header}        & \textbf{Deskripsi}                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\\specialrule{1pt}{0pt}{0pt}
-Content-Type  & Header ini menunjukan tipe media dari konten yang akan diberikan. Pada bentuk sederhana, nilai dari header ini berisi dari kode tipe MIME(Multipurpose Internet Mail Extension). Beberapa kode tipe MIME yang umum antara lain: text/plain untuk teks, text/html untuk halaman HTML; image/gif, image/jpg, image/png untuk gambar berformat GIF, JPEG, PNG; dan application/json untuk data JSON.                                                           \\
-Cache-control & Header ini mengatur bagaimana konten yang dikirimkan dapat dikirimkan sementara di client. Pada konten-konten statis seperti gambar, secara default konten akan disimpan pada client dalam jangka waktu tertentu, sehingga jika dibutuhkan dalam waktu dekat di masa depan, tidak perlu mengirimkan permintaan lagi ke server. jika secara eksplisit diinginkan konten diminta lagi setiap kali diperlukan, dapat mengisi header ini dengan nilai no-cache. \\
-Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjukan lokasi sumberdaya dalam bentuk URI. Pada jawaban dengan kode 3xx, nilai dari header ini menunjukan lokasi baru yang harus dituju.               \\                                                                                                                        
+\hline
+\textbf{Header}        & \textbf{Deskripsi}                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\\hline
+Content-Type  & Header ini menunjukan tipe media dari konten yang akan diberikan. Pada bentuk sederhana, nilai dari header ini berisi dari kode tipe MIME(Multipurpose Internet Mail Extension). Beberapa kode tipe MIME yang umum antara lain: text/plain untuk teks, text/html untuk halaman HTML; image/gif, image/jpg, image/png untuk gambar berformat GIF, JPEG, PNG; dan application/json untuk data JSON.                                                           \\\hline
+Cache-control & Header ini mengatur bagaimana konten yang dikirimkan dapat dikirimkan sementara di client. Pada konten-konten statis seperti gambar, secara default konten akan disimpan pada client dalam jangka waktu tertentu, sehingga jika dibutuhkan dalam waktu dekat di masa depan, tidak perlu mengirimkan permintaan lagi ke server. jika secara eksplisit diinginkan konten diminta lagi setiap kali diperlukan, dapat mengisi header ini dengan nilai no-cache. \\\hline
+Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjukan lokasi sumberdaya dalam bentuk URI. Pada jawaban dengan kode 3xx, nilai dari header ini menunjukan lokasi baru yang harus dituju.               \\\hline                                                                                                                        
 \end{tabular}
 \caption[Tabel Response Headers]{Tabel Response Headers}
 \label{table:responseheaders}
