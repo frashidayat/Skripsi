@@ -52,9 +52,10 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         trafficModelLabel = new javax.swing.JLabel();
-        dateLabel = new javax.swing.JLabel();
-        originLabel = new javax.swing.JLabel();
+        startDateLabel = new javax.swing.JLabel();
+        originDestinationLabel = new javax.swing.JLabel();
         bestGuessCheckBox = new javax.swing.JCheckBox();
         optimistCheckBox = new javax.swing.JCheckBox();
         pessimistCheckBox = new javax.swing.JCheckBox();
@@ -63,6 +64,11 @@ public class main extends javax.swing.JFrame {
         sampel2RadioButton = new javax.swing.JRadioButton();
         datePicker = new org.jdesktop.swingx.JXDatePicker();
         datePicker.getEditor().setEditable(false);
+        endDateLabel = new javax.swing.JLabel();
+        endDatePicker = new org.jdesktop.swingx.JXDatePicker();
+        modeLabel = new javax.swing.JLabel();
+        normalRadioButton = new javax.swing.JRadioButton();
+        reverseRadioButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Program Analisis Waktu Bandung");
@@ -70,9 +76,9 @@ public class main extends javax.swing.JFrame {
 
         trafficModelLabel.setText("Traffic Model    :");
 
-        dateLabel.setText("Date                 :");
+        startDateLabel.setText("Start Date        :");
 
-        originLabel.setText("Origin               : ");
+        originDestinationLabel.setText("Origin               :");
 
         bestGuessCheckBox.setText("best_guess");
 
@@ -95,51 +101,110 @@ public class main extends javax.swing.JFrame {
 
         datePicker.setFormats("dd MM yyyy");
         datePicker.setLinkDay(new Date());
+        datePicker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datePickerActionPerformed(evt);
+            }
+        });
+
+        endDateLabel.setText("End Date         :");
+
+        endDatePicker.setEditable(false);
+        endDatePicker.setFormats("dd MM yyyy");
+
+        modeLabel.setText("Mode                :");
+
+        buttonGroup2.add(normalRadioButton);
+        normalRadioButton.setSelected(true);
+        normalRadioButton.setText("Normal");
+        normalRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalRadioButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(reverseRadioButton);
+        reverseRadioButton.setText("Reverse");
+        reverseRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reverseRadioButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(originLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(trafficModelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(sampel2RadioButton, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sampel1RadioButton, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(saveButton)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(trafficModelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(bestGuessCheckBox)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(optimistCheckBox)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(pessimistCheckBox))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(bestGuessCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(optimistCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pessimistCheckBox))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(saveButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(originDestinationLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(sampel2RadioButton, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sampel1RadioButton, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(modeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(normalRadioButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(reverseRadioButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(endDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(startDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(endDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(originLabel)
-                    .addComponent(sampel1RadioButton))
+                    .addComponent(modeLabel)
+                    .addComponent(normalRadioButton)
+                    .addComponent(reverseRadioButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sampel2RadioButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(originDestinationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sampel1RadioButton))
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(sampel2RadioButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateLabel)
+                    .addComponent(startDateLabel)
                     .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(endDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(endDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(trafficModelLabel)
                     .addComponent(optimistCheckBox)
@@ -147,7 +212,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(bestGuessCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -155,204 +220,418 @@ public class main extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
-            if (!datePicker.getEditor().getText().equals("")) {
-                Calendar calendar = new GregorianCalendar();
-                calendar.setTime(datePicker.getDate());
-                long temp = calendar.getTime().getTime() - datePicker.getLinkDay().getTime();
-                if (calendar.get(Calendar.DAY_OF_WEEK) != 2) {
-                    System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-                    JOptionPane.showMessageDialog(this, "Tanggal yang anda pilih bukan hari senin", "ERROR", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    if (temp <= 0) {
-                        JOptionPane.showMessageDialog(this, "Tanggal yang anda masukan adalah masa lampau atau hari ini, Pilihlah tanggal yang akan datang", "ERROR", JOptionPane.ERROR_MESSAGE);
+            if (normalRadioButton.isSelected()) {
+                if (!datePicker.getEditor().getText().equals("")) {
+                    Calendar calendar = new GregorianCalendar();
+                    calendar.setTime(datePicker.getDate());
+                    long temp = calendar.getTime().getTime() - datePicker.getLinkDay().getTime();
+                    if (calendar.get(Calendar.DAY_OF_WEEK) != 2) {
+                        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+                        JOptionPane.showMessageDialog(this, "Tanggal yang anda pilih bukan hari senin, silahkan pilih tanggal yang merupakan hari senin", "ERROR", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        if (sampel1RadioButton.isSelected()) {
-                            if (bestGuessCheckBox.isSelected()) {
-                                if (optimistCheckBox.isSelected()) {
-                                    if (pessimistCheckBox.isSelected()) {
-                                        controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, optimistCheckBox, pessimistCheckBox);
-                                        int result = chooser.showSaveDialog(this);
-                                        if (result == JFileChooser.APPROVE_OPTION) {
-                                            Desktop dt = Desktop.getDesktop();
-                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                            directory = chooser.getCurrentDirectory().toString();
-                                            controller.saveData(directory, nameFile);
-                                            File file = new File(directory + "\\" + nameFile);
-                                            dt.open(file);
-                                        }
-                                    } else {
-                                        controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, optimistCheckBox, null);
-                                        int result = chooser.showSaveDialog(this);
-                                        if (result == JFileChooser.APPROVE_OPTION) {
-                                            Desktop dt = Desktop.getDesktop();
-                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                            directory = chooser.getCurrentDirectory().toString();
-                                            controller.saveData(directory, nameFile);
-                                            File file = new File(directory + "\\" + nameFile);
-                                            dt.open(file);
-                                        }
-                                    }
-                                } else if (pessimistCheckBox.isSelected()) {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, pessimistCheckBox, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                } else {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, null, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                }
-                            } else if (optimistCheckBox.isSelected()) {
-                                if (pessimistCheckBox.isSelected()) {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel1, optimistCheckBox, pessimistCheckBox, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                } else {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel1, optimistCheckBox, null, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                }
-                            } else if (pessimistCheckBox.isSelected()) {
-                                controller.doCalculate(datePicker.getEditor(), origin, sampel1, pessimistCheckBox, null, null);
-                                int result = chooser.showSaveDialog(this);
-                                if (result == JFileChooser.APPROVE_OPTION) {
-                                    Desktop dt = Desktop.getDesktop();
-                                    nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                    directory = chooser.getCurrentDirectory().toString();
-                                    controller.saveData(directory, nameFile);
-                                    File file = new File(directory + "\\" + nameFile);
-                                    dt.open(file);
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(this, "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan", "ERROR", JOptionPane.ERROR_MESSAGE);
-                            }
-                        } else if (sampel2RadioButton.isSelected()) {
-                            if (bestGuessCheckBox.isSelected()) {
-                                if (optimistCheckBox.isSelected()) {
-                                    if (pessimistCheckBox.isSelected()) {
-                                        controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, optimistCheckBox, pessimistCheckBox);
-                                        int result = chooser.showSaveDialog(this);
-                                        if (result == JFileChooser.APPROVE_OPTION) {
-                                            Desktop dt = Desktop.getDesktop();
-                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                            directory = chooser.getCurrentDirectory().toString();
-                                            controller.saveData(directory, nameFile);
-                                            File file = new File(directory + "\\" + nameFile);
-                                            dt.open(file);
-                                        }
-                                    } else {
-                                        controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, optimistCheckBox, null);
-                                        int result = chooser.showSaveDialog(this);
-                                        if (result == JFileChooser.APPROVE_OPTION) {
-                                            Desktop dt = Desktop.getDesktop();
-                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                            directory = chooser.getCurrentDirectory().toString();
-                                            controller.saveData(directory, nameFile);
-                                            File file = new File(directory + "\\" + nameFile);
-                                            dt.open(file);
-                                        }
-                                    }
-                                } else if (pessimistCheckBox.isSelected()) {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, pessimistCheckBox, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                } else {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, null, null);
-
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                }
-                            } else if (optimistCheckBox.isSelected()) {
-                                if (pessimistCheckBox.isSelected()) {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel2, optimistCheckBox, pessimistCheckBox, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                } else {
-                                    controller.doCalculate(datePicker.getEditor(), origin, sampel2, optimistCheckBox, null, null);
-                                    int result = chooser.showSaveDialog(this);
-                                    if (result == JFileChooser.APPROVE_OPTION) {
-                                        Desktop dt = Desktop.getDesktop();
-                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                        directory = chooser.getCurrentDirectory().toString();
-                                        controller.saveData(directory, nameFile);
-                                        File file = new File(directory + "\\" + nameFile);
-                                        dt.open(file);
-                                    }
-                                }
-                            } else if (pessimistCheckBox.isSelected()) {
-                                controller.doCalculate(datePicker.getEditor(), origin, sampel2, pessimistCheckBox, null, null);
-                                int result = chooser.showSaveDialog(this);
-                                if (result == JFileChooser.APPROVE_OPTION) {
-                                    Desktop dt = Desktop.getDesktop();
-                                    nameFile = chooser.getSelectedFile().getName() + type.getExtension();
-                                    directory = chooser.getCurrentDirectory().toString();
-                                    controller.saveData(directory, nameFile);
-                                    File file = new File(directory + "\\" + nameFile);
-                                    dt.open(file);
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(this, "Harus pilih minimal salah satu dari 3", "ERROR", JOptionPane.ERROR_MESSAGE);
-                            }
+                        if (temp <= 0) {
+                            JOptionPane.showMessageDialog(this, "Tanggal yang anda masukan adalah masa lampau atau hari ini, silahkan pilihlah tanggal yang akan datang", "ERROR", JOptionPane.ERROR_MESSAGE);
                         } else {
-                            JOptionPane.showMessageDialog(this, "Harus pilih antara sampel 1 atau sampel 2", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            if (sampel1RadioButton.isSelected()) {
+                                if (bestGuessCheckBox.isSelected()) {
+                                    if (optimistCheckBox.isSelected()) {
+                                        if (pessimistCheckBox.isSelected()) {
+                                            controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, optimistCheckBox, pessimistCheckBox);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        } else {
+                                            controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, optimistCheckBox, null);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        }
+                                    } else if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel1, bestGuessCheckBox, null, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (optimistCheckBox.isSelected()) {
+                                    if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel1, optimistCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel1, optimistCheckBox, null, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (pessimistCheckBox.isSelected()) {
+                                    controller.doCalculate(datePicker.getEditor(), origin, sampel1, pessimistCheckBox, null, null);
+                                    int result = chooser.showSaveDialog(this);
+                                    if (result == JFileChooser.APPROVE_OPTION) {
+                                        Desktop dt = Desktop.getDesktop();
+                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                        directory = chooser.getCurrentDirectory().toString();
+                                        controller.saveData(directory, nameFile);
+                                        File file = new File(directory + "\\" + nameFile);
+                                        dt.open(file);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else if (sampel2RadioButton.isSelected()) {
+                                if (bestGuessCheckBox.isSelected()) {
+                                    if (optimistCheckBox.isSelected()) {
+                                        if (pessimistCheckBox.isSelected()) {
+                                            controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, optimistCheckBox, pessimistCheckBox);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        } else {
+                                            controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, optimistCheckBox, null);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        }
+                                    } else if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel2, bestGuessCheckBox, null, null);
+
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (optimistCheckBox.isSelected()) {
+                                    if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel2, optimistCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), origin, sampel2, optimistCheckBox, null, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (pessimistCheckBox.isSelected()) {
+                                    controller.doCalculate(datePicker.getEditor(), origin, sampel2, pessimistCheckBox, null, null);
+                                    int result = chooser.showSaveDialog(this);
+                                    if (result == JFileChooser.APPROVE_OPTION) {
+                                        Desktop dt = Desktop.getDesktop();
+                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                        directory = chooser.getCurrentDirectory().toString();
+                                        controller.saveData(directory, nameFile);
+                                        File file = new File(directory + "\\" + nameFile);
+                                        dt.open(file);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Silahkan pilih sampel yang akan dihitung antara sampel 1 atau sampel 2", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Anda belum memilih tanggal, silahkan pilih tanggal", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Pilihlah tanggal", "ERROR", JOptionPane.ERROR_MESSAGE);
+                if (!datePicker.getEditor().getText().equals("")) {
+                    Calendar calendar = new GregorianCalendar();
+                    calendar.setTime(datePicker.getDate());
+                    long temp = calendar.getTime().getTime() - datePicker.getLinkDay().getTime();
+                    if (calendar.get(Calendar.DAY_OF_WEEK) != 2) {
+                        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+                        JOptionPane.showMessageDialog(this, "Tanggal yang anda pilih bukan hari senin, silahkan pilih tanggal yang merupakan hari senin", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (temp <= 0) {
+                            JOptionPane.showMessageDialog(this, "Tanggal yang anda masukan adalah masa lampau atau hari ini, silahkan pilihlah tanggal yang akan datang", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            if (sampel1RadioButton.isSelected()) {
+                                if (bestGuessCheckBox.isSelected()) {
+                                    if (optimistCheckBox.isSelected()) {
+                                        if (pessimistCheckBox.isSelected()) {
+                                            controller.doCalculate(datePicker.getEditor(), sampel1, origin, bestGuessCheckBox, optimistCheckBox, pessimistCheckBox);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        } else {
+                                            controller.doCalculate(datePicker.getEditor(), sampel1, origin, bestGuessCheckBox, optimistCheckBox, null);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        }
+                                    } else if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), sampel1, origin, bestGuessCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), sampel1, origin, bestGuessCheckBox, null, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (optimistCheckBox.isSelected()) {
+                                    if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), sampel1, origin, optimistCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), sampel1, origin, optimistCheckBox, null, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (pessimistCheckBox.isSelected()) {
+                                    controller.doCalculate(datePicker.getEditor(), sampel1, origin, pessimistCheckBox, null, null);
+                                    int result = chooser.showSaveDialog(this);
+                                    if (result == JFileChooser.APPROVE_OPTION) {
+                                        Desktop dt = Desktop.getDesktop();
+                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                        directory = chooser.getCurrentDirectory().toString();
+                                        controller.saveData(directory, nameFile);
+                                        File file = new File(directory + "\\" + nameFile);
+                                        dt.open(file);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else if (sampel2RadioButton.isSelected()) {
+                                if (bestGuessCheckBox.isSelected()) {
+                                    if (optimistCheckBox.isSelected()) {
+                                        if (pessimistCheckBox.isSelected()) {
+                                            controller.doCalculate(datePicker.getEditor(), sampel2, origin, bestGuessCheckBox, optimistCheckBox, pessimistCheckBox);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        } else {
+                                            controller.doCalculate(datePicker.getEditor(), sampel2, origin, bestGuessCheckBox, optimistCheckBox, null);
+                                            int result = chooser.showSaveDialog(this);
+                                            if (result == JFileChooser.APPROVE_OPTION) {
+                                                Desktop dt = Desktop.getDesktop();
+                                                nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                                directory = chooser.getCurrentDirectory().toString();
+                                                controller.saveData(directory, nameFile);
+                                                File file = new File(directory + "\\" + nameFile);
+                                                dt.open(file);
+                                            }
+                                        }
+                                    } else if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), sampel2, origin, bestGuessCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), sampel2, origin, bestGuessCheckBox, null, null);
+
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (optimistCheckBox.isSelected()) {
+                                    if (pessimistCheckBox.isSelected()) {
+                                        controller.doCalculate(datePicker.getEditor(), sampel2, origin, optimistCheckBox, pessimistCheckBox, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    } else {
+                                        controller.doCalculate(datePicker.getEditor(), sampel2, origin, optimistCheckBox, null, null);
+                                        int result = chooser.showSaveDialog(this);
+                                        if (result == JFileChooser.APPROVE_OPTION) {
+                                            Desktop dt = Desktop.getDesktop();
+                                            nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                            directory = chooser.getCurrentDirectory().toString();
+                                            controller.saveData(directory, nameFile);
+                                            File file = new File(directory + "\\" + nameFile);
+                                            dt.open(file);
+                                        }
+                                    }
+                                } else if (pessimistCheckBox.isSelected()) {
+                                    controller.doCalculate(datePicker.getEditor(), sampel2, origin, pessimistCheckBox, null, null);
+                                    int result = chooser.showSaveDialog(this);
+                                    if (result == JFileChooser.APPROVE_OPTION) {
+                                        Desktop dt = Desktop.getDesktop();
+                                        nameFile = chooser.getSelectedFile().getName() + type.getExtension();
+                                        directory = chooser.getCurrentDirectory().toString();
+                                        controller.saveData(directory, nameFile);
+                                        File file = new File(directory + "\\" + nameFile);
+                                        dt.open(file);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Silahkan pilih sampel yang akan dihitung antara sampel 1 atau sampel 2", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Anda belum memilih tanggal, silahkan pilih tanggal", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (ParseException | IOException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void normalRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalRadioButtonActionPerformed
+        originDestinationLabel.setText("Origin               :");
+    }//GEN-LAST:event_normalRadioButtonActionPerformed
+
+    private void reverseRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reverseRadioButtonActionPerformed
+        originDestinationLabel.setText("Destination     :");
+    }//GEN-LAST:event_reverseRadioButtonActionPerformed
+
+    private void datePickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datePickerActionPerformed
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(datePicker.getDate());
+        long temp = calendar.getTimeInMillis() + 518400000;
+        calendar.setTimeInMillis(temp);
+        endDatePicker.setDate(new Date(temp));
+        
+    }//GEN-LAST:event_datePickerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,14 +668,20 @@ public class main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox bestGuessCheckBox;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel dateLabel;
+    private javax.swing.ButtonGroup buttonGroup2;
     private org.jdesktop.swingx.JXDatePicker datePicker;
+    private javax.swing.JLabel endDateLabel;
+    private org.jdesktop.swingx.JXDatePicker endDatePicker;
+    private javax.swing.JLabel modeLabel;
+    private javax.swing.JRadioButton normalRadioButton;
     private javax.swing.JCheckBox optimistCheckBox;
-    private javax.swing.JLabel originLabel;
+    private javax.swing.JLabel originDestinationLabel;
     private javax.swing.JCheckBox pessimistCheckBox;
+    private javax.swing.JRadioButton reverseRadioButton;
     private javax.swing.JRadioButton sampel1RadioButton;
     private javax.swing.JRadioButton sampel2RadioButton;
     private javax.swing.JButton saveButton;
+    private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel trafficModelLabel;
     // End of variables declaration//GEN-END:variables
 }

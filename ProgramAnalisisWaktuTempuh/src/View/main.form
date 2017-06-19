@@ -4,6 +4,8 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -29,39 +31,60 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="originLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="trafficModelLabel" pref="90" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="sampel2RadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="sampel1RadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="bestGuessCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="optimistCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pessimistCheckBox" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="saveButton" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="trafficModelLabel" max="32767" attributes="0"/>
-                              <Component id="dateLabel" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="originDestinationLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="sampel2RadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sampel1RadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="datePicker" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="bestGuessCheckBox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="optimistCheckBox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="pessimistCheckBox" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="modeLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="normalRadioButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="reverseRadioButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="endDateLabel" max="32767" attributes="0"/>
+                                  <Component id="startDateLabel" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="datePicker" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="endDatePicker" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,17 +93,37 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="originLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="sampel1RadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="modeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="normalRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="reverseRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="sampel2RadioButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="originDestinationLabel" alignment="3" max="32767" attributes="0"/>
+                          <Component id="sampel1RadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="sampel2RadioButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="dateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="startDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="datePicker" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="endDatePicker" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                      <Component id="endDateLabel" min="-2" pref="13" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="trafficModelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optimistCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -89,7 +132,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="saveButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,14 +143,14 @@
         <Property name="text" type="java.lang.String" value="Traffic Model    :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="dateLabel">
+    <Component class="javax.swing.JLabel" name="startDateLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date                 :"/>
+        <Property name="text" type="java.lang.String" value="Start Date        :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="originLabel">
+    <Component class="javax.swing.JLabel" name="originDestinationLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Origin               : "/>
+        <Property name="text" type="java.lang.String" value="Origin               :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="bestGuessCheckBox">
@@ -158,9 +201,53 @@
           <Connection code="new Date()" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="datePickerActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="datePicker.getEditor().setEditable(false);"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="endDateLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="End Date         :"/>
+      </Properties>
+    </Component>
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="endDatePicker">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="formats" type="[Ljava.text.DateFormat;" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;dd MM yyyy&quot;" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="modeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mode                :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="normalRadioButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup2"/>
+        </Property>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Normal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="normalRadioButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="reverseRadioButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Reverse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reverseRadioButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

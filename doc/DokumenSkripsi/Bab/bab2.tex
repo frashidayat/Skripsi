@@ -2,12 +2,12 @@
 \chapter{Landasan Teori}
 \label{chap:teori}
 
-Pada bab ini akan diuraikan teori-teori yang akan digunakan untuk pembangunan aplikasi ke analisis kota Bandung. Teori-teori tersebut adalah tentang protokol HTTP, \textit{library} Jsoup meliputi kelas jsoup dan Connection. Selain itu akan dibahas juga mengenai \textit{Google Direction API}, \textit{JavaScript Object Notation (JSON)} meliputi kelas pada \textit{library} JSON : JSONObject.
+Pada bab ini akan diuraikan teori-teori yang akan digunakan untuk pembangunan aplikasi ke analisis kota Bandung. Teori-teori tersebut adalah tentang protokol HTTP, \textit{library} Jsoup meliputi kelas jsoup dan Connection. Selain itu akan dibahas juga mengenai \textit{JavaScript Object Notation (JSON)} meliputi kelas pada \textit{library} JSON : JSONObject dan \textit{Google Direction API}.
 
 \section{Protokol HTTP}
 \label{sec:protocolhttp} 
 
-HTTP adalah protokol di balik World Wide Web. Dengan setiap transaksi web, HTTP dipanggil. HTTP adalah di balik setiap permintaan dokumen web atau grafis, setiap klik link hypertext, dan setiap penyerahan formulir. Web adalah tentang penyebaran informasi melalui Internet, dan HTTP adalah protokol yang digunakan untuk melakukannya.
+HTTP(\textit{HyperText Transfer Protocol}) adalah protokol di balik World Wide Web. Dengan setiap transaksi web, HTTP dipanggil. HTTP adalah di balik setiap permintaan dokumen web atau grafis, setiap klik link hypertext, dan setiap penyerahan formulir. Web adalah tentang penyebaran informasi melalui Internet, dan HTTP adalah protokol yang digunakan untuk melakukannya.
 
 \subsection{Transaksi HTTP}
 \label{subsec:architecturehttp}
@@ -59,6 +59,11 @@ Setelah semua terjadi dan dibaca dengan baik, maka baris kosong dan teks dokumen
 				\caption[Transaksi sederhana]{Transaksi Sederhana\cite{wong2000http}}
 				\label{fig:transaction}	
 			\end{figure}
+Berdasarkan gambar \ref{fig:transaction} terjadi transaksi data antara \textit{client} dan \textit{server} berikut adalah penjelasannya.
+\begin{enumerate}
+	\item \textit{Client} melakukan \textit{request} dengan \textit{header} \textit{get}. Selain itu juga terdapat \textit{header hostname hypotetical.ora.com} yang menjelaskan hostname yang dituju. Pada \textit{request} tersebut terdapat header protokol HTTP dan juga versi berapa yang digunakan. 
+	\item Diterima oleh \textit{server} dan \textit{server} kemudian membalas dengan \textit{header} ok. Arti \textit{header} tersebut adalah \textit{request} yang diterima telah tersampaikan dengan baik dan mengembalikan HTML yang diminta ke \textit{client}. Dari \textit{respond} tersebut terdapat header : tanggal detail meliputi waktu pada saat melakukan \textit{respond}, protokol HTTP dan versi yang digunakan. Selain itu \textit{respond} ini juga mengandung \textit{body} dari HTML yang diminta.   
+\end{enumerate}
 
 \subsection{Kode Status}
 \label{subsec:kodestatus}
@@ -74,10 +79,10 @@ Kode status adalah bilangan bulat tiga dijit yang menyatakan status dari pemrose
 301         & Moved Permanently    & Resource yang diminta sudah berpindah ke URI yang lain secara permanen.                                                                                                        \\\hline
 302         & Found                & Resource yang diminta untuk sementara bepindah pada URL yang lain. Untuk alasan historis, client diperkenankan untuk mengubah metode permintaan dan POST menjadi GET.          \\
 307         & Temporary Redirect   & Resource yang diminta untuk sementara berpindah pada URL yang lain. Mirip dengan status 302 namun client tidak diperkenankan mengubah metode permintaan dari POST menjadi GET. \\\hline
-400         & Bad Request          & Server tidak dapat memproses permintaan karena ada kesalahan adri client                                                                                                       \\
+400         & Bad Request          & Server tidak dapat memproses permintaan karena ada kesalahan adri client                                                                                                       \\\hline
 401         & Unauthorized         & Server tidak dapat memproses permintaan karena kredensial diperlukan dan client tidak menyediakannya.                                                                          \\\hline
 404         & Not Found            & Resource yang diminta tidak tersedia pada server.                                                                                                                              \\\hline
-500         & Interna Server Error & Server mengalami masalah internal, sehingga tidak dapat memprises permintaan yang dikirimkan.                                                                                  \\\hline
+500         & Internal Server Error & Server mengalami masalah internal, sehingga tidak dapat memproses permintaan yang dikirimkan.                                                                                  \\\hline
 501         & Not Implemented      & Server belum atau tidak mendukung fungsionalitas yang diminta oleh client.                                                                                                     \\\hline
 503         & Service Unavailable  & Server tidak dapat menjawab permintaan client, karena terlalu sibuk atau perawatan. Status ini mengindikasikan client dapat mencoba lagi setelah jangka waktu tertentu.  \\\hline     
 \end{tabular}
@@ -138,7 +143,7 @@ Location      & Header ini digunakan untuk beberapa jenis jawaban untuk menunjuk
 \section{\textit{Library} jsoup}
 \label{sec:libraryjsoup}
 
-Jsoup adalah sebuah \textit{library} java untuk bekerja dengan HTML dunia nyata.  Jsoup menyediakan API yang sangat nyaman untuk mengekstrak dan memanipulasi data, menggunakan DOM(Document Object Model) terbaik, CSS, dan \textit{method} yang mirip dengan jquery. Jsoup mengimplementasikan spesifikasi standar \textit{WHATWG HTML5} dan mengurai HTML menjadi DOM(Document Object Model) yang sama dengan peramban modern lakukan. Jsoup sendiri dirancang untuk menangani semua jenis HTML yang biasa ditemukan dengan membuat \textit{parsing tree} yang dapat dimengerti.
+Jsoup adalah sebuah \textit{library} java untuk bekerja dengan HTML dunia nyata.  Jsoup menyediakan API yang sangat nyaman untuk mengekstrak dan memanipulasi data, menggunakan DOM(\textit{Document Object Model}), CSS(\textit{Cascading Style Sheets}), dan \textit{method} yang mirip dengan jquery. Jsoup mengimplementasikan spesifikasi standar \textit{WHATWG(\textit{Web Hypertext Application Technology Working Group}) HTML5} dan mengurai HTML menjadi DOM(Document Object Model) yang sama dengan peramban modern lakukan. Jsoup sendiri dirancang untuk menangani semua jenis HTML yang biasa ditemukan dengan membuat \textit{parsing tree} yang dapat dimengerti.
 
 Dalam subbab berikut akan dijelaskan fungsi dan beberapa kelas dari jsoup\cite{jonathanhedley2016}.
 \subsection{Fungsi jsoup}
@@ -208,164 +213,6 @@ Kelas ini merupakan interface yang menyediakan pengambilan data dari situs web. 
 	Berfungsi untuk mendapatkan \textit{body} respon sebagai string biasa.
 	
 	\textbf{Kembalian}: \textit{string} dari \textit{body}.
-\end{itemize}
-
-\section{Google Direction}
-\label{sec:googledirapi}
-
-Google Maps Directions adalah layanan yang menghitung arah antar lokasi menggunakan permintaan HTTP. Anda bisa mencari arah untuk beberapa moda transportasi, termasuk angkutan umum, mengemudi, berjalan atau bersepeda. Arah bisa menetapkan tempat asal, tujuan dan titik jalan baik sebagai string teks atau sebagai koordinat garis lintang/garis bujur. Layanan ini didesain untuk menghitung arah alamat statis (sudah diketahui sebelumnya) untuk penempatan konten aplikasi pada peta.
-
-\subsection{Permintaan Arah}
-\label{subsec:permintaanarahgoogledir}
-
-Permintaan Google Maps Directions mengambil bentuk berikut:
-
-\begin{lstlisting}[caption= \textit{Request} Google Directions, captionpos=b]
-https://maps.googleapis.com/maps/api/directions/json?parameters
-\end{lstlisting}
-
-HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan. URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan. Pada subbab berikutnya akan dijelaskan parameter apa saja yang digunakan pada permintaan ke layanan ini.
-
-\subsection{Parameter Permintaan}
-\label{subsec:parameterpermintaangoogledir}
-
-Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional. Sebagaimana standar dalam URL, semua parameter dipisah menggunakan karakter ampersand (\&). Daftar parameter dan kemungkinan nilainya disebutkan di bawah ini\cite{ankurkotwal2017}.
-
-\subsubsection{Parameter yang diperlukan}
-\label{subsubsec:parameterwajib}
-\begin{itemize}
-	\item \textbf{origin} adalah alamat, nilai garis lintang/garis bujur tekstual, atau ID tempat asal yang ingin Anda hitung arahnya. ketentuan dari alamat dari origin adalah sebagai berikut :
-	\begin{itemize}
-		\item Jika Anda meneruskan sebuah alamat sebagai string, layanan Directions akan melakukan geocode atas string itu dan mengubahnya menjadi koordinat garis lintang/garis bujur untuk menghitung arah. Koordinat ini mungkin berbeda dengan yang dikembalikan oleh Google Maps Geocoding API, misalnya pintu masuk bangunan dan bukan pusatnya.
-		\item Jika Anda meneruskan koordinat, itu akan digunakan tanpa diubah untuk menghitung arah. Pastikan tidak ada spasi di antara nilai garis lintang dan garis bujur.
-		\item ID Tempat harus diawali dengan \textbf{place\_id:}. ID tempat hanya bisa ditetapkan jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Anda bisa mendapatkan ID tempat dari Google Maps Geocoding API dan Google Places API (termasuk Place Autocomplete).
-	\end{itemize} 
-	\item \textbf{destination} adalah alamat, nilai garis lintang/garis bujur tekstual, atau ID tempat tujuan yang ingin Anda hitung arahnya. Opsi untuk parameter destination sama dengan opsi untuk parameter origin yang dijelaskan di atas.
-	\item \textbf{key} adalah kunci API aplikasi Anda. Kunci ini mengidentifikasi aplikasi Anda untuk keperluan manajemen kuota. 
-\end{itemize} 
-
-\subsubsection{Parameter yang opsional}
-\label{subsubsec:parameteropsional}
-\begin{itemize}
-	\item \textbf{mode} (default-nya adalah driving) adalah menetapkan moda transportasi yang akan digunakan saat menghitung arah. 
-	\item \textbf{waypoint} adalah menetapkan larik titik jalan. Titik jalan mengubah rute dengan mengarahkannya melalui lokasi yang ditetapkan. Titik jalan ditetapkan berupa koordinat garis lintang/garis bujur, ID tempat, atau alamat yang akan di-geocode. ID Tempat harus diawali dengan \textbf{place\_id:}. ID tempat hanya bisa ditetapkan jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Titik jalan hanya didukung untuk arah mengemudi, berjalan dan bersepeda.
-	\item \textbf{alternative} adalah jika diatur ke true, menetapkan bahwa layanan Directions mungkin menyediakan lebih dari satu rute alternatif dalam respons. Perhatikan, memberikan alternatif rute bisa meningkatkan waktu respons dari server.
-	\item \textbf{avoid} adalah menunjukkan rute yang dihitung harus menghindari fitur yang ditandai. Parameter ini mendukung argumen berikut: 
-	\begin{itemize}
-		\item \textbf{tolls} menunjukkan rute yang dihitung harus menghindari jalan/jembatan tol.
-		\item \textbf{highways} menunjukkan rute yang dihitung harus menghindari jalan raya.
-		\item \textbf{ferries} menunjukkan rute yang dihitung harus menghindari penyeberangan feri.
-		\item \textbf{indoor} menunjukkan rute yang dihitung harus menghindari tangga dalam ruangan untuk arah berjalan dan arah angkutan umum. Hanya permintaan yang menyertakan kunci API atau ID klien Google Maps API for Work yang akan menerima tangga dalam ruangan secara default.
-	\end{itemize}
-	\item \textbf{language} adalah menetapkan bahasa yang digunakan untuk mengembalikan hasil.
-	\item \textbf{unit} adalah menetapkan sistem satuan yang akan digunakan saat menampilkan hasil.
-	\item \textbf{region} adalah menetapkan kode wilayah, ditetapkan sebagai nilai yang berisi dua karakter ccTLD ("top-level domain").
-	\item \textbf{arrival\_time} adalah menetapkan waktu kedatangan yang diinginkan untuk arah angkutan umum, dalam detik sejak tengah malam, 1 Januari 1970 UTC. Anda bisa menetapkan \textbf{departure\_time} atau \textbf{arrival\_time}, namun tidak boleh duanya.
-	\item \textbf{departure\_time} adalah menetapkan waktu keberangkatan yang diinginkan. Anda bisa menetapkan waktu berupa integer dalam detik sejak tengah malam 1 Januari 1970 UTC. Atau, Anda bisa menetapkan nilai now, yang mengatur waktu keberangkatan ke waktu saat ini (dikoreksi ke detik terdekat). 
-	\item \textbf{traffic\_model} (default-nya adalah \textbf{best\_guess}) adalah menetapkan asumsi yang akan digunakan saat menghitung waktu dalam lalu lintas. Pengaturan ini memengaruhi nilai yang dikembalikan di bidang \textbf{duration\_in\_traffic} dalam respons, yang berisi prediksi waktu dalam lalu lintas berdasarkan rata-rata historis. Parameter \textbf{traffic\_model} hanya bisa ditetapkan untuk arah mengemudi yang permintaannya menyertakan departure\_time, dan hanya jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work.Nilai yang tersedia untuk parameter ini adalah: 
-	\begin{itemize}
-		\item \textbf{best\_guess} (default) menunjukkan \textbf{duration\_in\_traffic} yang dikembalikan harus berupa perkiraan waktu tempuh terbaik berdasarkan informasi riwayat kondisi lalu lintas dan lalu lintas saat ini. Lalu lintas saat ini menjadi kian penting bila \textbf{departure\_time} semakin dekat ke waktu sekarang.
-		\item \textbf{pessimistic} menunjukkan \textbf{duration\_in\_traffic} yang dikembalikan lebih lama dari waktu tempuh sesungguhnya di hari-hari biasa, meskipun hari-hari tertentu dengan kondisi lalu lintas yang buruk mungkin melebihi nilai ini.
-		\item \textbf{optimistic} menunjukkan \textbf{duration\_in\_traffic} yang dikembalikan harus lebih singkat dari waktu tempuh sesungguhnya di hari biasa, meskipun hari-hari tertentu dengan kondisi lalu lintas yang baik bisa lebih cepat dari nilai ini.
-	\end{itemize}
-	\item \textbf{transit\_mode} adalah menetapkan satu atau beberapa mode angkutan umum yang disukai. Parameter ini hanya bisa ditetapkan untuk arah angkutan umum, dan hanya jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Parameter ini mendukung argumen berikut:
-	\begin{itemize}
-		\item \textbf{bus} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan bus.
-		\item \textbf{subway} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan kereta bawah tanah.
-		\item \textbf{train} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan kereta api.
-		\item \textbf{tram} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan trem dan kereta ringan.
-		\item \textbf{rail} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan kereta api, trem, kereta ringan, dan kereta bawah tanah. Ini sama dengan \textbf{transit\_mode=train|tram|subway}.
-	\end{itemize}
-	\item \textbf{transit\_routing\_preference} adalah menetapkan preferensi untuk rute angkutan umum. Dengan parameter ini, Anda bisa mencondongkan opsi yang dikembalikan, bukannya menerima rute default terbaik yang dipilih oleh API. Parameter ini hanya bisa ditetapkan untuk arah angkutan umum, dan hanya jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Parameter ini mendukung argumen berikut:
-	\begin{itemize}
-		\item \textbf{less\_walking} menunjukkan rute yang sudah dihitung akan mengutamakan jumlah berjalan kaki yang terbatas.
-		\item \textbf{fewer\_transfers} menunjukkan rute yang sudah dihitung akan mengutamakan jumlah ganti angkutan yang terbatas.
-	\end{itemize}
-\end{itemize}
-
-\subsection{\textit{Response} Arah}
-\label{subsec:responsegoogledir}
-
-Response Arah dikembalikan dalam format yang ditunjukkan oleh flag output dalam jalur permintaan URL. Hasil \textit{response} yang dikeluarkan adalah jalur yang dilalui menggunakan format JSON yang terdapat elemen-elemen yang menjelaskan jalur yang dilewati. Pada subbab berikutnya akan dijelaskan elemen-elemen yang ada pada \textit{output} yang dihasilkan dari permintaan arah.
-
-\subsection{Elemen \textit{Response} Arah}
-\label{subsec:elemenresponsegoogledir}
-
-Berikut adalah penjelasan dari setiap elemen \textit{output} yang dihasilkan dari permintaan arah :
-
-\begin{itemize}
-	\item \textbf{Status} adalah status \textit{response} dari permintaan yang dikirimkan, isinya dapat berupa salah satu dari berikut ini :
-	\begin{itemize}
-		\item \textbf{OK} jika permintaan berhasil, dan permintaan akan mengandung informasi tambahan terkait hasil pencarian.
-		\item \textbf{NOT\_FOUND} jika salah satu dari \textbf{origin} atau \textbf{destination} bukan berupa \textit{latitude, longitude} dan tidak dapat ditemukan.
-		\item \textbf{ZERO\_RESULTS} jika Google tidak berhasil menemukan rute yang diminta.
-		\item \textbf{INVALID\_REQUEST} jika ada parameter wajib yang tidak diberikan, atau ada parameter yang tidak valid.
-		\item \textbf{OVER\_QUERY\_LIMIT} yang berarti jumlah permintaan sudah melebihi kuota.
-		\item \textbf{REQUEST\_DENIED} jika permintaan ditolak.
-	\end{itemize}
-	\item \textbf{geocoded\_waypoints} adalah hasil \textit{geocoding} dari \textbf{origin, destination,} maupun \textit{waypoints} pada permintaan. \textit{Geocoding} pada API ini adalah proses konversi dari lokasi maupun nama tempat menjadi \textit{place\_id}.
-	\item \textbf{routes} adalah \textit{array} dari objek yang berisi informasi detail setiap alternatif rute yang ditemukan. elemenn dari \textbf{routes} akan dijelaskan pada subsubbab berikutnya.
-\end{itemize}
-
-\subsubsection{Elemen dari \textit{routes}}
-\label{subsubsec:elemenroutes}
-
-Setiap elemen dari \textbf{routes} adalah objek yang memiliki anggota sebagai berikut :
-
-\begin{itemize}
-	\item \textbf{summary} adalah ringkasan dari alternatif rute ini, untuk membedakan dengan rute alternatif lainnya.
-	\item \textbf{legs} adalah \textit{array} yang berisi objek yang mempresentasikan \textit{leg}. \textit{Leg} adalah subrute untuk setiap \textit{waypoints} yang diberikan (jika parameter opsional \textit{waypoints} diberikan). Jika \textit{waypoints} tidak diberikan, \textit{array} ini akan berisi satu elemen saja. Penjelasan setiap elemen \textit{legs} akan dijelaskan pada subsubbab berikutnya.
-	\item \textbf{waypoint\_order} adalah \textit{array} yang berisi urutan \textit{waypoint} yang baru, jika parameter \textit{waypoints} diawali dengan \textit{optimized:true}.
-	\item \textbf{overview\_polyline} adalah berisi daftar titik-titik yang dilalui oleh rute yang didapatkan. Titik-titik rute ini sudah disederhanakan (tidak detail), dan diringkas dengan format \textit{encoded polyline}.
-	\item \textbf{bounds} adalah menyatakan kotak yang menyelubungi rute yang diberikan. Kotak ini direpresentasikan dalam sebuah objek yang mengandung dua anggota yaitu : \textit{northeast}(kanan-atas) dan \textit{southwest}(kiri-bawah). Setiap anggota berupa objek lain yang mengandung dua anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
-	\item \textbf{copyrights} adalah berisi teks \textit{copyright} yang harus ditampilkan kepada pengguna.
-	\item \textbf{warnings} adalah \textit{array string} yang berisi peringatan yang harus ditampilkan kepada pengguna, jika ada.
-	\item \textbf{fare} adalah informasi biaya transportasi publik yang harus dikeluarkan, jika parameter \textit{mode} berisi \textit{transit} dan Google memiliki informasi tarif untuk setiap moda yang digunakan. Informasi ini belum tersedia di Indonesia.
-\end{itemize}
-
-\subsubsection{Elemen dari \textit{legs}}
-\label{subsubsec:elemenlegs}
-
-Setiap elemen dari \textbf{legs} adalah sebagai berikut :
-
-\begin{itemize}
-	\item \textbf{steps} adalah \textit{array} yang berisi objek yang menyatakan setiap langkah yang harus diambil. Penjelaasan setiap elemen \textit{steps} dijelaskan pada subsubbab berikutnya.
-	\item \textbf{distance} adalah menyatakan jarak yang harus ditempuh pada \textit{leg} ini, berupa objek yang berisi dua anggota yaitu \textit{value} yang merepresentasikan angka yang menyatakan jarak dalam meter dan \textit{text} yang merepresentasikan jarak dalam fotmat teks yang dapat dibaca manusia.
-	\item \textit{duration} adalah menyatakan waktu yang dibutuhkan untuk menempuh \textit{leg} ini, berupa objek yang berisi dua anggota yaitu : \textit{value} yang merepresentasikan angka yang menyatakan waktu dalam detik dan \textit{text} yang merepresentasikan waktu yang dibutuhkan dalam format teks yang dapat dibaca manusia.
-	\item \textbf{duration\_in\_traffic} adalah menyatakan waktu mirip dengan duration. perbedaannya pada elemen ini memperhitungkan faktor kepadatan lalu lintas.
-	\item \textbf{arrival\_time} dan \textbf{departure\_time} adalah waktu sampai di \textit{destination} dan waktu keberangkatan ke \textit{destination}, jika parameter \textit{mode} berisi \textit{transit}. berupa objek yang mengandung tiga anggota yaitu : \textit{value} yang merepresentasikan waktu sampai sesuai dengan objek \textit{date} pada \textit{javascript}, \textit{text} yang merepresentasi waktu sampai dalam format teks yang dapat dibaca manusia, dan \textit{time\_zone} yang merepresentasikan zona waktu pada lokasi akhir \textit{leg}.
-	\item \textbf{start\_location} dan \textbf{end\_location} adalah berisi lokasi awal dan akhir dari \textit{leg} ini, berupa objek yang memiliki doa anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
-	\item \textbf{start\_address} dan \textbf{end\_address} adalah berisi lokasi awal dan akhir dari \textit{leg} ini, dalam format teks yang dapat dibaca manusia.
-\end{itemize}
-
-\subsubsection{Elemen dari \textit{steps}}
-\label{subsubsec:elemensteps}
-
-Setiap elemen dari \textbf{steps} adalah sebagai berikut :
-
-\begin{itemize}
-	\item \textbf{html\_instructions} adalah berisi instruksi \textit{step} ini, dalam format HTML.
-	\item \textbf{distance} adalah jarak dari \textit{step} ini, dengan format yang sama seperti anggota \textit{duration} pada elemen \textit{legs} di atas.
-	\item \textbf{start\_location} dan \textbf{end\_location} adalah lokasi awal dan akhir dari \textit{step} ini, dengan format yang sama seperti anggota \textbf{start\_location} dan \textbf{end\_location} pada elemen \textit{legs} di atas.
-	\item \textbf{polyline} adalah berisi daftar titik-titik yang dilalui pada \textit{step} ini. titik- titik rute ini diringkas dengan format \textit{encoded polyline}.
-	\item \textbf{steps} adalah \textit{array} yang berisi \textit{sub-step} dari \textit{step} ini, jika parameter \textit{mode} berisi \textit{transit}. Formatnya sama dengan elemen step ini.
-	\item \textbf{transit\_details} adalah berisi detail transit, jika parameter \textit{mode} berisi \textit{transit}. Penjelasan objek \textbf{transit\_details} akan dijelaskan pada subsubbab berikutnya.
-\end{itemize}
-
-\subsubsection{Elemen dari \textit{transit\_details}}
-\label{subsubsec:elementransitdetail}
-
-Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
-
-\begin{itemize}
-	\item \textbf{name} adalah berisi nama jalur ini.
-	\item \textbf{short\_name} adalah berisi nama jalur yang lebih singkat, biasanya kode jalur.
-	\item \textbf{color} adalah berisi warna yang umum digunakan untuk merepresentasikan jalur ini, dalam format string heksadesimal.
-	\item \textbf{agencies} adalah \textit{array} yang tiap elemennya berupa objek yang merepresentasikan penyedia layanan, dan mengandung tiga anggota yaitu : \textit{name} yang merepresentasikan nama penyedia layanan, \textit{url} yang merepresentasikan alamat situs web, dan \textit{phone} yang mere[resentasikan nomor telepon. Informasi ini wajib ditampilkan ke pengguna.
-	\item \textbf{url} adalah alamat situs web dari jalur ini.
-	\item \textbf{icon} adalah URL untuk mendapatkan gambar yang merepresentasikan jalur ini.
-	\item \textbf{text\_color} adalah berisi warna yang umum digunakan untuk teksyang merepresentasikan jalur ini dalam format string heksadesimal.
-	\item \textbf{vehicle} adalah berisi informasi kendaraan yang digunakan pada jalur inim dalam bentuk objek yang mengandung empat anggota yaitu : \textit{name} yang merepresentasikan nama kendaraan, \textit{type} yang merepresentasikan tipe kendaraan, \textit{icon} yang merepresentasikan URL gambar kendaraan, \textit{local\_icon} yang merepresenasikan gambar kendaraan secara lokal.
 \end{itemize}
 
 \section{\textit{JavaScript Object Notation (JSON)}}
@@ -497,4 +344,162 @@ Kelas ini merepresentasikan sebuah objek JSON yang merupakan koleksi yang tak te
 		\item \textbf{key}: kunci data.
 	\end{itemize}
 	\textbf{Kembalian}: Sebuah JSONObject yang merupakan nilai.
+\end{itemize}
+
+\section{Google Direction}
+\label{sec:googledirapi}
+
+Google Maps Directions adalah layanan yang menghitung arah antar lokasi menggunakan permintaan HTTP\cite{ankurkotwal2017}. Anda bisa mencari arah untuk beberapa moda transportasi, termasuk angkutan umum, mengemudi, berjalan atau bersepeda. Arah bisa menetapkan tempat asal, tujuan dan \textit{waypoint} baik sebagai string teks atau sebagai koordinat garis lintang/garis bujur. Layanan ini didesain untuk menghitung arah alamat statis (sudah diketahui sebelumnya) untuk penempatan konten aplikasi pada peta.
+
+\subsection{Permintaan Arah}
+\label{subsec:permintaanarahgoogledir}
+
+Permintaan Google Maps Directions mengambil bentuk berikut:
+
+\begin{lstlisting}[caption= \textit{Request} Google Directions\cite{ankurkotwal2017}, captionpos=b]
+https://maps.googleapis.com/maps/api/directions/json?parameters
+\end{lstlisting}
+
+HTTP disarankan untuk aplikasi yang berisi data pengguna sensitif, seperti lokasi pengguna, dalam permintaan. URL Google Maps Directions API dibatasi sekitar 2000 karakter, setelah Pengkodean URL. Karena sebagian URL Google Maps Directions API bisa melibatkan banyak lokasi sepanjang lintasan. Pada subbab berikutnya akan dijelaskan parameter apa saja yang digunakan pada permintaan ke layanan ini.
+
+\subsection{Parameter Permintaan}
+\label{subsec:parameterpermintaangoogledir}
+
+Beberapa parameter tertentu diperlukan sementara yang lainnya bersifat opsional. Sebagaimana standar dalam URL, semua parameter dipisah menggunakan karakter ampersand (\&). Daftar parameter dan kemungkinan nilainya disebutkan di bawah ini\cite{ankurkotwal2017}.
+
+\subsubsection{Parameter yang diperlukan}
+\label{subsubsec:parameterwajib}
+\begin{itemize}
+	\item \textbf{origin} adalah alamat, nilai garis lintang/garis bujur tekstual, atau ID tempat asal yang ingin Anda hitung arahnya. ketentuan dari alamat dari origin adalah sebagai berikut :
+	\begin{itemize}
+		\item Jika Anda meneruskan sebuah alamat sebagai string, layanan Directions akan melakukan geocode atas string itu dan mengubahnya menjadi koordinat garis lintang/garis bujur untuk menghitung arah. Koordinat ini mungkin berbeda dengan yang dikembalikan oleh Google Maps Geocoding API, misalnya pintu masuk bangunan dan bukan pusatnya.
+		\item Jika Anda meneruskan koordinat, itu akan digunakan tanpa diubah untuk menghitung arah. Pastikan tidak ada spasi di antara nilai garis lintang dan garis bujur.
+		\item ID Tempat harus diawali dengan \textbf{place\_id:}. ID tempat hanya bisa ditetapkan jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Anda bisa mendapatkan ID tempat dari Google Maps Geocoding API dan Google Places API (termasuk Place Autocomplete).
+	\end{itemize} 
+	\item \textbf{destination} adalah alamat, nilai garis lintang/garis bujur tekstual, atau ID tempat tujuan yang ingin Anda hitung arahnya. Opsi untuk parameter destination sama dengan opsi untuk parameter origin yang dijelaskan di atas.
+	\item \textbf{key} adalah kunci API aplikasi Anda. Kunci ini mengidentifikasi aplikasi Anda untuk keperluan manajemen kuota. 
+\end{itemize} 
+
+\subsubsection{Parameter yang opsional}
+\label{subsubsec:parameteropsional}
+\begin{itemize}
+	\item \textbf{mode} (default-nya adalah driving) adalah menetapkan moda transportasi yang akan digunakan saat menghitung arah. 
+	\item \textbf{waypoint} adalah menetapkan larik \textit{waypoint}. \textit{Waypoint} mengubah rute dengan mengarahkannya melalui lokasi yang ditetapkan. \textit{Waypoint} ditetapkan berupa koordinat garis lintang/garis bujur, ID tempat, atau alamat yang akan di-geocode. ID Tempat harus diawali dengan \textbf{place\_id:}. ID tempat hanya bisa ditetapkan jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. \textit{Waypoint} hanya didukung untuk arah mengemudi, berjalan dan bersepeda.
+	\item \textbf{alternative} adalah jika diatur ke true, menetapkan bahwa layanan Directions mungkin menyediakan lebih dari satu rute alternatif dalam respons. Perhatikan, memberikan alternatif rute bisa meningkatkan waktu respons dari server.
+	\item \textbf{avoid} adalah menunjukkan rute yang dihitung harus menghindari fitur yang ditandai. Parameter ini mendukung argumen berikut: 
+	\begin{itemize}
+		\item \textbf{tolls} menunjukkan rute yang dihitung harus menghindari jalan/jembatan tol.
+		\item \textbf{highways} menunjukkan rute yang dihitung harus menghindari jalan raya.
+		\item \textbf{ferries} menunjukkan rute yang dihitung harus menghindari penyeberangan feri.
+		\item \textbf{indoor} menunjukkan rute yang dihitung harus menghindari tangga dalam ruangan untuk arah berjalan dan arah angkutan umum. Hanya permintaan yang menyertakan kunci API atau ID klien Google Maps API for Work yang akan menerima tangga dalam ruangan secara default.
+	\end{itemize}
+	\item \textbf{language} adalah menetapkan bahasa yang digunakan untuk mengembalikan hasil.
+	\item \textbf{unit} adalah menetapkan sistem satuan yang akan digunakan saat menampilkan hasil.
+	\item \textbf{region} adalah menetapkan kode wilayah, ditetapkan sebagai nilai yang berisi dua karakter ccTLD ("top-level domain").
+	\item \textbf{arrival\_time} adalah menetapkan waktu kedatangan yang diinginkan untuk arah angkutan umum, dalam detik sejak tengah malam, 1 Januari 1970 UTC. Anda bisa menetapkan \textbf{departure\_time} atau \textbf{arrival\_time}, namun tidak boleh duanya.
+	\item \textbf{departure\_time} adalah menetapkan waktu keberangkatan yang diinginkan. Anda bisa menetapkan waktu berupa integer dalam detik sejak tengah malam 1 Januari 1970 UTC. Atau, Anda bisa menetapkan nilai now, yang mengatur waktu keberangkatan ke waktu saat ini (dikoreksi ke detik terdekat). 
+	\item \textbf{traffic\_model} (default-nya adalah \textbf{best\_guess}) adalah menetapkan asumsi yang akan digunakan saat menghitung waktu dalam lalu lintas. Pengaturan ini memengaruhi nilai yang dikembalikan di bidang \textbf{duration\_in\_traffic} dalam respons, yang berisi prediksi waktu dalam lalu lintas berdasarkan rata-rata historis. Parameter \textbf{traffic\_model} hanya bisa ditetapkan untuk arah mengemudi yang permintaannya menyertakan departure\_time, dan hanya jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work.Nilai yang tersedia untuk parameter ini adalah: 
+	\begin{itemize}
+		\item \textbf{best\_guess} (default) menunjukkan \textbf{duration\_in\_traffic} yang dikembalikan harus berupa perkiraan waktu tempuh terbaik berdasarkan informasi riwayat kondisi lalu lintas dan lalu lintas saat ini. Lalu lintas saat ini menjadi kian penting bila \textbf{departure\_time} semakin dekat ke waktu sekarang.
+		\item \textbf{pessimistic} menunjukkan \textbf{duration\_in\_traffic} yang dikembalikan lebih lama dari waktu tempuh sesungguhnya di hari-hari biasa, meskipun hari-hari tertentu dengan kondisi lalu lintas yang buruk mungkin melebihi nilai ini.
+		\item \textbf{optimistic} menunjukkan \textbf{duration\_in\_traffic} yang dikembalikan harus lebih singkat dari waktu tempuh sesungguhnya di hari biasa, meskipun hari-hari tertentu dengan kondisi lalu lintas yang baik bisa lebih cepat dari nilai ini.
+	\end{itemize}
+	\item \textbf{transit\_mode} adalah menetapkan satu atau beberapa mode angkutan umum yang disukai. Parameter ini hanya bisa ditetapkan untuk arah angkutan umum, dan hanya jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Parameter ini mendukung argumen berikut:
+	\begin{itemize}
+		\item \textbf{bus} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan bus.
+		\item \textbf{subway} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan kereta bawah tanah.
+		\item \textbf{train} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan kereta api.
+		\item \textbf{tram} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan trem dan kereta ringan.
+		\item \textbf{rail} menunjukkan rute yang sudah dihitung akan mengutamakan perjalanan dengan kereta api, trem, kereta ringan, dan kereta bawah tanah. Ini sama dengan \textbf{transit\_mode=train|tram|subway}.
+	\end{itemize}
+	\item \textbf{transit\_routing\_preference} adalah menetapkan preferensi untuk rute angkutan umum. Dengan parameter ini, Anda bisa mencondongkan opsi yang dikembalikan, bukannya menerima rute default terbaik yang dipilih oleh API. Parameter ini hanya bisa ditetapkan untuk arah angkutan umum, dan hanya jika permintaan menyertakan kunci API atau ID klien Google Maps API for Work. Parameter ini mendukung argumen berikut:
+	\begin{itemize}
+		\item \textbf{less\_walking} menunjukkan rute yang sudah dihitung akan mengutamakan jumlah berjalan kaki yang terbatas.
+		\item \textbf{fewer\_transfers} menunjukkan rute yang sudah dihitung akan mengutamakan jumlah ganti angkutan yang terbatas.
+	\end{itemize}
+\end{itemize}
+
+\subsection{\textit{Response} Arah}
+\label{subsec:responsegoogledir}
+
+Response Arah dikembalikan dalam format yang ditunjukkan oleh flag output dalam jalur permintaan URL. Hasil \textit{response} yang dikeluarkan adalah jalur yang dilalui menggunakan format JSON yang terdapat elemen-elemen yang menjelaskan jalur yang dilewati. Pada subbab berikutnya akan dijelaskan elemen-elemen yang ada pada \textit{output} yang dihasilkan dari permintaan arah.
+
+\subsection{Elemen \textit{Response} Arah}
+\label{subsec:elemenresponsegoogledir}
+
+Berikut adalah penjelasan dari setiap elemen \textit{output} yang dihasilkan dari permintaan arah :
+
+\begin{itemize}
+	\item \textbf{Status} adalah status \textit{response} dari permintaan yang dikirimkan, isinya dapat berupa salah satu dari berikut ini :
+	\begin{itemize}
+		\item \textbf{OK} jika permintaan berhasil, dan permintaan akan mengandung informasi tambahan terkait hasil pencarian.
+		\item \textbf{NOT\_FOUND} jika salah satu dari \textbf{origin} atau \textbf{destination} bukan berupa \textit{latitude, longitude} dan tidak dapat ditemukan.
+		\item \textbf{ZERO\_RESULTS} jika Google tidak berhasil menemukan rute yang diminta.
+		\item \textbf{INVALID\_REQUEST} jika ada parameter wajib yang tidak diberikan, atau ada parameter yang tidak valid.
+		\item \textbf{OVER\_QUERY\_LIMIT} yang berarti jumlah permintaan sudah melebihi kuota.
+		\item \textbf{REQUEST\_DENIED} jika permintaan ditolak.
+	\end{itemize}
+	\item \textbf{geocoded\_waypoints} adalah hasil \textit{geocoding} dari \textbf{origin, destination,} maupun \textit{waypoints} pada permintaan. \textit{Geocoding} pada API ini adalah proses konversi dari lokasi maupun nama tempat menjadi \textit{place\_id}.
+	\item \textbf{routes} adalah \textit{array} dari objek yang berisi informasi detail setiap alternatif rute yang ditemukan. elemenn dari \textbf{routes} akan dijelaskan pada subsubbab berikutnya.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{routes}}
+\label{subsubsec:elemenroutes}
+
+Setiap elemen dari \textbf{routes} adalah objek yang memiliki anggota sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{summary} adalah ringkasan dari alternatif rute ini, untuk membedakan dengan rute alternatif lainnya.
+	\item \textbf{legs} adalah \textit{array} yang berisi objek yang mempresentasikan \textit{leg}. \textit{Leg} adalah subrute untuk setiap \textit{waypoints} yang diberikan (jika parameter opsional \textit{waypoints} diberikan). Jika \textit{waypoints} tidak diberikan, \textit{array} ini akan berisi satu elemen saja. Penjelasan setiap elemen \textit{legs} akan dijelaskan pada subsubbab berikutnya.
+	\item \textbf{waypoint\_order} adalah \textit{array} yang berisi urutan \textit{waypoint} yang baru, jika parameter \textit{waypoints} diawali dengan \textit{optimized:true}.
+	\item \textbf{overview\_polyline} adalah berisi daftar titik-titik yang dilalui oleh rute yang didapatkan. Titik-titik rute ini sudah disederhanakan (tidak detail), dan diringkas dengan format \textit{encoded polyline}.
+	\item \textbf{bounds} adalah menyatakan kotak yang menyelubungi rute yang diberikan. Kotak ini direpresentasikan dalam sebuah objek yang mengandung dua anggota yaitu : \textit{northeast}(kanan-atas) dan \textit{southwest}(kiri-bawah). Setiap anggota berupa objek lain yang mengandung dua anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
+	\item \textbf{copyrights} adalah berisi teks \textit{copyright} yang harus ditampilkan kepada pengguna.
+	\item \textbf{warnings} adalah \textit{array string} yang berisi peringatan yang harus ditampilkan kepada pengguna, jika ada.
+	\item \textbf{fare} adalah informasi biaya transportasi publik yang harus dikeluarkan, jika parameter \textit{mode} berisi \textit{transit} dan Google memiliki informasi tarif untuk setiap moda yang digunakan. Informasi ini belum tersedia di Indonesia.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{legs}}
+\label{subsubsec:elemenlegs}
+
+Setiap elemen dari \textbf{legs} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{steps} adalah \textit{array} yang berisi objek yang menyatakan setiap langkah yang harus diambil. Penjelaasan setiap elemen \textit{steps} dijelaskan pada subsubbab berikutnya.
+	\item \textbf{distance} adalah menyatakan jarak yang harus ditempuh pada \textit{leg} ini, berupa objek yang berisi dua anggota yaitu \textit{value} yang merepresentasikan angka yang menyatakan jarak dalam meter dan \textit{text} yang merepresentasikan jarak dalam fotmat teks yang dapat dibaca manusia.
+	\item \textit{duration} adalah menyatakan waktu yang dibutuhkan untuk menempuh \textit{leg} ini, berupa objek yang berisi dua anggota yaitu : \textit{value} yang merepresentasikan angka yang menyatakan waktu dalam detik dan \textit{text} yang merepresentasikan waktu yang dibutuhkan dalam format teks yang dapat dibaca manusia.
+	\item \textbf{duration\_in\_traffic} adalah menyatakan waktu mirip dengan duration. perbedaannya pada elemen ini memperhitungkan faktor kepadatan lalu lintas.
+	\item \textbf{arrival\_time} dan \textbf{departure\_time} adalah waktu sampai di \textit{destination} dan waktu keberangkatan ke \textit{destination}, jika parameter \textit{mode} berisi \textit{transit}. berupa objek yang mengandung tiga anggota yaitu : \textit{value} yang merepresentasikan waktu sampai sesuai dengan objek \textit{date} pada \textit{javascript}, \textit{text} yang merepresentasi waktu sampai dalam format teks yang dapat dibaca manusia, dan \textit{time\_zone} yang merepresentasikan zona waktu pada lokasi akhir \textit{leg}.
+	\item \textbf{start\_location} dan \textbf{end\_location} adalah berisi lokasi awal dan akhir dari \textit{leg} ini, berupa objek yang memiliki doa anggota yaitu : \textit{lat} yang merepresentasikan \textit{latitude} dan \textit{lng} yang merepresentasikan \textit{longitude}.
+	\item \textbf{start\_address} dan \textbf{end\_address} adalah berisi lokasi awal dan akhir dari \textit{leg} ini, dalam format teks yang dapat dibaca manusia.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{steps}}
+\label{subsubsec:elemensteps}
+
+Setiap elemen dari \textbf{steps} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{html\_instructions} adalah berisi instruksi \textit{step} ini, dalam format HTML.
+	\item \textbf{distance} adalah jarak dari \textit{step} ini, dengan format yang sama seperti anggota \textit{duration} pada elemen \textit{legs} di atas.
+	\item \textbf{start\_location} dan \textbf{end\_location} adalah lokasi awal dan akhir dari \textit{step} ini, dengan format yang sama seperti anggota \textbf{start\_location} dan \textbf{end\_location} pada elemen \textit{legs} di atas.
+	\item \textbf{polyline} adalah berisi daftar titik-titik yang dilalui pada \textit{step} ini. titik- titik rute ini diringkas dengan format \textit{encoded polyline}.
+	\item \textbf{steps} adalah \textit{array} yang berisi \textit{sub-step} dari \textit{step} ini, jika parameter \textit{mode} berisi \textit{transit}. Formatnya sama dengan elemen step ini.
+	\item \textbf{transit\_details} adalah berisi detail transit, jika parameter \textit{mode} berisi \textit{transit}. Penjelasan objek \textbf{transit\_details} akan dijelaskan pada subsubbab berikutnya.
+\end{itemize}
+
+\subsubsection{Elemen dari \textit{transit\_details}}
+\label{subsubsec:elementransitdetail}
+
+Setiap elemen dari \textbf{transit\_details} adalah sebagai berikut :
+
+\begin{itemize}
+	\item \textbf{name} adalah berisi nama jalur ini.
+	\item \textbf{short\_name} adalah berisi nama jalur yang lebih singkat, biasanya kode jalur.
+	\item \textbf{color} adalah berisi warna yang umum digunakan untuk merepresentasikan jalur ini, dalam format string heksadesimal.
+	\item \textbf{agencies} adalah \textit{array} yang tiap elemennya berupa objek yang merepresentasikan penyedia layanan, dan mengandung tiga anggota yaitu : \textit{name} yang merepresentasikan nama penyedia layanan, \textit{url} yang merepresentasikan alamat situs web, dan \textit{phone} yang mere[resentasikan nomor telepon. Informasi ini wajib ditampilkan ke pengguna.
+	\item \textbf{url} adalah alamat situs web dari jalur ini.
+	\item \textbf{icon} adalah URL untuk mendapatkan gambar yang merepresentasikan jalur ini.
+	\item \textbf{text\_color} adalah berisi warna yang umum digunakan untuk teksyang merepresentasikan jalur ini dalam format string heksadesimal.
+	\item \textbf{vehicle} adalah berisi informasi kendaraan yang digunakan pada jalur inim dalam bentuk objek yang mengandung empat anggota yaitu : \textit{name} yang merepresentasikan nama kendaraan, \textit{type} yang merepresentasikan tipe kendaraan, \textit{icon} yang merepresentasikan URL gambar kendaraan, \textit{local\_icon} yang merepresenasikan gambar kendaraan secara lokal.
 \end{itemize}
