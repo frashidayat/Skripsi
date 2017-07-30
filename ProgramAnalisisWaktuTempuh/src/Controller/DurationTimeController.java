@@ -29,12 +29,14 @@ public class DurationTimeController {
                 processor.initalize(date, origin, destination, trafficModel1);
             }else{
                 processor.initalize(date, origin, destination, trafficModel1, trafficModel2);
-            }
+             }
         }else{
             processor.initalize(date, origin, destination, trafficModel1, trafficModel2, trafficModel3);
         }
     }
-    
+    public String getResult(){
+        return processor.resultProcessingData();
+    }
     /*public boolean checkData(){
         return processor.dataIsEmpty();
     }

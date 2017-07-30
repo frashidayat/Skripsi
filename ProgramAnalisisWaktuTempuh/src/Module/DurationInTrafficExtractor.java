@@ -22,7 +22,8 @@ import org.jsoup.Jsoup;
 public class DurationInTrafficExtractor {
 
     private final String DIRECTION_URL = "https://maps.googleapis.com/maps/api/directions/json";
-    private final String APIKEY = "AIzaSyAtiAnSkL1NFV7wWpPvunzRgVsn4dJTaPo";
+    //private final String APIKEY = "AIzaSyAtiAnSkL1NFV7wWpPvunzRgVsn4dJTaPo";
+    private final String APIKEY = "AIzaSyA6uUMhhE5HxNOkBEKOTYjseToYlKY9qFA";
     private final String LANGUAGE = "id";
     private final String departureTime;
     private final String origin;

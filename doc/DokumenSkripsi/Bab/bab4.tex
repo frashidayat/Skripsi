@@ -202,6 +202,12 @@ Diagram kelas rinci diperoleh dari hasil pengembangan diagram kelas analisis pad
 		\item \textbf{trafficModel2}: merupakan sebuah \textit{JCheckBox} yang dipilih untuk dihitung waktu tempuhnya.
 	\end{itemize}
 		
+		\item \textbf{public String resultProcessingData()}
+		
+		Berfungsi untuk memproses untuk mencari data waktu terbaik dan waktu terburuk kemudian membetuknya menjadi sautu String.
+		
+		\textbf{Kembalian}: Sebuah String yang merupakan didalamnya mengandung waktu terbaik dan waktu terburuk.
+		
 		\item \textbf{public void initalize(JFormattedTextField date, String origin, String destination, JCheckBox trafficModel1, JCheckBox trafficModel2) throws ParseException, IOException}
 		
 		Berfungsi untuk menetapkan parameter-parameter untuk melakukan \textit{request} ke layanan Google dimana model traffic yang digunakan adalah \textbf{dua} model traffic dan mendapatkan hasil ekstraksinya. Hasil-hasil ekstraksi tersebut dimasukan kedalam \textit{Vector data}.
@@ -265,7 +271,13 @@ Diagram kelas rinci diperoleh dari hasil pengembangan diagram kelas analisis pad
 		\item \textbf{trafficModel3}: merupakan sebuah \textit{JCheckBox} yang diinput melalui \textit{graphical user interface}. \textit{JCheckBox} tersebut merupakan input yang dipilih untuk dihitung waktu tempuhnya.
 	\end{itemize}
 		
-		\item \textbf{public void saveData(String dir, String filename) throws IOException}
+		\item \textbf{public String getResult()}
+		
+		Berfungsi untuk meneruskan hasil waktu terbaik dan waktu terburuk untuk ditampilkan di \textit{graphical user interface}.
+		
+		\textbf{Kembalian}: Sebuah String yang merupakan didalamnya mengandung waktu terbaik dan waktu terburuk.
+	
+	\item \textbf{public void saveData(String dir, String filename) throws IOException}
 		
 		Berfungsi untuk meneruskan parameter-parameter yang diinput melalui \textit{graphical user interface} dan memerintah \textit{processor} untuk melakukan pemrosesan penyimpanan data.
 		
@@ -328,7 +340,7 @@ Untuk memenuhi kebutuhan interaksi antara pengguna dengan sistem, maka dirancang
 \begin{enumerate}
 	\item Antarmuka utama.
 	
-	Antarmuka ini adalah antarmuka utama dari perangkat lunak. Komponen antarmuka ini terdiri dari dua buah \textit{radio button}, \textit{date picker}, tiga buah \textit{check box}, dan sebuah tombol \textit{save} seperti yang ditunjukkan pada Gambar \ref{fig:antarmukautama}. Untuk dapat menyimpan data yang sudah diolah pengguna perlu melakukan input dan memilih sesuai dengan pilihan yang ada di antarmuka yang sesuai kemudian menekan tombol \textit{save}. Jika berhasil pengguna akan diarahkan ke aplikasi Microsoft Excel yang berisikan data-data yang telah didapat.
+	Antarmuka ini adalah antarmuka utama dari perangkat lunak. Komponen antarmuka ini terdiri dari empat buah \textit{radio button} : dua buah untuk merepresentasikan mode apa yang akan dipilih dan dua buah merepresentasikan sampel yang akan dipilih, dua buah  \textit{date picker}, tiga buah \textit{check box}, dan sebuah tombol \textit{save} seperti yang ditunjukkan pada Gambar \ref{fig:antarmukautama}. Untuk dapat menyimpan data yang sudah diolah pengguna perlu melakukan input dan memilih sesuai dengan pilihan yang ada di antarmuka yang sesuai kemudian menekan tombol \textit{save}. Jika berhasil pengguna akan diarahkan ke aplikasi Microsoft Excel yang berisikan data-data yang telah didapat.
 	
 	\begin{figure}[H]
 				\centering		
@@ -339,13 +351,24 @@ Untuk memenuhi kebutuhan interaksi antara pengguna dengan sistem, maka dirancang
 	
 	\item Antarmuka \textit{file chooser}.
 	
-	Antarmuka ini adalah antarmuka untuk menentukan \textit{directory} penyimpanan file dan menentukan nama file yang akan disimpan. Komponen antarmuka ini seperti yang ditunjukkan pada Gambar \ref{fig:antarmukafilechooser}..
+	Antarmuka ini adalah antarmuka untuk menentukan \textit{directory} penyimpanan file dan menentukan nama file yang akan disimpan. Komponen antarmuka ini seperti yang ditunjukkan pada Gambar \ref{fig:antarmukafilechooser}.
 	
 	\begin{figure}[H]
 				\centering		
 				\includegraphics[scale=0.5]{Gambar/WindowsOpenFileDialog.png}
 				\caption[Antarmuka \textit{File Chooser}]{Antarmuka \textit{File Chooser}}
 				\label{fig:antarmukafilechooser}	
+			\end{figure}
+
+\item Antarmuka \textit{Hasil}.
+	
+	Antarmuka ini adalah antarmuka untuk menampilkan hasil waktu tercepat dan terlambat.Komponen antarmuka ini seperti yang ditunjukkan pada Gambar \ref{fig:antarmukahasil}.
+	
+	\begin{figure}[H]
+				\centering		
+				\includegraphics[scale=0.8]{Gambar/Antarmukahasil.png}
+				\caption[Antarmuka \textit{Hasil}]{Antarmuka \textit{Hasil}}
+				\label{fig:antarmukahasil}	
 			\end{figure}
 
 \end{enumerate}

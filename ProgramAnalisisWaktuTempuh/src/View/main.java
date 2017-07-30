@@ -244,6 +244,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         } else {
@@ -255,6 +256,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         }
@@ -267,6 +269,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -278,6 +281,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -291,6 +295,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -302,6 +307,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -314,6 +320,7 @@ public class main extends javax.swing.JFrame {
                                         directory = chooser.getCurrentDirectory().toString();
                                         controller.saveData(directory, nameFile);
                                         File file = new File(directory + "\\" + nameFile);
+                                        JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                         dt.open(file);
                                     }
                                 } else {
@@ -331,6 +338,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         } else {
@@ -342,6 +350,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         }
@@ -354,6 +363,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -366,6 +376,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -379,6 +390,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -390,6 +402,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -402,6 +415,7 @@ public class main extends javax.swing.JFrame {
                                         directory = chooser.getCurrentDirectory().toString();
                                         controller.saveData(directory, nameFile);
                                         File file = new File(directory + "\\" + nameFile);
+                                        JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                         dt.open(file);
                                     }
                                 } else {
@@ -439,6 +453,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         } else {
@@ -450,6 +465,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         }
@@ -462,6 +478,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -473,6 +490,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -486,6 +504,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -497,6 +516,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -509,6 +529,7 @@ public class main extends javax.swing.JFrame {
                                         directory = chooser.getCurrentDirectory().toString();
                                         controller.saveData(directory, nameFile);
                                         File file = new File(directory + "\\" + nameFile);
+                                        JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                         dt.open(file);
                                     }
                                 } else {
@@ -526,6 +547,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         } else {
@@ -537,6 +559,7 @@ public class main extends javax.swing.JFrame {
                                                 directory = chooser.getCurrentDirectory().toString();
                                                 controller.saveData(directory, nameFile);
                                                 File file = new File(directory + "\\" + nameFile);
+                                                JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                                 dt.open(file);
                                             }
                                         }
@@ -549,11 +572,11 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
                                         controller.doCalculate(datePicker.getEditor(), sampel2, origin, bestGuessCheckBox, null, null);
-
                                         int result = chooser.showSaveDialog(this);
                                         if (result == JFileChooser.APPROVE_OPTION) {
                                             Desktop dt = Desktop.getDesktop();
@@ -561,6 +584,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -574,6 +598,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     } else {
@@ -585,6 +610,7 @@ public class main extends javax.swing.JFrame {
                                             directory = chooser.getCurrentDirectory().toString();
                                             controller.saveData(directory, nameFile);
                                             File file = new File(directory + "\\" + nameFile);
+                                            JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                             dt.open(file);
                                         }
                                     }
@@ -597,6 +623,7 @@ public class main extends javax.swing.JFrame {
                                         directory = chooser.getCurrentDirectory().toString();
                                         controller.saveData(directory, nameFile);
                                         File file = new File(directory + "\\" + nameFile);
+                                        JOptionPane.showMessageDialog(this, controller.getResult(), "Hasil", JOptionPane.INFORMATION_MESSAGE);
                                         dt.open(file);
                                     }
                                 } else {

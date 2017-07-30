@@ -24,55 +24,138 @@ public class DataProcessor {
     private final Vector<String> data = new Vector();
     private final Vector<String> trafficModels = new Vector<>();
 
-
-    /*public String resultProcessingData(JTextField date, JTextField origin, JTextField destination, JCheckBox trafficModel) throws ParseException, IOException {
+    public String resultProcessingData() {
         String result = "";
-        String day = "";
-        String hour = "";
-        int tempCurrent;
-        int min = 999999;
-        this.initalize(date, origin, destination, trafficModel);
-        for (String data1 : data) {
-            tempCurrent = Integer.parseInt(data1.split(csvSplitBy)[2]);
-            if (tempCurrent < min) {
-                day = data1.split(csvSplitBy)[0];
-                hour = data1.split(csvSplitBy)[1];
-                min = tempCurrent;
+        if (trafficModels.size() == 1) {
+            String daymin = "";
+            String hourmin = "";
+            String daymax = "";
+            String hourmax = "";
+            int tempCurrent;
+            int min = 999999;
+            int max = 0;
+            for (String data1 : data) {
+                tempCurrent = Integer.parseInt(data1.split(csvSplitBy)[2]);
+                if (tempCurrent < min) {
+                    daymin = data1.split(csvSplitBy)[0];
+                    hourmin = data1.split(csvSplitBy)[1];
+                    min = tempCurrent;
+                }
+                if (tempCurrent > max) {
+                    daymax = data1.split(csvSplitBy)[0];
+                    hourmax = data1.split(csvSplitBy)[1];
+                    max = tempCurrent;
+                }
             }
+            result = result + "Waktu tempuh tercepat adalah : hari ke " + daymin + " jam " + hourmin + " dengan durasi " + min + "\n";
+            result = result + "Waktu tempuh terlambat adalah : hari ke " + daymax + " jam " + hourmax + " dengan durasi " + max + "\n";
+        } else if (trafficModels.size() == 2) {
+            String daymin1 = "";
+            String hourmin1 = "";
+            String daymin2 = "";
+            String hourmin2 = "";
+            String daymax1 = "";
+            String hourmax1 = "";
+            String daymax2 = "";
+            String hourmax2 = "";
+            int tempCurrent1;
+            int tempCurrent2;
+            int max1 = 0;
+            int max2 = 0;
+            int min1 = 999999;
+            int min2 = 999999;
+            for (String data1 : data) {
+                tempCurrent1 = Integer.parseInt(data1.split(csvSplitBy)[2]);
+                tempCurrent2 = Integer.parseInt(data1.split(csvSplitBy)[3]);
+                if (tempCurrent1 < min1) {
+                    daymin1 = data1.split(csvSplitBy)[0];
+                    hourmin1 = data1.split(csvSplitBy)[1];
+                    min1 = tempCurrent1;
+                }
+                if (tempCurrent1 > max1) {
+                    daymax1 = data1.split(csvSplitBy)[0];
+                    hourmax1 = data1.split(csvSplitBy)[1];
+                    max1 = tempCurrent1;
+                }
+                if (tempCurrent2 < min2) {
+                    daymin2 = data1.split(csvSplitBy)[0];
+                    hourmin2 = data1.split(csvSplitBy)[1];
+                    min2 = tempCurrent2;
+                }
+                if (tempCurrent2 > max2) {
+                    daymax2 = data1.split(csvSplitBy)[0];
+                    hourmax2 = data1.split(csvSplitBy)[1];
+                    max2 = tempCurrent1;
+                }
+            }
+            result = result + "Waktu tempuh tercepat adalah pada : hari ke " + daymin1 + " jam " + hourmin1 + " pada model " + trafficModels.get(0) + " adalah " + min1 + ", hari ke " + daymin2 + " jam " + hourmin2 + " pada model " + trafficModels.get(1) + " : " + min2 + "\n";
+            result = result + "Waktu tempuh terlambat adalah pada : hari ke " + daymax1 + " jam " + hourmax1 + " pada model " + trafficModels.get(0) + " adalah " + max1 + ", hari ke " + daymax2 + " jam " + hourmax2 + " pada model " + trafficModels.get(1) + " : " + max2 + "\n";
+        } else if (trafficModels.size() == 3) {
+            String daymin1 = "";
+            String hourmin1 = "";
+            String daymin2 = "";
+            String hourmin2 = "";
+            String daymin3 = "";
+            String hourmin3 = "";
+            String daymax1 = "";
+            String hourmax1 = "";
+            String daymax2 = "";
+            String hourmax2 = "";
+            String daymax3 = "";
+            String hourmax3 = "";
+            int tempCurrent1;
+            int tempCurrent2;
+            int tempCurrent3;
+            int max1 = 0;
+            int max2 = 0;
+            int max3 = 0;
+            int min1 = 999999;
+            int min2 = 999999;
+            int min3 = 999999;
+            for (String data1 : data) {
+                tempCurrent1 = Integer.parseInt(data1.split(csvSplitBy)[2]);
+                tempCurrent2 = Integer.parseInt(data1.split(csvSplitBy)[3]);
+                tempCurrent3 = Integer.parseInt(data1.split(csvSplitBy)[4]);
+                if (tempCurrent1 < min1) {
+                    daymin1 = data1.split(csvSplitBy)[0];
+                    hourmin1 = data1.split(csvSplitBy)[1];
+                    min1 = tempCurrent1;
+                }
+                if (tempCurrent1 > max1) {
+                    daymax1 = data1.split(csvSplitBy)[0];
+                    hourmax1 = data1.split(csvSplitBy)[1];
+                    max1 = tempCurrent1;
+                }
+                if (tempCurrent2 < min2) {
+                    daymin2 = data1.split(csvSplitBy)[0];
+                    hourmin2 = data1.split(csvSplitBy)[1];
+                    min2 = tempCurrent2;
+                }
+                if (tempCurrent2 > max2) {
+                    daymax2 = data1.split(csvSplitBy)[0];
+                    hourmax2 = data1.split(csvSplitBy)[1];
+                    max2 = tempCurrent1;
+                }
+                if (tempCurrent3 < min3) {
+                    daymin3 = data1.split(csvSplitBy)[0];
+                    hourmin3 = data1.split(csvSplitBy)[1];
+                    min3 = tempCurrent3;
+                }
+                if (tempCurrent3 > max3) {
+                    daymax3 = data1.split(csvSplitBy)[0];
+                    hourmax3 = data1.split(csvSplitBy)[1];
+                    max3 = tempCurrent3;
+                }
+            }
+            result = result + "Waktu tempuh tercepat adalah pada : hari ke " + daymin1 + " jam " + hourmin1 + " pada model " + trafficModels.get(0) + " adalah " + min1 + ", hari ke " + daymin2 + " jam " + hourmin2 + " pada model " + trafficModels.get(1) + " : " + min2 + ", hari ke " + daymin3 + " jam " + hourmin3 + " pada model " + trafficModels.get(2) + " : " + min3 + "\n";
+            result = result + "Waktu tempuh terlambat adalah pada : hari ke " + daymax1 + " jam " + hourmax1 + " pada model " + trafficModels.get(0) + " adalah " + max1 + ", hari ke " + daymax2 + " jam " + hourmax2 + " pada model " + trafficModels.get(1) + " : " + max2 + ", hari ke " + daymax3 + " jam " + hourmax3 + " pada model " + trafficModels.get(2) + " : " + max3 + "\n";
+        } else {
+            result = result + "data kosong";
         }
-        result = result + "Waktu tempuh tercepat adalah pada : hari ke " + day + " jam " + hour + " dengan durasi " + min + "\n";
         return result;
     }
 
-    public String resultProcessingData(JTextField date, JTextField origin, JTextField destination, JCheckBox trafficModel1, JCheckBox trafficModel2) throws ParseException, IOException {
-        String result = "";
-        String day = "";
-        String hour = "";
-        int tempCurrent1;
-        int tempCurrent2;
-        int tempAvg;
-        int avgCurrent = 999999;
-        int min1 = 999999;
-        int min2 = 999999;
-        this.initalize(date, origin, destination, trafficModel1, trafficModel2);
-        for (String data1 : data) {
-            tempCurrent1 = Integer.parseInt(data1.split(csvSplitBy)[2]);
-            tempCurrent2 = Integer.parseInt(data1.split(csvSplitBy)[3]);
-            tempAvg = (tempCurrent1 + tempCurrent2) / 2;
-            if (avgCurrent > tempAvg) {
-                day = data1.split(csvSplitBy)[0];
-                hour = data1.split(csvSplitBy)[1];
-                min1 = tempCurrent1;
-                min2 = tempCurrent2;
-                avgCurrent = tempAvg;
-            }
-
-        }
-        result = result + "Waktu tempuh tercepat adalah pada : hari ke " + day + " jam " + hour + " dengan durasi " + trafficModel1.getText() + " : " + min1 + " " + trafficModel2.getText() + " : " + min2 + "\n";
-        return result;
-    }
-
-    public String printAllData() {
+    /*public String printAllData() {
         String result = "";
         if (trafficModels.size() == 1) {
             result = result + "traffic model : " + trafficModels.get(0) + "\n";
@@ -91,6 +174,7 @@ public class DataProcessor {
         }
         return result;
     }
+
     */
 
     public void initalize(JFormattedTextField date, String origin, String destination, JCheckBox trafficModel) throws ParseException, IOException {
@@ -162,7 +246,7 @@ public class DataProcessor {
         trafficModels.add(trafficModel1.getText());
         trafficModels.add(trafficModel2.getText());
         trafficModels.add(trafficModel3.getText());
-        
+
         DurationInTrafficExtractor[] tempDuration1;
         DurationInTrafficExtractor[] tempDuration2;
         DurationInTrafficExtractor[] tempDuration3;
@@ -186,7 +270,7 @@ public class DataProcessor {
             }
         }
     }
-    
+
     public void saveFile(String directory, String fileName) throws IOException {
         File file = new File(directory + "\\" + fileName);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -198,8 +282,8 @@ public class DataProcessor {
         }
     }
     /*
-    public boolean dataIsEmpty() {
-        return data.isEmpty();
-    }
-    */
+     public boolean dataIsEmpty() {
+     return data.isEmpty();
+     }
+     */
 }
