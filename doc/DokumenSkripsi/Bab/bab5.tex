@@ -28,8 +28,7 @@ Kode program pada perangkat lunak ditulis dalam bahasa pemrograman Java. Penulis
 \subsection{Tampilan antarmuka}
 \label{subsec:tampilanantarmuka}
 
-Berikut ini merupakan hasil implementasi antarmuka untuk perangkat lunak analisis waktu tempuh kota Bandung.
-Pada Gambar \ref{fig:implementasiantarmukautama} merupakan tampilan utama dari perangkat lunak yang memiliki tiga buah input yaitu : \textit{radio button}, \textit{datepicker}, \textit{check box}. Terdapat 1 buah tombol \textit{save} yang digunakan untuk melakukan ekstraksi data dan penyimpanan data.
+Berikut ini merupakan hasil implementasi antarmuka untuk perangkat lunak analisis waktu tempuh kota Bandung. Pada Gambar \ref{fig:implementasiantarmukautama} merupakan tampilan utama dari perangkat lunak yang memiliki tiga buah input yaitu : \textit{radio button}, \textit{datepicker}, \textit{check box}. Terdapat 1 buah tombol \textit{save} yang digunakan untuk melakukan ekstraksi data dan penyimpanan data.
 
 \begin{figure}[H]
 				\centering		
@@ -46,7 +45,30 @@ Pada Gambar \ref{fig:implementasifilechooser} merupakan tampilan \textit{file ch
 				\caption[Implementasi \textit{file chooser}]{Implementasi \textit{file chooser}}
 				\label{fig:implementasifilechooser}	
 			\end{figure}
-			
+
+Pada Gambar \ref{fig:implementasihasil1}, \ref{fig:implementasihasil2} dan \ref{fig:implementasihasil3} merupakan tampilan hasil dari perangkat lunak yang memiliki satu buah tombol. Pada Gambar \ref{fig:implementasihasil1} merupakan tampilan hasil dengan menggunakan satu traffic model. Pada Gambar \ref{fig:implementasihasil2} merupakan tampilan hasil dengan menggunakan dua traffic model. Pada Gambar \ref{fig:implementasihasil3} merupakan tampilan hasil dengan menggunakan tiga traffic model.
+
+\begin{figure}[H]
+				\centering		
+				\includegraphics[scale=0.7]{Gambar/gui3.png}
+				\caption[Implementasi hasil dengan satu traffic model]{Implementasi hasil dengan satu traffic model}
+				\label{fig:implementasihasil1}	
+			\end{figure}
+
+\begin{figure}[H]
+				\centering		
+				\includegraphics[scale=0.7]{Gambar/gui4.png}
+				\caption[Implementasi hasil dengan dua traffic model]{Implementasi hasil dengan dua traffic model}
+				\label{fig:implementasihasil2}	
+			\end{figure}
+
+\begin{figure}[H]
+				\centering		
+				\includegraphics[scale=0.5]{Gambar/gui5.png}
+				\caption[Implementasi hasil dengan tiga traffic model]{Implementasi hasil dengan tiga traffic model}
+				\label{fig:implementasihasil3}	
+			\end{figure}
+
 \section{Pengujian}
 \label{sec:pengujian}
 
@@ -55,9 +77,10 @@ Pada Gambar \ref{fig:implementasifilechooser} merupakan tampilan \textit{file ch
 
 Pengujian fungsional perangkat lunak sederhana analisis waktu tempuh kota Bandung dengan memanfaatkan Google Direction API dilakukan untuk mengetahui kesesuaian reaksi perangkat lunak dengan reaksi yang diharapkan berdasarkan aksi pengguna terhadap perangkat lunak. Pengujian ini dilakukan pada lingkungan implementasi sesuai pada subbab \ref{subsec:lingkunganimplementasi}. Terdapat 4 tes kasus yang diujikan, detail serta hasilnya dapat dilihat pada Tabel \ref{tab:pengujian1}. Beberapa data hasil ekstraksi pada pengujian ini bisa dilihat pada Lampiran \ref{chap:datahasilpengujian}. Spesifikasi pengujian fungsional adalah sebagai berikut :
 \begin{enumerate}
-	\item Pengujian dilakukan dengan dua mode : normal dan reverse yang dilakukan masing-masing satu kali.
+	\item Alamat awal sampel yang digunakan adalah : Komplek Amaya Residence dan Jalan Puspa Utara.
+	\item Alamat tujuan yang digunakan adalah alamat UNPAR(Universitas Katolik Parahyangan).
 	\item Masukan tanggal yang digunakan adalah 17 Juli 2017 dan 24 Juli 2017.
-	\item Pengujian dilakukan pada kedua sampel dengan mode normal dan mode reverse.
+	\item Pengujian dilakukan pada kedua sampel dengan menukar alamat awal dengan tujuan dan tidak menukar alamat awal dengan tujuan.
 	\item Semua kombinasi model traffic akan digunakan untuk masing-masing mode dan masing-asing sample.
 \end{enumerate}
 
@@ -65,10 +88,10 @@ Pengujian fungsional perangkat lunak sederhana analisis waktu tempuh kota Bandun
 \begin{longtable}{|p{0.5cm}|p{4cm}|p{4cm}|p{4cm}|}
 \hline \multicolumn{1}{|c|}\textbf{{No}} & \multicolumn{1}{c|}{\textbf{Aksi Pengguna}}& \multicolumn{1}{c|}{\textbf{Reaksi yang diharapkan}} &\multicolumn{1}{c|}{\textbf{Reaksi perangkat lunak}} \\ \hline
 1 & Pengguna menjalankan program & Antarmuka utama ditampilkan & sesuai \\ \hline
-2 & Pengguna memilih salah satu sampel, memilih tanggal, memilih ketiga model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
-3 & Pengguna memilih salah satu sampel, memilih tanggal, memilih dua diantara tiga model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
-4 & Pengguna memilih salah satu sampel, memilih tanggal, memilih salah satu model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
- &  & Jika pengguna belum memilih salah satu dari sampel menampilkan pesan "Silahkan pilih sampel yang akan dihitung antara sampel 1 atau sampel 2" & sesuai \\ \hline
+2 & Pengguna memasukan longitude dan latitude, memilih tanggal, memilih ketiga model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
+3 & Pengguna memasukan longitude dan latitude, memilih tanggal, memilih dua diantara tiga model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
+4 & Pengguna memasukan longitude dan latitude, memilih tanggal, memilih salah satu model \textit{traffic} dan menekan tombol save & File berhasil disimpan dan ditampilkan dengan aplikasi microsoft excel & sesuai \\\hline
+ &  & Jika pengguna memasukan longitude dan latitude bukan angka menampilkan pesan "Masukan angka" & sesuai \\ \hline
  &  & Jika pengguna belum memilih salah satu dari traffic\_model menampilkan pesan "Anda harus memilih minimal salah satu dari 3 traffic model yang telah disediakan" & sesuai \\\hline 
  &  & Jika pengguna belum memilih tanggal menampilkan pesan "Anda belum memilih tanggal, silahkan pilih tanggal" & sesuai \\ \hline
  &  & Jika pengguna memilih tanggal yang sudah lampau atau hari ini menampilkan pesan "Tanggal yang anda masukan adalah masa lampau atau hari ini, silahkan pilihlah tanggal yang akan datang" & sesuai \\ \hline
@@ -84,4 +107,4 @@ Pengujian eksperimental dilakukan dengan melakukan eksperimen dari hasil ekstrak
 
 Pada grafik waktu masing-masing model dalam seminggu yang dapat dilihat pada Lampiran \ref{chap:hasilpengujianeksperimental}, bahwa waktu tempuh untuk setiap hari relatif memiliki waktu tempuh yang sama setiap jamnya terkecuali pada hari jumat. Pada hari jumat, waktu tempuh cenderung menurun pada pukul 12, dan lalu menaik kembali setelah itu. Hal tersebut diperkirakan oleh karena mayoritas warga indonesia beragama muslim dan melaksanakan ibadah shalat jumat pada pukul 12. Selain itu, waktu tempuh mulai menaik sejak dari pukul 6 hingga mencapai pukul 18, dan setelah itu akan selalu menurun. Waktu tempuh maksimum pada setiap harinya berada pada sekitar pukul 18. Hal tersebut diperkirakan terjadi karena pada jam tersebut merupakan saat sebagian besar orang selesai beraktifitas dan pulang ke rumah masing-masing. Sedangkan waktu tempuh yang paling minimun ada pada setiap harinya berada pada sekitar pukul 3. Hal tersebut diperkirakan terjadi karena pada jam tersebut sebagian orang masih beristirahat dirumah masing-masing.
 
-Pengujian dilakukan dengan memilih mode reverse dimana alamat awal dan tujuan dibalik sesuai dengan sample yang dipilih. Hasil dari pengujian dengan mode reverse ini adalah menghasilkan bagan yang mirip dengan mode normal tidak ada perubahan yang signifikan terhadap waktu tempuh meskipun telah dibalik alamat awal dan tujuannya.
+Pengujian dilakukan dengan menukarkan alamat awal dan tujuan sesuai dengan sample. Hasil dari pengujian dengan dengan menukarkan alamat ini adalah menghasilkan bagan yang mirip dengan tidak ditukar. Tidak ada perubahan yang signifikan terhadap waktu tempuh meskipun telah ditukar alamat awal dan tujuannya.
