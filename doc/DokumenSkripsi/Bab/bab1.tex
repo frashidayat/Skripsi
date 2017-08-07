@@ -1,0 +1,80 @@
+%versi 2 (8-10-2016) 
+\chapter{Pendahuluan}
+\label{chap:intro}
+   
+\section{Latar Belakang}
+\label{sec:label}
+
+Dalam melakukan kegiatan dan rutinitas, manusia akan melakukan perpindahan tempat dari suatu tempat ke tempat lain. Salah satu contohnya adalah melakukan kegiatan perkuliahan. Dalam melakukan kegiatan tersebut, mahasiswa harus berpindah dari rumah ke tempat perkuliahan diselengarakan. Dalam melakukan suatu perpindahan itu, kita melalui suatu jalur yang relatif konstan dimana jalur tersebut akan menjadi rutinitas yang akan dilalui. Dari jalur tersebut sering kali terjadi kemacetan dan biasanya kemacetan itu terjadi pada jam-jam tertentu. 
+
+Pada kota-kota besar sering terjadi kemacetan. Efeknya adalah keterlambatan yang akan mempengaruhi seluruh rangkaian kegiatan yang telah direncanakan. Bandung adalah salah satunya dari kota besar yang sering mengalami kemacetan ini dan terkadang kemacetan sendiri tidak dapat diprediksi.
+
+Dengan demikian, untuk merencanakan segalanya agar berjalan sesuai dengan rencana, perlu untuk mengetahui waktu tempuh yang paling cepat dari jalur yang relatif konstan agar tidak terjebak dalam kemacetan. Kemacetan ini sendiri bisa dianalisis dengan menentukan pada pukul berapa sajakah terjadi kemacetan pada jalur yang ditempuh.
+
+Salah satu teknologi yang telah ada, \textit{Google Direction} adalah suatu layanan web untuk menghitung arah antar lokasi. Layanan web ini didesain menghitung arah alamat statis untuk penempatan konten aplikasi pada peta (\textit{Google Maps}). Dengan layanan web ini juga kita bisa mendapatkan data waktu tempuh dari lokasi awal sampai lokasi tujuan dengan input berupa URL beserta dengan parameter wajib dan beberapa parameter opsional yang bisa disesuaikan dengan kebutuhan seperti waktu keberangkatan dan model lalu lintas apakah optimis atau pesimis yang akan mempengaruhi waktu tempuh. Pesimis adalah model lalu lintas dengan memperhitungkan kemacetan dan optimis adalah model lalu lintas yang tidak memperhitungkan kemacetan. Salah satu format output \textit{Google Direction} yang dikeluarkan berupa JSON(\textit{JavaScript Object Notation}).
+
+JSON sendiri adalah suatu format pertukaran data yang  ringan agar bisa dibaca dan dibuat oleh komputer. JSON juga standar dipakai oleh manusia untuk dapat berkomunikasi dengan tidak terikat pada satu sistem operasi atau bahasa pemrograman agar bisa berkomunikasi dengan komputer dan bisa diakses oleh aplikasi lain.
+
+\textit{Google Direction} sendiri menggunakan protokol HTTP untuk bisa saling berkomunikasi dengan aplikasi. Protokol HTTP(\textit{HyperText Transfer Protocol}) merupakan protokol yang berjalan diatas protokol TCP(\textit{Transmision Control Protocol}) pada port 80 yang digunakan untuk mengirim dokumen atau halaman. Pesan protokol http diformat untuk dapat ditampilkan pada aplikasi.
+
+Dalam penelitian ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan hasil analisis dari data yang didapatkan dari Google Direction API. tujuan aplikasi ini adalah untuk membantu mengambil keputusan pada jam berapakah harus melakukan perjalanan dengan waktu tempuh yang tercepat dengan data-data yang telah ada dalam kurun waktu 7 hari. Aplikasi ini memanfaatkan layanan dari \textit{Google} yaitu \textit{Google Direction} untuk mendapatkan data-data waktu tempuh dari suatu jalur. Pada penelitian ini menggunakan 2 sampel yaitu : menghitung waktu tempuh dari Universitas Katolik Parahyangan dengan alamat Jln. Ciumbuleuit No.94 dan Komplek Amaya Residence, menghitung waktu tempuh dari Universitas Katolik Parahyangan dengan alamat Jln. Ciumbuleuit No.94 dan Komplek Taman Puspa Indah.
+
+\section{Rumusan Masalah}
+\label{sec:rumusan}
+Berdasarkan latar belakang masalah yang telah dijelaskan, rumusan masalah pada penelitian ini adalah:
+\begin{itemize}
+	\item Bagaimana cara menggunakan Google Direction API dalam bahasa Java?
+	\item Bagaimana memanfaatkan layanan Google Direction API untuk memberikan kesimpulan waktu perjalanan terbaik?
+	\item Kapan waktu terbaik untuk berangkat/pulang untuk dua sampel tempat yang dimaksud?
+\end{itemize}
+
+\section{Tujuan}
+\label{sec:tujuan}
+Berdasarkan rumusan masalah di atas, maka tujuan dari penelitian ini adalah:
+\begin{itemize}
+	\item memahami cara menggunakan Google Direction API.
+	\item memahami layanan Google Direction API untuk memberikan kesimpulan waktu perjalanan terbaik.
+	\item memutuskan kapan waktu terbaik untuk berangkat/pulang untuk dua sampel yang dimaksud.
+\end{itemize}
+
+\section{Batasan Masalah}
+\label{sec:batasan}
+Batasan masalah yang akan digunakan untuk peneliatian ini adalah:
+\begin{enumerate}
+	\item Output dari permintaan komunikasi menggunakan format JSON.
+	\item Cakupan wilayah yang akan dihitung waktu tempuhnya adalah kota Bandung.
+	\item Waktu tempuh dihitung setiap jam dalam satu hari.
+	\item Waktu tempuh dihitung setiap hari dalam seminggu.
+	\item Menghitung Waktu tempuh dengan sampel yang beralamat Jln. Ciumbuleuit No.94, Komplek Amaya Residence dan Komplek Taman Puspa Indah.
+	\item Program dijalankan selalu dari hari Senin.
+\end{enumerate}
+
+\section{Metodologi}
+\label{sec:metlit}
+Dalam penyusunan skripsi ini mengikuti langkah-langkah metodologi penelitian sebagai berikut :
+\begin{enumerate}
+	\item Melakukan studi pustaka untuk dijadikan referensi dalam melakukan pembangunan aplikasi Analisis waktu tempuh kota Bandung,
+	\item Melakukan analisis \textit{Google Direction} untuk mendapatkan hasil waktu tempuh dari tujuan asal ke tujuan akhir,
+	\item Melakukan perancangan perangkat lunak,
+	\item Melakukan uji coba sesuai dengan sampel,
+	\item Melakukan penarikan kesimpulan dan saran pada hasil analisis tersebut.
+\end{enumerate}
+
+
+\section{Sistematika Pembahasan}
+\label{sec:sispem}
+Sistematika penulisan laporan pada skripsi ini adalah sebagai berikut :
+\begin{enumerate}
+	\item Bab Pendahuluan\\
+	Bab 1 berisi latar belakang, rumusan masalah, tujuan, batasan masalah, metodologi penelitian, dan sistematika pembahasan dalam pelaksanaan penelitian ini.
+	\item Bab Dasar Teori\\
+	Bab 2 berisi tentang definisi-definisi dasar teori tentang \textit{Google direction} beserta teori pendukung lainnya.
+	\item Bab Analisis\\
+	Bab 3 berisi analisis \textit{Google Direction}, analisis teori pendukung lainnya dan analisis perangkat lunak.
+	\item Bab Perancangan\\
+	Bab 4 berisi tentang pembahasan menegenai perancangan perangkat lunak.
+	\item Bab Impelemntasi dan Pengujian\\
+	Bab 5 berisi tentang pengimplementasian perangkat lunak.
+	\item Bab Kesimpulan dan Saran\\
+	Bab 6 berisi penarikan kesimpulan selama menyelesaikan skripsi dan saran yang diusulkan untuk penelitian berikutnya.
+\end{enumerate}
